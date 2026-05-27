@@ -3,26 +3,34 @@
 .AppleDouble
 .LSOverride
 ._*
+Thumbs.db
 
 # iCloud
 *.icloud
 
-# Node (caso venha usar no futuro)
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.pnp
-.pnp.js
-
-# IDEs e Editores
+# Editores e IDEs
 .vscode/
 .idea/
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
+*.swp
+*.swo
 *.sw?
+*~
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependências
+node_modules/
+.pnp
+.pnp.js
 
 # Build / Output
 dist/
@@ -34,6 +42,6 @@ build/
 .env.local
 .env.*.local
 
-# Logs
-*.log
-logs/
+# Arquivos temporários
+*.tmp
+*.bak
