@@ -1,0 +1,39 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# iCloud
+*.icloud
+
+# Node (caso venha usar no futuro)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnp
+.pnp.js
+
+# IDEs e Editores
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Build / Output
+dist/
+build/
+.cache/
+
+# Variáveis de ambiente (NUNCA versionar)
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+logs/
