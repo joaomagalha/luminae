@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="pt-BR">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Luminae — Alta Performance em Saúde</title>
+    <meta name="description" content="Cardiologia e nutrição integradas para transformar sua saúde com precisão, ciência e acompanhamento contínuo.">
+
+    <!-- Fontes (Google Fonts CDN) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- CSS Externo e Frameworks (Tailwind CDN, Iconify, Lucide) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                        display: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        stone: {
+                            50: '#fafaf9',
+                            100: '#f5f5f4',
+                            200: '#e7e5e4',
+                            300: '#d6d3d1',
+                            400: '#a8a29e',
+                            500: '#78716c',
+                            600: '#57534e',
+                            700: '#44403c',
+                            800: '#292524',
+                            900: '#1c1917',
+                        },
+                        'surface-light': '#EAEAE5',
+                        'brand-yellow': {
+                            DEFAULT: '#EDC54C',
+                            muted1: '#eedb99',
+                            muted2: '#f7edd2',
+                            dark: '#be9e3d',
+                        },
+                    },
+                    animation: {
+                        'spin-slow': 'spin 12s linear infinite',
+                        'shimmer': 'shimmer 2s linear infinite',
+                        'marquee': 'marquee 30s linear infinite',
+                        'pulse-glow': 'pulseGlow 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        shimmer: {
+                            from: { backgroundPosition: '0 0' },
+                            to: { backgroundPosition: '-200% 0' }
+                        },
+                        marquee: {
+                            '0%': { transform: 'translateX(0)' },
+                            '100%': { transform: 'translateX(-50%)' }
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { opacity: 0.2, filter: 'blur(40px)' },
+                            '50%': { opacity: 0.6, filter: 'blur(60px)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root {
+            --cream: #EAEAE5;
+            --dark: #1C1917;
+            --navy: #1C1917;
+            --gold: #EDC54C;
+        }
+
+        /* ===== ESTILOS BASE & SEÇÕES ===== */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--cream);
+            color: var(--dark);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Linhas Globais de Grade com Feixes de Laser Animados */
+        .grid-line-v {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: rgba(28, 25, 23, 0.06);
+            pointer-events: none;
+            z-index: 1;
+        }
+        .grid-line-h {
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: rgba(28, 25, 23, 0.06);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Feixes de laser animados */
+        .beam-v {
+            position: absolute;
+            width: 1px;
+            height: 100px;
+            background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+            left: 0;
+            animation: beamV 8s infinite linear;
+        }
+        .beam-h {
+            position: absolute;
+            height: 1px;
+            width: 150px;
+            background: linear-gradient(to right, transparent, var(--gold), transparent);
+            top: 0;
+            animation: beamH 8s infinite linear;
+        }
+
+        @keyframes beamV {
+            0% { top: -100px; }
+            100% { top: 105%; }
+        }
+        @keyframes beamH {
+            0% { left: -150px; }
+            100% { left: 105%; }
+        }
+
+        /* Transição Suave de Cores */
+        .section-fade {
+            transition: background-color 1s ease-in-out, color 1s ease-in-out;
+        }
+
+        /* REVEAL ON SCROLL (Cinematográfico com Easing Físico e Blur) */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            filter: blur(10px);
+            transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+                        filter 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+            filter: blur(0px);
+        }
+
+        /* TEXT MASK REVEAL */
+        .text-reveal-wrapper {
+            overflow: hidden;
+            display: block;
+        }
+        .text-reveal-content {
+            transform: translateY(110%);
+            opacity: 0;
+            transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.2s ease;
+            display: block;
+        }
+        .reveal-active .text-reveal-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* CONIC BEAM BUTTONS */
+        .btn-beam {
+            position: relative;
+            z-index: 10;
+            overflow: hidden;
+            display: inline-block;
+        }
+        .btn-beam::before {
+            content: "";
+            position: absolute;
+            inset: -2px;
+            z-index: -1;
+            background: conic-gradient(from 90deg at 50% 50%, #E2E8F0 0%, var(--gold) 50%, #E2E8F0 100%);
+            animation: spin 3s linear infinite;
+            border-radius: inherit;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .btn-beam:hover::before {
+            opacity: 1;
+        }
+        .btn-beam-content {
+            background-color: #1c1917;
+            color: #ffffff;
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            height: 100%;
+            border-radius: inherit;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* FLASHLIGHT EFFECT CARD */
+        .flashlight-card {
+            background: rgba(255, 255, 255, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        .flashlight-card::before {
+            content: "";
+            position: absolute;
+            inset: 0px;
+            background: radial-gradient(
+                600px circle at var(--mouse-x, 0) var(--mouse-y, 0),
+                rgba(255, 255, 255, 0.8),
+                transparent 40%
+            );
+            opacity: 0;
+            transition: opacity 0.5s;
+            pointer-events: none;
+            z-index: 2;
+        }
+        .flashlight-card:hover::before {
+            opacity: 1;
+        }
+
+        /* 3D TRANSFORM PERSPECTIVE */
+        .perspective-1000 {
+            perspective: 1000px;
+        }
+        .tilt-card {
+            transform-style: preserve-3d;
+            transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* FILTRO DE RUÍDO */
+        .noise {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.035;
+            pointer-events: none;
+            z-index: 9999;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* ==========================================================================
+           LUMINAE - SEÇÃO ABORDAGEM DE SAÚDE (ESTILOS CUSTOMIZADOS)
+           ========================================================================== */
+        .saude-section {
+            position: relative;
+            background-color: var(--cream);
+            color: var(--dark);
+            font-family: 'Inter', sans-serif;
+            padding: 100px 48px;
+            overflow: hidden;
+            z-index: 10;
+        }
+
+        /* Linhas verticais decorativas laterais */
+        .saude-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 48px;
+            width: 1px;
+            background: rgba(28, 25, 23, 0.05);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .saude-section::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 48px;
+            width: 1px;
+            background: rgba(28, 25, 23, 0.05);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .saude-header {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 64px;
+            align-items: start;
+            position: relative;
+            z-index: 2;
+            margin-bottom: 64px;
+        }
+
+        .saude-header-left {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .saude-header-right {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding-top: 8px;
+        }
+
+        .saude-title {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 2.85rem;
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: -0.025em;
+            color: var(--dark);
+            margin: 0;
+        }
+
+        .saude-desc {
+            font-size: 1.05rem;
+            line-height: 1.65;
+            color: #57534e;
+            font-weight: 300;
+            margin: 0;
+        }
+
+        .saude-desc-strong {
+            color: var(--dark);
+            font-weight: 505;
+        }
+
+        .saude-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .saude-card {
+            padding: 36px 28px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 24px;
+            min-height: 280px;
+            box-sizing: border-box;
+            border-radius: 16px;
+            border: 1px solid rgba(28, 25, 23, 0.08);
+            box-shadow: none;
+        }
+
+        .saude-card-top {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .saude-card-icon-wrapper {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: rgba(28, 25, 23, 0.03);
+            border: 1px solid rgba(28, 25, 23, 0.04);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #44403c;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .saude-card:hover .saude-card-icon-wrapper {
+            background: rgba(237, 197, 76, 0.15);
+            border-color: rgba(237, 197, 76, 0.3);
+            color: var(--dark);
+            transform: scale(1.05) rotate(5deg);
+        }
+
+        .saude-card-icon {
+            width: 24px;
+            height: 24px;
+            stroke: currentColor;
+            stroke-width: 1.5;
+            fill: none;
+        }
+
+        .saude-card-title {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            line-height: 1.3;
+            letter-spacing: -0.01em;
+            color: var(--dark);
+            margin: 0;
+        }
+
+        .saude-card-desc {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: #78716c;
+            margin: 0;
+            font-weight: 300;
+            position: relative;
+            z-index: 2;
+        }
+
+        .saude-card::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 2px;
+            background: linear-gradient(to right, transparent, var(--gold), transparent);
+            opacity: 0;
+            transform: scaleX(0.8);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 3;
+        }
+
+        .saude-card:hover::after {
+            opacity: 1;
+            transform: scaleX(1);
+        }
+
+        .saude-divider {
+            height: 1px;
+            background: linear-gradient(to right, rgba(28, 25, 23, 0.02), rgba(28, 25, 23, 0.08) 20%, rgba(28, 25, 23, 0.08) 80%, rgba(28, 25, 23, 0.02));
+            margin: 64px 0;
+            border: none;
+            position: relative;
+            z-index: 2;
+        }
+
+        .saude-indicators-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            position: relative;
+            z-index: 2;
+        }
+
+        .saude-indicators-row::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 1px;
+            height: 60px;
+            background: rgba(28, 25, 23, 0.08);
+        }
+
+        .saude-indicator {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .saude-indicator-value {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 3.8rem;
+            font-weight: 800;
+            line-height: 1;
+            letter-spacing: -0.03em;
+            color: var(--dark);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .saude-indicator-value span {
+            color: var(--gold);
+        }
+
+        .saude-indicator-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            color: #78716c;
+            text-transform: uppercase;
+            margin: 0;
+        }
+
+        .saude-stagger-1 { transition-delay: 60ms !important; }
+        .saude-stagger-2 { transition-delay: 180ms !important; }
+        .saude-stagger-3 { transition-delay: 300ms !important; }
+        .saude-stagger-4 { transition-delay: 420ms !important; }
+
+        @media (max-width: 1200px) {
+            .saude-section { padding: 80px 32px; }
+            .saude-section::before { left: 32px; }
+            .saude-section::after { right: 32px; }
+            .saude-title { font-size: 2.5rem; }
+            .saude-cards-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+            .saude-card { min-height: 250px; padding: 28px; }
+        }
+
+        @media (max-width: 768px) {
+            .saude-section { padding: 64px 24px; }
+            .saude-section::before, .saude-section::after { display: none; }
+            .saude-header { grid-template-columns: 1fr; gap: 32px; margin-bottom: 48px; }
+            .saude-header-right { padding-top: 0; }
+            .saude-title { font-size: 2.2rem; }
+            .saude-divider { margin: 48px 0; }
+            .saude-indicators-row::after { display: none; }
+            .saude-indicators-row { grid-template-columns: 1fr; gap: 32px; }
+            .saude-indicator-value { font-size: 3.2rem; }
+        }
+
+        @media (max-width: 480px) {
+            .saude-section { padding: 56px 16px; }
+            .saude-title { font-size: 1.85rem; }
+            .saude-cards-grid { grid-template-columns: 1fr; gap: 16px; }
+            .saude-card { min-height: auto; padding: 24px; }
+            .saude-desc { font-size: 0.95rem; }
+        }
+
+        /* ESTILOS DE HOVER PARA OS PILARES DA PROPOSTA (SEÇÃO 3) */
+        .proposta-card {
+            position: relative;
+            z-index: 1;
+        }
+        .proposta-card.reveal {
+            transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                        filter 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+                        box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                        background-color 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
+        .proposta-card:hover {
+            transform: translateY(-4px) !important;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -6px rgba(0, 0, 0, 0.08) !important;
+            background-color: rgba(255, 255, 255, 0.75) !important;
+            z-index: 10;
+        }
+        .proposta-card:nth-child(2):hover {
+            background-color: rgba(250, 249, 245, 0.98) !important;
+        }
+
+        /* EFEITO DE ESTRELAS CINTILANTES (TWINKLING STARS) */
+        #stars-container {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .star {
+            position: absolute;
+            background-color: #ffffff;
+            border-radius: 50%;
+            animation: twinkle 3s infinite ease-in-out;
+            pointer-events: none;
+        }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.15; transform: scale(0.7); }
+            50% { opacity: 0.95; transform: scale(1.2); }
+        }
+
+        /* LINHAS DE GRADE E BEAMS DA SEÇÃO ESCURA */
+        .dark-grid-line-v {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: rgba(255, 255, 255, 0.05);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* ESTILOS DA SEÇÃO DE BIOGRAFIA DOS DIRETORES (SOBRE) */
+        .doctor-bio-section {
+            background-color: #1C1917;
+            color: #ffffff;
+            position: relative;
+            z-index: 10;
+            overflow: hidden;
+        }
+        .doctor-card-frame {
+            position: relative;
+            background: rgba(28, 25, 23, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            transition: border-color 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
+                        transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                        box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .doctor-card-frame:hover {
+            border-color: rgba(237, 197, 76, 0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.7), 0 0 40px rgba(237, 197, 76, 0.05);
+        }
+        .doctor-card-frame img {
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .doctor-card-frame:hover img {
+            transform: scale(1.03);
+        }
+        .doctor-parallax-wrapper {
+            will-change: transform;
+            transition: transform 0.1s cubic-bezier(0.25, 1, 0.5, 1);
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* ESTILOS DA SEÇÃO ÁREAS DE ATUAÇÃO (PROGRAMAS) */
+        .programa-card {
+            transition: border-color 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                        box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                        background-color 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .programa-card:hover {
+            transform: translateY(-6px);
+            background-color: rgba(255, 255, 255, 0.95);
+            border-color: rgba(237, 197, 76, 0.3);
+        }
+        .programa-card::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--gold), transparent);
+            opacity: 0;
+            transform: scaleX(0.7);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 3;
+        }
+        .programa-card:hover::after {
+            opacity: 1;
+            transform: scaleX(1);
+        }
+    </style>
+</head>
+
+<body class="antialiased selection:bg-brand-yellow selection:text-stone-900 relative bg-[#EAEAE5] overflow-x-hidden">
+
+    <div class="noise"></div>
+
+    <!-- WRAPPER PRINCIPAL -->
+    <div class="max-w-[1440px] mx-auto border-x border-stone-300 relative bg-[#EAEAE5] shadow-2xl">
+
+        <!-- NAVBAR GLASSMORPHISM -->
+        <header class="relative z-50 border-b border-stone-300/30 bg-[#EAEAE5]/80 backdrop-blur-md sticky top-0 transition-all duration-500" id="navbar">
+            <div class="flex justify-between items-center px-6 lg:px-12 py-4">
+                <div class="flex items-center gap-2">
+                    <a href="#" class="block select-none">
+                        <img src="logo.svg" alt="Luminae Logo" class="h-7 w-auto block">
+                    </a>
+                </div>
+                <nav class="hidden md:flex items-center gap-8 text-xs font-mono uppercase tracking-widest text-stone-500">
+                    <a href="#sobre" class="hover:text-brand-yellow transition-colors">Sobre</a>
+                    <a href="#metodo" class="hover:text-brand-yellow transition-colors">Método</a>
+                    <a href="#especialidades" class="hover:text-brand-yellow transition-colors">Especialidades</a>
+                    <a href="#diferenciais" class="hover:text-brand-yellow transition-colors">Diferenciais</a>
+                </nav>
+                <div class="flex items-center gap-4">
+                    <button class="btn-beam px-[1px] py-[1px] rounded-sm group">
+                        <a href="#agendamento" class="btn-beam-content px-5 py-2 rounded-sm text-xs font-mono uppercase tracking-widest transition-colors hover:text-brand-yellow">
+                            Agendar Avaliação
+                        </a>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- HERO SECTION (PRIMEIRA DOBRA) -->
+        <section class="relative z-10 lg:min-h-[calc(100vh-72px)] flex flex-col justify-center border-b border-stone-300 overflow-hidden bg-gradient-to-b from-[#EAEAE5] via-[#fafaf9] to-[#EAEAE5] py-10 sm:py-14 lg:py-16">
+            
+            <!-- Linhas de Grade de Design com Feixes Luminosos (Aura) -->
+            <div class="grid-line-v" style="left: 10%"><div class="beam-v" style="animation-delay: 0s; animation-duration: 7s;"></div></div>
+            <div class="grid-line-v" style="left: 30%"><div class="beam-v" style="animation-delay: 3s; animation-duration: 9s;"></div></div>
+            <div class="grid-line-v" style="left: 60%"><div class="beam-v" style="animation-delay: 1.5s; animation-duration: 8s;"></div></div>
+            <div class="grid-line-v" style="left: 90%"><div class="beam-v" style="animation-delay: 5s; animation-duration: 10s;"></div></div>
+            <div class="grid-line-h" style="top: 25%"><div class="beam-h" style="animation-delay: 2s; animation-duration: 6s;"></div></div>
+            <div class="grid-line-h" style="top: 75%"><div class="beam-h" style="animation-delay: 4.5s; animation-duration: 7s;"></div></div>
+
+            <!-- Efeitos de Fundo Glow -->
+            <div class="absolute top-[10%] right-[15%] w-[550px] h-[550px] bg-gradient-to-br from-brand-yellow/10 to-transparent rounded-full blur-[100px] animate-pulse-glow"></div>
+            <div class="absolute bottom-[5%] left-[5%] w-[450px] h-[450px] bg-gradient-to-tr from-stone-200/30 to-brand-yellow/5 rounded-full blur-[120px] opacity-75"></div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-0 relative z-10 px-6 lg:px-12 w-full">
+                <!-- Coluna de Conteúdo Textual (Esquerda) - 50% split (lg:col-span-6) -->
+                <div class="col-span-12 lg:col-span-6 flex flex-col justify-center p-0 lg:pr-8">
+                    
+                    <!-- Selo/Badge Discreto com Iniciais -->
+                    <div class="inline-flex items-center gap-3 bg-white/70 backdrop-blur-md border border-stone-300/40 rounded-full py-1.5 px-4 w-fit shadow-sm reveal delay-100 mb-4 sm:mb-6 lg:mb-8">
+                        <div class="flex -space-x-2">
+                            <div class="w-7 h-7 rounded-full border border-white bg-[#E07A5F] text-white text-[10px] font-sans font-bold flex items-center justify-center select-none shadow-sm">A</div>
+                            <div class="w-7 h-7 rounded-full border border-white bg-[#EDC54C] text-stone-900 text-[10px] font-sans font-bold flex items-center justify-center select-none shadow-sm">D</div>
+                            <div class="w-7 h-7 rounded-full border border-white bg-[#3D5A80] text-white text-[10px] font-sans font-bold flex items-center justify-center select-none shadow-sm">E</div>
+                        </div>
+                        <div class="text-[10px] font-sans font-bold uppercase tracking-wider text-stone-700 leading-none">
+                            <span class="text-brand-yellow-dark">1.000+ Pacientes</span> <span class="text-stone-400 font-normal">Transformados</span>
+                        </div>
+                    </div>
+
+                    <!-- Headline com Plus Jakarta Sans -->
+                    <h1 class="font-display text-[2rem] sm:text-6xl lg:text-[3.8rem] xl:text-[4.6rem] font-bold tracking-tight text-stone-900 leading-[1.08] mb-4 sm:mb-6 lg:mb-8">
+                        <span class="text-reveal-wrapper"><span class="text-reveal-content">Sua saúde merece</span></span>
+                        <span class="text-reveal-wrapper"><span class="text-reveal-content delay-200 text-brand-yellow font-light italic">um novo nível de</span></span>
+                        <span class="text-reveal-wrapper"><span class="text-reveal-content delay-300">cuidado.</span></span>
+                    </h1>
+
+                    <!-- Subheadline -->
+                    <p class="text-sm sm:text-base lg:text-lg text-stone-600 max-w-xl leading-relaxed reveal delay-500 font-light mb-5 sm:mb-8 lg:mb-10">
+                        Cardiologia e nutrição integradas para transformar sua saúde com precisão, ciência e acompanhamento contínuo.
+                    </p>
+
+                    <!-- CTAs Lado a Lado -->
+                    <div class="flex flex-col sm:flex-row gap-4 reveal delay-700 w-full sm:w-auto">
+                        <a href="#agendamento" class="px-8 py-4 bg-stone-900 text-white font-display text-xs uppercase tracking-widest font-semibold rounded-sm shadow-md hover:bg-stone-850 hover:shadow-lg hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2 group w-full sm:w-auto">
+                            Agendar Avaliação
+                            <iconify-icon icon="solar:arrow-right-linear" class="text-base group-hover:translate-x-1 transition-transform"></iconify-icon>
+                        </a>
+                        <a href="#metodo" class="px-8 py-4 border border-stone-900 text-stone-900 font-display text-xs uppercase tracking-widest font-semibold rounded-sm hover:bg-stone-900 hover:text-white hover:-translate-y-0.5 transition-all w-full sm:w-auto text-center">
+                            Conheça o Método
+                        </a>
+                    </div>
+
+                    <!-- Diferenciais Rápidos com Ícones Redondos -->
+                    <div class="flex flex-wrap gap-x-12 gap-y-4 mt-6 sm:mt-10 lg:mt-12 pt-5 sm:pt-6 lg:pt-8 border-t border-stone-300/40 reveal delay-700">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-brand-yellow/10 border border-brand-yellow/30 flex items-center justify-center text-brand-yellow text-xl shadow-sm">
+                                <iconify-icon icon="solar:stethoscope-linear"></iconify-icon>
+                            </div>
+                            <div>
+                                <h4 class="font-display font-bold text-xs uppercase tracking-wider text-stone-900 leading-tight">Ciência</h4>
+                                <span class="text-xs text-stone-500">Baseado em ciência</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-brand-yellow/10 border border-brand-yellow/30 flex items-center justify-center text-brand-yellow text-xl shadow-sm">
+                                <iconify-icon icon="solar:graph-up-linear"></iconify-icon>
+                            </div>
+                            <div>
+                                <h4 class="font-display font-bold text-xs uppercase tracking-wider text-stone-900 leading-tight">Resultados</h4>
+                                <span class="text-xs text-stone-500">Resultados consistentes</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Coluna de Imagem Principal Maior e Interativa (Direita) - 50% split (lg:col-span-6) -->
+                <div class="col-span-12 lg:col-span-6 flex flex-col justify-center relative">
+                    <!-- Reduzido tamanho da foto em ~30% (max-w-[320px] / lg:max-w-[380px]) -->
+                    <div class="perspective-1000 w-full max-w-[320px] lg:max-w-[380px] mx-auto reveal delay-300">
+                        <!-- Card 3D com flashlights e borda sutil de vidro -->
+                        <div class="tilt-card flashlight-card rounded-2xl border border-stone-300/40 bg-white/40 backdrop-blur-md p-3 shadow-2xl transition-all duration-700 cursor-default"
+                             onmousemove="updateFlashlight(event, this); updateTilt(event, this);" onmouseleave="resetTilt(this)">
+                            
+                            <!-- Borda animada conic sutil interna no hover -->
+                            <div class="absolute -inset-px opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" style="background: radial-gradient(120px circle at var(--mouse-x) var(--mouse-y), rgba(237,197,76,0.2), transparent 80%); z-index: 1;"></div>
+                            
+                            <!-- Imagem Container -->
+                            <div class="relative rounded-xl overflow-hidden aspect-[4/5] bg-stone-200 shadow-inner">
+                                <!-- Feixe laser horizontal se movimentando dentro da moldura da foto -->
+                                <div class="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-brand-yellow to-transparent beam-h" style="animation-duration: 4s;"></div>
+                                
+                                <img src="assets/images/hero-doctors.png" alt="Corpo Clínico Luminae" class="w-full h-full object-cover object-[75%_top] select-none">
+                                
+                                <!-- Card Glassmorphic flutuante integrado sobre a foto dos médicos -->
+                                <div class="absolute bottom-4 left-4 right-4 bg-stone-900/90 backdrop-blur-md border border-white/10 p-4 rounded-lg text-white shadow-lg z-10">
+                                    <div class="flex justify-between items-center">
+                                        <div>
+                                            <h3 class="font-display font-bold text-sm tracking-tight">Dr. Max & Dra. Maristela</h3>
+                                            <span class="text-[9px] font-mono uppercase text-brand-yellow/85 tracking-wider">Diretoria Médica & Medicina Integrativa</span>
+                                        </div>
+                                        <div class="w-6 h-6 rounded-full bg-brand-yellow/20 flex items-center justify-center text-brand-yellow text-sm">
+                                            <iconify-icon icon="solar:shield-check-bold"></iconify-icon>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO PROPOSTA DE VALOR (PILARES DE CUIDADO) -->
+        <section id="proposta" class="relative z-10 border-b border-stone-300 bg-gradient-to-b from-[#EAEAE5] via-[#FAF9F5] to-[#EAEAE5] overflow-hidden reveal">
+            
+            <!-- Emblema Separador Central Superior (do Print 2) -->
+            <div class="flex justify-center py-6 border-b border-stone-300 bg-white/10">
+                <div class="w-10 h-10 rounded-full bg-brand-yellow/10 border border-brand-yellow/30 flex items-center justify-center text-brand-yellow text-lg shadow-sm">
+                    <iconify-icon icon="solar:shield-check-linear"></iconify-icon>
+                </div>
+            </div>
+
+            <!-- Grade do Cabeçalho da Proposta (Print 2) -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 border-b border-stone-300">
+                <!-- Coluna da Esquerda (Heading) - 1/3 split (lg:col-span-4) -->
+                <div class="col-span-12 lg:col-span-4 p-8 lg:p-12 lg:border-r border-stone-300 flex flex-col justify-center bg-white/30">
+                    <h2 class="font-display text-2xl sm:text-3xl lg:text-[2.2rem] font-bold text-stone-900 leading-[1.25] tracking-tight">
+                        Sua saúde não deveria depender de tentativa e erro.
+                    </h2>
+                </div>
+                <!-- Coluna da Direita (Descrição) - 2/3 split (lg:col-span-8) -->
+                <div class="col-span-12 lg:col-span-8 p-8 lg:p-12 flex flex-col justify-center bg-white/10">
+                    <p class="text-sm sm:text-base text-stone-600 leading-relaxed font-light max-w-2xl">
+                        Na Luminae, cada estratégia é construída com base médica, análise individual e segurança cardiovascular. Não tratamos apenas sintomas. Estruturamos performance, prevenção e qualidade de vida a longo prazo.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Grade dos Cards de Pilares (3 Colunas) -->
+            <div class="grid grid-cols-1 md:grid-cols-3">
+                
+                <!-- Pilar 01 - Segurança -->
+                <div class="proposta-card relative overflow-hidden bg-white/40 backdrop-blur-sm p-8 lg:p-12 border-b md:border-b-0 md:border-r border-stone-300 flex flex-col justify-between gap-8 min-h-[300px] reveal">
+                    <div class="flex flex-col gap-6">
+                        <!-- Número e Label -->
+                        <div class="flex flex-col gap-1">
+                            <span class="font-display font-light text-5xl lg:text-6xl text-stone-300/80 select-none">01</span>
+                            <span class="text-[10px] font-mono tracking-widest text-[#EDC54C] uppercase font-bold">Segurança</span>
+                        </div>
+                        <!-- Título e Texto -->
+                        <div class="flex flex-col gap-2">
+                            <h3 class="font-display font-bold text-lg lg:text-xl text-stone-900">Base Cardiológica</h3>
+                            <p class="text-xs sm:text-sm text-stone-500 leading-relaxed font-light">
+                                Acompanhamento com base em cardiologia e medicina de ponta.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pilar 02 - Estratégia (Warm Background Pattern) -->
+                <div class="proposta-card relative overflow-hidden bg-[#FAF9F5]/70 backdrop-blur-sm p-8 lg:p-12 border-b md:border-b-0 md:border-r border-stone-300 flex flex-col justify-between gap-8 min-h-[300px] reveal">
+                    <div class="flex flex-col gap-6">
+                        <!-- Número e Label -->
+                        <div class="flex flex-col gap-1">
+                            <span class="font-display font-light text-5xl lg:text-6xl text-stone-300/80 select-none">02</span>
+                            <span class="text-[10px] font-mono tracking-widest text-[#EDC54C] uppercase font-bold">Estratégia</span>
+                        </div>
+                        <!-- Título e Texto -->
+                        <div class="flex flex-col gap-2">
+                            <h3 class="font-display font-bold text-lg lg:text-xl text-stone-900">Protocolos Personalizados</h3>
+                            <p class="text-xs sm:text-sm text-stone-500 leading-relaxed font-light">
+                                Cada protocolo é desenvolvido a partir da análise individual.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pilar 03 - Performance -->
+                <div class="proposta-card relative overflow-hidden bg-white/40 backdrop-blur-sm p-8 lg:p-12 border-stone-300 flex flex-col justify-between gap-8 min-h-[300px] reveal">
+                    <div class="flex flex-col gap-6">
+                        <!-- Número e Label -->
+                        <div class="flex flex-col gap-1">
+                            <span class="font-display font-light text-5xl lg:text-6xl text-stone-300/80 select-none">03</span>
+                            <span class="text-[10px] font-mono tracking-widest text-[#EDC54C] uppercase font-bold">Performance</span>
+                        </div>
+                        <!-- Título e Texto -->
+                        <div class="flex flex-col gap-2">
+                            <h3 class="font-display font-bold text-lg lg:text-xl text-stone-900">Resultados Sustentáveis</h3>
+                            <p class="text-xs sm:text-sm text-stone-500 leading-relaxed font-light">
+                                Acompanhamento contínuo e ajustes baseados em dados.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SEÇÃO ABORDAGEM DE SAÚDE (MUITO ALÉM DE CONSULTAS) -->
+        <section class="saude-section reveal" id="abordagem-saude" aria-labelledby="saude-heading">
+            <header class="saude-header">
+                <div class="saude-header-left">
+                    <h2 id="saude-heading" class="saude-title text-reveal-wrapper">
+                        <span class="text-reveal-content">Muito além de consultas,</span>
+                    </h2>
+                    <h2 class="saude-title text-reveal-wrapper">
+                        <span class="text-reveal-content" style="transition-delay: 120ms;">uma nova abordagem</span>
+                    </h2>
+                    <h2 class="saude-title text-reveal-wrapper">
+                        <span class="text-reveal-content" style="transition-delay: 240ms; color: var(--gold);">para sua saúde.</span>
+                    </h2>
+                </div>
+                <div class="saude-header-right reveal" style="transition-delay: 200ms;">
+                    <p class="saude-desc">
+                        Na <span class="saude-desc-strong">Luminae</span>, integramos cardiologia e nutrição para cuidar do paciente de forma completa. Nosso foco não é apenas tratar sintomas, mas atuar na causa, promovendo saúde, performance e longevidade.
+                    </p>
+                    <p class="saude-desc">
+                        Cada acompanhamento é conduzido com base em ciência, estratégia e personalização, respeitando sua rotina e seus objetivos.
+                    </p>
+                </div>
+            </header>
+
+            <div class="saude-cards-grid">
+                <!-- Card 1: Atendimento personalizado -->
+                <div class="saude-card reveal saude-stagger-1" tabindex="0" aria-label="Atendimento personalizado: Cuidado centrado em você.">
+                    <div class="saude-card-top">
+                        <div class="saude-card-icon-wrapper" aria-hidden="true">
+                            <!-- Icon: User / Profile outline -->
+                            <svg class="saude-card-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                            </svg>
+                        </div>
+                        <h3 class="saude-card-title">Atendimento personalizado</h3>
+                    </div>
+                    <p class="saude-card-desc">
+                        Estratégias de saúde adaptadas às suas particularidades genéticas, metabólicas e estilo de vida.
+                    </p>
+                </div>
+
+                <!-- Card 2: Abordagem cardiometabólica -->
+                <div class="saude-card reveal saude-stagger-2" tabindex="0" aria-label="Abordagem cardiometabólica: Integração de cardiologia e metabolismo.">
+                    <div class="saude-card-top">
+                        <div class="saude-card-icon-wrapper" aria-hidden="true">
+                            <!-- Icon: Activity / Pulse / Cardiology -->
+                            <svg class="saude-card-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.3 12H9l-1.35 3.6a.6.6 0 0 1-1.125 0L4.85 7.2a.6.6 0 0 1 1.125 0L7.325 12h7.975M3 12h2.5M18.5 12H21m-4.5 0-1.7 4.25a.6.6 0 0 1-1.113.003L12 9.25a.6.6 0 0 1 1.122.01L14.85 12" />
+                            </svg>
+                        </div>
+                        <h3 class="saude-card-title">Abordagem cardiometabólica</h3>
+                    </div>
+                    <p class="saude-card-desc">
+                        Análise conjunta da saúde do coração e dos processos metabólicos, prevenindo riscos de forma precoce.
+                    </p>
+                </div>
+
+                <!-- Card 3: Acompanhamento contínuo -->
+                <div class="saude-card reveal saude-stagger-3" tabindex="0" aria-label="Acompanhamento contínuo: Monitoramento constante.">
+                    <div class="saude-card-top">
+                        <div class="saude-card-icon-wrapper" aria-hidden="true">
+                            <!-- Icon: Time / Refresh / Loop -->
+                            <svg class="saude-card-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
+                            </svg>
+                        </div>
+                        <h3 class="saude-card-title">Acompanhamento contínuo</h3>
+                    </div>
+                    <p class="saude-card-desc">
+                        Suporte de saúde ao longo de sua rotina, garantindo consistência nos resultados e metas alcançadas.
+                    </p>
+                </div>
+
+                <!-- Card 4: Estratégia baseada em evidência -->
+                <div class="saude-card reveal saude-stagger-4" tabindex="0" aria-label="Estratégia baseada em evidência: Protocolos científicos.">
+                    <div class="saude-card-top">
+                        <div class="saude-card-icon-wrapper" aria-hidden="true">
+                            <!-- Icon: Academic cap / DNA / Science -->
+                            <svg class="saude-card-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.57 50.57 0 0 0-2.658-.813A5.906 5.906 0 0 1 1.5 5.25h16.5c.348 0 .686.03 1.015.088a5.906 5.906 0 0 1 2.727 4.08 50.487 50.487 0 0 0-2.658.813m-15.482 0A50.702 50.702 0 0 1 12 12.75c2.792 0 5.462-.4 7.026-.813M9 10.5V6m6 4.5V6" />
+                            </svg>
+                        </div>
+                        <h3 class="saude-card-title">Estratégia baseada em evidência</h3>
+                    </div>
+                    <p class="saude-card-desc">
+                        Diretrizes clínicas e estudos científicos modernos que dão embasamento a todas as decisões terapêuticas.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Subtle Horizontal Divider -->
+            <hr class="saude-divider" />
+
+            <!-- Final Indicators -->
+            <div class="saude-indicators-row">
+                <!-- Indicator 1 -->
+                <div class="saude-indicator reveal" style="transition-delay: 150ms;">
+                    <div class="saude-indicator-value">2.5k<span>+</span></div>
+                    <h4 class="saude-indicator-label">Pacientes</h4>
+                </div>
+                <!-- Indicator 2 -->
+                <div class="saude-indicator reveal" style="transition-delay: 300ms;">
+                    <div class="saude-indicator-value">100<span>%</span></div>
+                    <h4 class="saude-indicator-label">Compromisso</h4>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO BIOGRAFIA DOS DIRETORES (SOBRE NÓS) -->
+        <section id="sobre" class="doctor-bio-section relative border-b border-stone-850 py-24 md:py-28 reveal" aria-labelledby="equipe-heading">
+            <!-- Efeito de Estrelas Cintilantes (Twinkling Stars) -->
+            <div id="stars-container"></div>
+
+            <!-- Linhas de Grade de Destaque para Seção Escura -->
+            <div class="dark-grid-line-v" style="left: 15%;"><div class="beam-v" style="animation-delay: 1.5s; animation-duration: 6s;"></div></div>
+            <div class="dark-grid-line-v" style="left: 85%;"><div class="beam-v" style="animation-delay: 3s; animation-duration: 7s;"></div></div>
+
+            <div class="relative z-10 max-w-[1200px] mx-auto px-6">
+                <!-- Título Centralizado -->
+                <div class="text-center mb-20 md:mb-24 flex flex-col items-center">
+                    <span class="text-[10px] font-mono tracking-widest text-[#EDC54C] uppercase font-bold mb-3 block">Diretoria Médica</span>
+                    <h2 id="equipe-heading" class="text-3xl sm:text-4xl md:text-5xl font-display font-bold leading-none tracking-tight text-white max-w-2xl">
+                        Fundadores da <span class="text-[#EDC54C]">Luminae</span>
+                    </h2>
+                </div>
+
+                <!-- Perfil 1: Dr. Max (Texto à Esquerda, Imagem à Direita) -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center mb-24 md:mb-28">
+                    <!-- Coluna de Biografia -->
+                    <div class="col-span-12 lg:col-span-6 flex flex-col items-start gap-6 reveal">
+                        <!-- Badge Pill -->
+                        <span class="text-[10px] font-mono tracking-widest text-[#EDC54C] border border-[#EDC54C]/30 px-3.5 py-1.5 rounded-full bg-[#EDC54C]/5 uppercase font-bold">
+                            Co-Fundador & Diretor Clínico
+                        </span>
+                        
+                        <!-- Nome -->
+                        <div class="flex flex-col gap-2">
+                            <h3 class="font-display font-bold text-3xl sm:text-4xl text-white">Dr. Max</h3>
+                            <span class="text-xs font-mono text-stone-400">CRM/SP 000000 · Cardiologia & Medicina Preventiva</span>
+                        </div>
+
+                        <!-- Textos -->
+                        <div class="flex flex-col gap-4 text-stone-300 font-light text-sm sm:text-base leading-relaxed">
+                            <p>
+                                Especialista em medicina preventiva de precisão, o Dr. Max dedica-se a unir a cardiologia clínica clássica aos protocolos metabólicos mais modernos do mundo, visando longevidade ativa e otimização física.
+                            </p>
+                            <p>
+                                Acredita que o acompanhamento médico deve ir além do tratamento de queixas agudas, construindo barreiras robustas contra o envelhecimento celular e otimizando a qualidade de vida de empresários, atletas e pacientes de alta performance.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Coluna de Imagem com Moldura Premium -->
+                    <div class="col-span-12 lg:col-span-6 flex justify-center reveal delay-200">
+                        <div class="doctor-parallax-wrapper w-full max-w-[380px]">
+                            <div class="doctor-card-frame w-full aspect-[4/5] rounded-2xl p-2.5 overflow-hidden">
+                                <!-- Overlay escuro para combinar com o design system -->
+                                <div class="absolute inset-0 bg-stone-950 opacity-15 hover:opacity-0 transition-opacity duration-500 z-10 pointer-events-none"></div>
+                                <img src="assets/images/dr-max.png" alt="Dr. Max" class="w-full h-full object-cover rounded-xl select-none">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Perfil 2: Dra. Maristela (Imagem à Esquerda, Texto à Direita) -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+                    <!-- Coluna de Imagem (Primeira no Grid Desktop) -->
+                    <div class="col-span-12 lg:col-span-6 order-2 lg:order-1 flex justify-center reveal">
+                        <div class="doctor-parallax-wrapper w-full max-w-[380px]">
+                            <div class="doctor-card-frame w-full aspect-[4/5] rounded-2xl p-2.5 overflow-hidden">
+                                <!-- Overlay escuro para combinar com o design system -->
+                                <div class="absolute inset-0 bg-stone-950 opacity-15 hover:opacity-0 transition-opacity duration-500 z-10 pointer-events-none"></div>
+                                <img src="assets/images/dra-maristela.png" alt="Dra. Maristela" class="w-full h-full object-cover rounded-xl select-none">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Coluna de Biografia -->
+                    <div class="col-span-12 lg:col-span-6 order-1 lg:order-2 flex flex-col items-start gap-6 reveal delay-200">
+                        <!-- Badge Pill -->
+                        <span class="text-[10px] font-mono tracking-widest text-[#EDC54C] border border-[#EDC54C]/30 px-3.5 py-1.5 rounded-full bg-[#EDC54C]/5 uppercase font-bold">
+                            Co-Fundadora & Diretora Médica
+                        </span>
+                        
+                        <!-- Nome -->
+                        <div class="flex flex-col gap-2">
+                            <h3 class="font-display font-bold text-3xl sm:text-4xl text-white">Dra. Maristela</h3>
+                            <span class="text-xs font-mono text-stone-400">CRM/SP 000000 · Medicina Integrativa & Nutrologia</span>
+                        </div>
+
+                        <!-- Textos -->
+                        <div class="flex flex-col gap-4 text-stone-300 font-light text-sm sm:text-base leading-relaxed">
+                            <p>
+                                Focada no equilíbrio hormonal e na medicina de precisão, a Dra. Maristela lidera a integração de estratégias nutricionais avançadas e reposição metabólica inteligente.
+                            </p>
+                            <p>
+                                Seu foco de pesquisa e prática clínica baseia-se na personalização de rotinas para garantir sustentabilidade nos resultados, cuidando do metabolismo como engrenagem central da energia física, cognitiva e da prevenção cardiovascular.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO ÁREAS DE ATUAÇÃO (PROGRAMAS) -->
+        <section id="programas" class="relative z-10 border-b border-stone-300 bg-gradient-to-b from-[#FAF9F5] via-[#EAEAE5] to-[#FAF9F5] py-24 md:py-28 overflow-hidden reveal" aria-labelledby="programas-heading">
+            <!-- Linhas de Grade de Decorativas (Luz de Fundo) -->
+            <div class="grid-line-v" style="left: 33.333%;"></div>
+            <div class="grid-line-v" style="left: 66.666%;"></div>
+
+            <div class="relative z-10 max-w-[1200px] mx-auto px-6">
+                <!-- Cabeçalho da Seção -->
+                <div class="text-center mb-16 md:mb-20 flex flex-col items-center reveal">
+                    <!-- Badge circular de categoria -->
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-yellow/10 border border-brand-yellow/25 mb-4">
+                        <iconify-icon icon="solar:folder-with-files-bold-duotone" class="text-xs text-brand-yellow"></iconify-icon>
+                        <span class="text-[9px] font-mono tracking-widest text-stone-700 uppercase font-bold">Áreas de Atuação</span>
+                    </div>
+                    
+                    <h2 id="programas-heading" class="text-3xl sm:text-4xl md:text-5xl font-display font-bold leading-none tracking-tight text-stone-900 mb-4">
+                        Como podemos te ajudar hoje?
+                    </h2>
+                    <p class="text-sm sm:text-base text-stone-500 font-light max-w-xl leading-relaxed">
+                        Abordagens personalizadas para diferentes objetivos de saúde, performance e prevenção.
+                    </p>
+                </div>
+
+                <!-- Grid de 3 Colunas dos Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6 lg:gap-8 relative z-20">
+                    
+                    <!-- Card 1: Cardiometabolismo -->
+                    <div class="programa-card group relative p-8 rounded-2xl bg-white/60 backdrop-blur-md border border-white/50 shadow-md hover:shadow-xl transition-all duration-500 flex flex-col gap-6 min-h-[280px] reveal" style="transition-delay: 60ms;">
+                        <div class="w-12 h-12 rounded-xl bg-brand-yellow/10 border border-brand-yellow/20 flex items-center justify-center text-brand-yellow transition-all duration-500 group-hover:scale-105 group-hover:rotate-6">
+                            <!-- Icon: Heart outline -->
+                            <svg class="w-6 h-6 stroke-current stroke-[1.5] fill-none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
+                            </svg>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <h3 class="font-display font-bold text-xl text-stone-900">Cardiometabolismo</h3>
+                            <p class="text-xs sm:text-sm text-stone-500 leading-relaxed font-light">
+                                Avaliação profunda e prevenção orientada por especialistas, com foco em saúde, performance e longevidade.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Performance -->
+                    <div class="programa-card group relative p-8 rounded-2xl bg-white/60 backdrop-blur-md border border-white/50 shadow-md hover:shadow-xl transition-all duration-500 flex flex-col gap-6 min-h-[280px] reveal" style="transition-delay: 180ms;">
+                        <div class="w-12 h-12 rounded-xl bg-brand-yellow/10 border border-brand-yellow/20 flex items-center justify-center text-brand-yellow transition-all duration-500 group-hover:scale-105 group-hover:rotate-6">
+                            <!-- Icon: Bolt outline -->
+                            <svg class="w-6 h-6 stroke-current stroke-[1.5] fill-none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+                            </svg>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <h3 class="font-display font-bold text-xl text-stone-900">Performance</h3>
+                            <p class="text-xs sm:text-sm text-stone-500 leading-relaxed font-light">
+                                Estratégias integradas para melhorar energia, composição corporal e desempenho físico com base científica.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Saúde a Longo Prazo -->
+                    <div class="programa-card group relative p-8 rounded-2xl bg-white/60 backdrop-blur-md border border-white/50 shadow-md hover:shadow-xl transition-all duration-500 flex flex-col gap-6 min-h-[280px] reveal" style="transition-delay: 300ms;">
+                        <div class="w-12 h-12 rounded-xl bg-brand-yellow/10 border border-brand-yellow/20 flex items-center justify-center text-brand-yellow transition-all duration-500 group-hover:scale-105 group-hover:rotate-6">
+                            <!-- Icon: Hourglass outline -->
+                            <svg class="w-6 h-6 stroke-current stroke-[1.5] fill-none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                            </svg>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <h3 class="font-display font-bold text-xl text-stone-900">Saúde a Longo Prazo</h3>
+                            <p class="text-xs sm:text-sm text-stone-500 leading-relaxed font-light">
+                                Organização da rotina, melhora de exames e construção de hábitos sustentáveis para uma vida mais saudável.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- LOGICA JAVASCRIPT DOS EFEITOS INTERATIVOS -->
+    <script>
+        // FLASH LIGHT MOUSE TRACKING
+        function updateFlashlight(e, card) {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            card.style.setProperty('--mouse-x', `${x}px`);
+            card.style.setProperty('--mouse-y', `${y}px`);
+        }
+
+        // 3D TILT EFFECT LOGIC
+        function updateTilt(e, card) {
+            const rect = card.getBoundingClientRect();
+            const w = rect.width;
+            const h = rect.height;
+            const x = e.clientX - rect.left - (w / 2);
+            const y = e.clientY - rect.top - (h / 2);
+            
+            // Calcula rotações (máximo de 12 graus)
+            const rotX = -(y / (h / 2)) * 12;
+            const rotY = (x / (w / 2)) * 12;
+            
+            card.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale3d(1.02, 1.02, 1.02)`;
+        }
+
+        // RESET TILT
+        function resetTilt(card) {
+            card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+        }
+
+        // INTERSECTION OBSERVER PARA EFEITOS DE SURGIMENTO (REVEALS)
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    entry.target.classList.add('reveal-active');
+                    
+                    // Dispara surgimento nos filhos se existirem
+                    const subreveals = entry.target.querySelectorAll('.reveal');
+                    subreveals.forEach((el, index) => {
+                        setTimeout(() => {
+                            el.classList.add('active');
+                        }, index * 120);
+                    });
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal, .text-reveal-wrapper, section').forEach(el => {
+            revealObserver.observe(el);
+        });
+
+        // PARALLAX RETINA NO SCROLL DA HERO E DOS DIRETORES
+        const parallaxWrappers = document.querySelectorAll('.doctor-parallax-wrapper');
+
+        function updateParallax() {
+            const scroll = window.scrollY;
+            const viewHeight = window.innerHeight;
+
+            // Parallax da Hero
+            const heroContent = document.querySelector('h1');
+            if (heroContent && window.innerWidth > 1024) {
+                heroContent.style.transform = `translateY(${scroll * 0.08}px)`;
+            }
+
+            // Parallax dos Diretores
+            if (window.innerWidth > 1024) {
+                parallaxWrappers.forEach(wrapper => {
+                    const rect = wrapper.getBoundingClientRect();
+                    // Se o wrapper estiver no viewport
+                    if (rect.top < viewHeight && rect.bottom > 0) {
+                        const elementCenter = rect.top + rect.height / 2;
+                        const screenCenter = viewHeight / 2;
+                        const diff = elementCenter - screenCenter;
+                        
+                        // Fator de movimento sutil e suave
+                        const translateY = diff * -0.07;
+                        wrapper.style.transform = `translateY(${translateY}px)`;
+                    }
+                });
+            } else {
+                // Reseta no mobile
+                parallaxWrappers.forEach(wrapper => {
+                    wrapper.style.transform = 'none';
+                });
+            }
+        }
+
+        window.addEventListener('scroll', updateParallax);
+        window.addEventListener('resize', updateParallax);
+        
+        // Executa imediatamente para evitar pulos na carga
+        setTimeout(updateParallax, 50);
+
+        // INJEÇÃO DINÂMICA DE ESTRELAS BRILHANTES (Sirocco night style)
+        const starsContainer = document.getElementById('stars-container');
+        if (starsContainer) {
+            const count = 40;
+            for (let i = 0; i < count; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                const size = Math.random() * 2 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.animationDelay = `${Math.random() * 3}s`;
+                starsContainer.appendChild(star);
+            }
+        }
+    </script>
+</body>
+
+</html>
