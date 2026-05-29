@@ -16,6 +16,10 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 
+    <!-- GSAP + ScrollTrigger (timeline interativa da seção Método) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
     <script src="assets/js/tailwind-config.js"></script>
 
     <link rel="stylesheet" href="assets/css/style.css">
@@ -67,9 +71,9 @@
             <div class="absolute top-[10%] right-[15%] w-[550px] h-[550px] bg-gradient-to-br from-brand-yellow/10 to-transparent rounded-full blur-[100px] animate-pulse-glow"></div>
             <div class="absolute bottom-[5%] left-[5%] w-[450px] h-[450px] bg-gradient-to-tr from-stone-200/30 to-brand-yellow/5 rounded-full blur-[120px] opacity-75"></div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-0 relative z-10 px-6 lg:px-12 w-full">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 md:gap-0 relative z-10 px-6 lg:px-12 w-full">
                 <!-- Coluna de Conteúdo Textual (Esquerda) -->
-                <div class="col-span-12 lg:col-span-6 flex flex-col justify-center py-5 lg:p-0 lg:pr-8">
+                <div class="col-span-12 md:col-span-6 flex flex-col justify-center py-5 md:p-0 md:pr-8">
 
                     <!-- Selo/Badge Discreto com Iniciais -->
                     <div class="inline-flex items-center gap-2 sm:gap-3 bg-white/70 backdrop-blur-md border border-stone-300/40 rounded-full py-1 px-3 sm:py-1.5 sm:px-4 w-fit shadow-sm reveal delay-100 mb-4 sm:mb-6 lg:mb-8">
@@ -109,7 +113,7 @@
                     <!-- Diferenciais Rápidos com Ícones Redondos -->
                     <div class="flex gap-x-6 sm:gap-x-12 mt-6 sm:mt-10 lg:mt-12 pt-5 sm:pt-6 lg:pt-8 border-t border-stone-300/40 reveal delay-700">
                         <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-full bg-brand-yellow/10 border border-brand-yellow/30 flex items-center justify-center text-brand-yellow text-xl shadow-sm">
+                            <div class="w-10 h-10 shrink-0 rounded-full bg-brand-yellow/10 border border-brand-yellow/30 flex items-center justify-center text-brand-yellow text-xl shadow-sm">
                                 <iconify-icon icon="solar:stethoscope-linear"></iconify-icon>
                             </div>
                             <div class="flex flex-col gap-1.5">
@@ -118,7 +122,7 @@
                             </div>
                         </div>
                         <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-full bg-brand-yellow/10 border border-brand-yellow/30 flex items-center justify-center text-brand-yellow text-xl shadow-sm">
+                            <div class="w-10 h-10 shrink-0 rounded-full bg-brand-yellow/10 border border-brand-yellow/30 flex items-center justify-center text-brand-yellow text-xl shadow-sm">
                                 <iconify-icon icon="solar:graph-up-linear"></iconify-icon>
                             </div>
                             <div class="flex flex-col gap-1.5">
@@ -130,8 +134,8 @@
                 </div>
 
                 <!-- Coluna de Imagem Principal (Direita) -->
-                <div class="col-span-12 lg:col-span-6 flex flex-col justify-center relative">
-                    <div class="perspective-1000 w-full max-w-full sm:max-w-[280px] lg:max-w-[380px] mx-auto reveal delay-300">
+                <div class="col-span-12 md:col-span-6 flex flex-col justify-center relative">
+                    <div class="perspective-1000 w-full max-w-full sm:max-w-[280px] md:max-w-[340px] lg:max-w-[380px] mx-auto reveal delay-300">
                         <!-- Card 3D com flashlights e borda sutil de vidro -->
                         <div class="tilt-card flashlight-card rounded-2xl border border-stone-300/40 bg-white/40 backdrop-blur-md p-3 shadow-2xl transition-all duration-700 cursor-default"
                              onmousemove="updateFlashlight(event, this); updateTilt(event, this);" onmouseleave="resetTilt(this)">
@@ -248,6 +252,84 @@
                     </div>
                 </div>
 
+            </div>
+        </section>
+
+        <!-- ============================================================= -->
+        <!-- SEÇÃO MÉTODO / PROCESSO — timeline interativa por scroll        -->
+        <!-- Lógica em assets/js/metodo.js · estados visuais em style.css    -->
+        <!-- Escalável: para adicionar um passo, basta duplicar um <li>      -->
+        <!-- .metodo-step e atualizar style="--steps:N" no .metodo-timeline  -->
+        <!-- ============================================================= -->
+        <section id="metodo" class="metodo-section relative z-10 border-b border-stone-300 bg-[#EAEAE5]" aria-labelledby="metodo-heading">
+            <div class="metodo-track">
+                <div class="metodo-stage">
+                    <!-- Glow sutil de fundo -->
+                    <div class="absolute top-1/4 right-[10%] w-[420px] h-[420px] bg-gradient-to-br from-brand-yellow/10 to-transparent rounded-full blur-[110px] pointer-events-none" aria-hidden="true"></div>
+
+                    <div class="relative z-10 w-full max-w-[1080px] mx-auto px-6 lg:px-12">
+                        <!-- Cabeçalho -->
+                        <div class="text-center mb-12 sm:mb-16 lg:mb-20">
+                            <span class="metodo-eyebrow">Como funciona</span>
+                            <h2 id="metodo-heading" class="metodo-title">Um processo simples, seguro e personalizado</h2>
+                        </div>
+
+                        <!-- Timeline interativa -->
+                        <div class="metodo-timeline" data-metodo style="--steps: 4;">
+                            <!-- Linha de progresso -->
+                            <div class="metodo-line" aria-hidden="true">
+                                <div class="metodo-line-fill"></div>
+                            </div>
+
+                            <!-- Passos -->
+                            <ol class="metodo-steps">
+                                <li class="metodo-step" data-state="idle">
+                                    <div class="metodo-node" aria-hidden="true">
+                                        <span class="metodo-node-num">01</span>
+                                        <iconify-icon class="metodo-node-check" icon="solar:check-read-linear"></iconify-icon>
+                                    </div>
+                                    <div class="metodo-content">
+                                        <h3 class="metodo-step-title">Avaliação Médica</h3>
+                                        <p class="metodo-step-desc">Diagnóstico detalhado do seu perfil de saúde atual.</p>
+                                    </div>
+                                </li>
+
+                                <li class="metodo-step" data-state="idle">
+                                    <div class="metodo-node" aria-hidden="true">
+                                        <span class="metodo-node-num">02</span>
+                                        <iconify-icon class="metodo-node-check" icon="solar:check-read-linear"></iconify-icon>
+                                    </div>
+                                    <div class="metodo-content">
+                                        <h3 class="metodo-step-title">Definição Estratégica</h3>
+                                        <p class="metodo-step-desc">Protocolo personalizado baseado nos seus objetivos.</p>
+                                    </div>
+                                </li>
+
+                                <li class="metodo-step" data-state="idle">
+                                    <div class="metodo-node" aria-hidden="true">
+                                        <span class="metodo-node-num">03</span>
+                                        <iconify-icon class="metodo-node-check" icon="solar:check-read-linear"></iconify-icon>
+                                    </div>
+                                    <div class="metodo-content">
+                                        <h3 class="metodo-step-title">Acompanhamento Contínuo</h3>
+                                        <p class="metodo-step-desc">Comunicação direta e suporte constante com a equipe.</p>
+                                    </div>
+                                </li>
+
+                                <li class="metodo-step" data-state="idle">
+                                    <div class="metodo-node" aria-hidden="true">
+                                        <span class="metodo-node-num">04</span>
+                                        <iconify-icon class="metodo-node-check" icon="solar:check-read-linear"></iconify-icon>
+                                    </div>
+                                    <div class="metodo-content">
+                                        <h3 class="metodo-step-title">Ajustes Baseados em Dados</h3>
+                                        <p class="metodo-step-desc">Refinamento constante a partir da sua evolução real.</p>
+                                    </div>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -537,6 +619,8 @@
 
     <!-- LOGICA JAVASCRIPT DOS EFEITOS INTERATIVOS -->
     <script src="assets/js/main.js"></script>
+    <!-- Timeline interativa da seção Método (GSAP ScrollTrigger) -->
+    <script src="assets/js/metodo.js"></script>
 </body>
 
 </html>

@@ -569,3 +569,232 @@
             opacity: 1;
             transform: scaleX(1);
         }
+
+        /* ============================================================= */
+        /* SEÇÃO MÉTODO — Timeline interativa (scroll progressivo)        */
+        /* Lógica do scroll: assets/js/metodo.js (define --progress e     */
+        /* data-state). Aqui ficam apenas a aparência e as transições.    */
+        /* ============================================================= */
+        .metodo-section {
+            position: relative;
+        }
+        .metodo-track { position: relative; }
+        .metodo-stage {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden; /* contém o glow; seguro (não é ancestral do pin) */
+            padding-top: 5rem;
+            padding-bottom: 5rem;
+        }
+
+        /* Modo interativo: o pin é feito pelo GSAP ScrollTrigger (robusto,
+           independe de overflow de ancestrais). O stage preenche a tela. */
+        .metodo-section.is-ready .metodo-stage {
+            min-height: 100vh;
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+        @supports (min-height: 100svh) {
+            .metodo-section.is-ready .metodo-stage { min-height: 100svh; }
+        }
+
+        /* Cabeçalho */
+        .metodo-eyebrow {
+            display: inline-block;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--gold);
+            font-weight: 700;
+            margin-bottom: 0.85rem;
+        }
+        .metodo-title {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+            color: var(--dark);
+            letter-spacing: -0.02em;
+            line-height: 1.12;
+            font-size: clamp(1.6rem, 1rem + 2.4vw, 2.6rem);
+            max-width: 22ch;
+            margin: 0 auto;
+        }
+
+        /* Container da timeline */
+        .metodo-timeline {
+            position: relative;
+            --progress: 0;
+            --node-size: 62px;
+        }
+
+        /* Linha + preenchimento progressivo (horizontal no desktop) */
+        .metodo-line {
+            position: absolute;
+            top: calc(var(--node-size) / 2);
+            left: calc(50% / var(--steps, 4));
+            right: calc(50% / var(--steps, 4));
+            height: 2px;
+            background: rgba(28, 25, 23, 0.10);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        .metodo-line-fill {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: calc(var(--progress, 0) * 100%);
+            background: linear-gradient(90deg, var(--gold), #be9e3d);
+            border-radius: 2px;
+            will-change: width;
+        }
+
+        /* Passos */
+        .metodo-steps {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(var(--steps, 4), minmax(0, 1fr));
+            gap: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+        .metodo-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 1.25rem;
+            min-width: 0;
+        }
+
+        /* Círculo (node) — estados: idle / active / done */
+        .metodo-node {
+            position: relative;
+            flex: 0 0 auto;
+            width: var(--node-size);
+            height: var(--node-size);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #ffffff;
+            border: 1px solid #d6d3d1;
+            color: #a8a29e;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: 0 0 0 6px var(--cream);
+            transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+                        background-color 0.45s ease, border-color 0.45s ease,
+                        color 0.45s ease, box-shadow 0.45s ease;
+        }
+        .metodo-node-num { transition: opacity 0.3s ease; }
+        .metodo-node-check {
+            position: absolute;
+            font-size: 1.4rem;
+            opacity: 0;
+            transform: scale(0.5);
+            transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Conteúdo textual (fade + translate + blur) */
+        .metodo-content {
+            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                        filter 0.6s ease;
+        }
+        .metodo-step-title {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--dark);
+            margin-bottom: 0.4rem;
+        }
+        .metodo-step-desc {
+            font-size: 0.85rem;
+            line-height: 1.6;
+            color: #78716c;
+            font-weight: 300;
+            padding: 0 0.5rem;
+        }
+
+        /* --- Estados ATIVO/CONCLUÍDO (valem sempre) --- */
+        .metodo-step[data-state="active"] .metodo-node {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: var(--dark);
+            transform: scale(1.12);
+            box-shadow: 0 0 0 6px var(--cream),
+                        0 0 0 12px rgba(237, 197, 76, 0.18),
+                        0 10px 26px rgba(237, 197, 76, 0.35);
+        }
+        .metodo-step[data-state="done"] .metodo-node {
+            background: var(--dark);
+            border-color: var(--dark);
+            color: #ffffff;
+        }
+        .metodo-step[data-state="done"] .metodo-node-num { opacity: 0; }
+        .metodo-step[data-state="done"] .metodo-node-check { opacity: 1; transform: scale(1); }
+
+        /* --- Apenas no modo interativo: passos futuros recuados/suaves --- */
+        .metodo-section.is-ready .metodo-step[data-state="idle"] .metodo-content {
+            opacity: 0.28;
+            transform: translateY(14px);
+            filter: blur(3px);
+        }
+        .metodo-section.is-ready .metodo-step[data-state="active"] .metodo-content,
+        .metodo-section.is-ready .metodo-step[data-state="done"] .metodo-content {
+            opacity: 1;
+            transform: none;
+            filter: none;
+        }
+
+        /* --- Fallback estático (sem JS / movimento reduzido): tudo legível --- */
+        .metodo-section:not(.is-ready) .metodo-node {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: var(--dark);
+        }
+        .metodo-section:not(.is-ready) .metodo-node-check { display: none; }
+        .metodo-section:not(.is-ready) .metodo-line-fill { width: 100%; }
+
+        /* ===== Responsivo: timeline VERTICAL no mobile ===== */
+        @media (max-width: 768px) {
+            .metodo-timeline { --node-size: 56px; }
+            .metodo-steps {
+                grid-template-columns: 1fr;
+                gap: 2.25rem;
+            }
+            .metodo-step {
+                flex-direction: row;
+                align-items: flex-start;
+                text-align: left;
+                gap: 1.1rem;
+            }
+            .metodo-content { padding-top: 0.35rem; }
+            .metodo-step-desc { padding: 0; }
+            /* Linha agora é vertical, alinhada ao centro dos círculos */
+            .metodo-line {
+                top: calc(var(--node-size) / 2);
+                bottom: calc(var(--node-size) / 2);
+                left: calc(var(--node-size) / 2);
+                right: auto;
+                width: 2px;
+                height: auto;
+            }
+            .metodo-line-fill {
+                width: 100%;
+                height: calc(var(--progress, 0) * 100%);
+            }
+            .metodo-section:not(.is-ready) .metodo-line-fill { height: 100%; width: 100%; }
+        }
+
+        /* ===== Acessibilidade: respeita "reduzir movimento" ===== */
+        @media (prefers-reduced-motion: reduce) {
+            .metodo-content { transition: none; }
+            .metodo-node { transition: none; }
+        }
