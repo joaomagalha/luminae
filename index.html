@@ -43,8 +43,9 @@
                 <nav class="hidden md:flex items-center gap-8 text-xs font-mono uppercase tracking-widest text-stone-500">
                     <a href="#sobre" class="hover:text-brand-yellow transition-colors">Sobre</a>
                     <a href="#metodo" class="hover:text-brand-yellow transition-colors">Método</a>
-                    <a href="#especialidades" class="hover:text-brand-yellow transition-colors">Especialidades</a>
-                    <a href="#diferenciais" class="hover:text-brand-yellow transition-colors">Diferenciais</a>
+                    <a href="#programas" class="hover:text-brand-yellow transition-colors">Especialidades</a>
+                    <a href="#abordagem-saude" class="hover:text-brand-yellow transition-colors">Diferenciais</a>
+                    <a href="blog.html" class="hover:text-brand-yellow transition-colors">Blog</a>
                 </nav>
                 <div class="flex items-center gap-4">
                     <button class="btn-beam px-[1px] py-[1px] rounded-sm group">
@@ -135,7 +136,7 @@
 
                 <!-- Coluna de Imagem Principal (Direita) -->
                 <div class="col-span-12 md:col-span-6 flex flex-col justify-center relative">
-                    <div class="perspective-1000 w-full max-w-full sm:max-w-[280px] md:max-w-[340px] lg:max-w-[380px] mx-auto reveal delay-300">
+                    <div class="perspective-1000 w-full max-w-[264px] sm:max-w-[288px] md:max-w-[378px] lg:max-w-[416px] mx-auto reveal delay-300">
                         <!-- Card 3D com flashlights e borda sutil de vidro -->
                         <div class="tilt-card flashlight-card rounded-2xl border border-stone-300/40 bg-white/40 backdrop-blur-md p-3 shadow-2xl transition-all duration-700 cursor-default"
                              onmousemove="updateFlashlight(event, this); updateTilt(event, this);" onmouseleave="resetTilt(this)">
@@ -255,84 +256,6 @@
             </div>
         </section>
 
-        <!-- ============================================================= -->
-        <!-- SEÇÃO MÉTODO / PROCESSO — timeline interativa por scroll        -->
-        <!-- Lógica em assets/js/metodo.js · estados visuais em style.css    -->
-        <!-- Escalável: para adicionar um passo, basta duplicar um <li>      -->
-        <!-- .metodo-step e atualizar style="--steps:N" no .metodo-timeline  -->
-        <!-- ============================================================= -->
-        <section id="metodo" class="metodo-section relative z-10 border-b border-stone-300 bg-[#EAEAE5]" aria-labelledby="metodo-heading">
-            <div class="metodo-track">
-                <div class="metodo-stage">
-                    <!-- Glow sutil de fundo -->
-                    <div class="absolute top-1/4 right-[10%] w-[420px] h-[420px] bg-gradient-to-br from-brand-yellow/10 to-transparent rounded-full blur-[110px] pointer-events-none" aria-hidden="true"></div>
-
-                    <div class="relative z-10 w-full max-w-[1080px] mx-auto px-6 lg:px-12">
-                        <!-- Cabeçalho -->
-                        <div class="text-center mb-12 sm:mb-16 lg:mb-20">
-                            <span class="metodo-eyebrow">Como funciona</span>
-                            <h2 id="metodo-heading" class="metodo-title">Um processo simples, seguro e personalizado</h2>
-                        </div>
-
-                        <!-- Timeline interativa -->
-                        <div class="metodo-timeline" data-metodo style="--steps: 4;">
-                            <!-- Linha de progresso -->
-                            <div class="metodo-line" aria-hidden="true">
-                                <div class="metodo-line-fill"></div>
-                            </div>
-
-                            <!-- Passos -->
-                            <ol class="metodo-steps">
-                                <li class="metodo-step" data-state="idle">
-                                    <div class="metodo-node" aria-hidden="true">
-                                        <span class="metodo-node-num">01</span>
-                                        <iconify-icon class="metodo-node-check" icon="solar:check-read-linear"></iconify-icon>
-                                    </div>
-                                    <div class="metodo-content">
-                                        <h3 class="metodo-step-title">Avaliação Médica</h3>
-                                        <p class="metodo-step-desc">Diagnóstico detalhado do seu perfil de saúde atual.</p>
-                                    </div>
-                                </li>
-
-                                <li class="metodo-step" data-state="idle">
-                                    <div class="metodo-node" aria-hidden="true">
-                                        <span class="metodo-node-num">02</span>
-                                        <iconify-icon class="metodo-node-check" icon="solar:check-read-linear"></iconify-icon>
-                                    </div>
-                                    <div class="metodo-content">
-                                        <h3 class="metodo-step-title">Definição Estratégica</h3>
-                                        <p class="metodo-step-desc">Protocolo personalizado baseado nos seus objetivos.</p>
-                                    </div>
-                                </li>
-
-                                <li class="metodo-step" data-state="idle">
-                                    <div class="metodo-node" aria-hidden="true">
-                                        <span class="metodo-node-num">03</span>
-                                        <iconify-icon class="metodo-node-check" icon="solar:check-read-linear"></iconify-icon>
-                                    </div>
-                                    <div class="metodo-content">
-                                        <h3 class="metodo-step-title">Acompanhamento Contínuo</h3>
-                                        <p class="metodo-step-desc">Comunicação direta e suporte constante com a equipe.</p>
-                                    </div>
-                                </li>
-
-                                <li class="metodo-step" data-state="idle">
-                                    <div class="metodo-node" aria-hidden="true">
-                                        <span class="metodo-node-num">04</span>
-                                        <iconify-icon class="metodo-node-check" icon="solar:check-read-linear"></iconify-icon>
-                                    </div>
-                                    <div class="metodo-content">
-                                        <h3 class="metodo-step-title">Ajustes Baseados em Dados</h3>
-                                        <p class="metodo-step-desc">Refinamento constante a partir da sua evolução real.</p>
-                                    </div>
-                                </li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <!-- SEÇÃO ABORDAGEM DE SAÚDE (MUITO ALÉM DE CONSULTAS) -->
         <section class="saude-section reveal" id="abordagem-saude" aria-labelledby="saude-heading">
             <header class="saude-header">
@@ -442,7 +365,7 @@
         </section>
 
         <!-- SEÇÃO BIOGRAFIA DOS DIRETORES (SOBRE NÓS) -->
-        <section id="sobre" class="doctor-bio-section relative border-b border-stone-850 py-14 md:py-28 reveal" aria-labelledby="equipe-heading">
+        <section id="sobre" class="doctor-bio-section relative border-b border-stone-800 py-14 md:py-28 reveal" aria-labelledby="equipe-heading">
             <!-- Efeito de Estrelas Cintilantes (Twinkling Stars) -->
             <div id="stars-container"></div>
 
@@ -538,7 +461,7 @@
         </section>
 
         <!-- SEÇÃO ÁREAS DE ATUAÇÃO (PROGRAMAS) -->
-        <section id="programas" class="relative z-10 border-b border-stone-300 bg-gradient-to-b from-[#FAF9F5] via-[#EAEAE5] to-[#FAF9F5] py-24 md:py-28 overflow-hidden reveal" aria-labelledby="programas-heading">
+        <section id="programas" class="relative z-10 border-b border-stone-300 bg-gradient-to-b from-[#FAF9F5] via-[#EAEAE5] to-[#FAF9F5] py-14 md:py-24 lg:py-28 overflow-hidden reveal" aria-labelledby="programas-heading">
             <!-- Linhas de Grade de Decorativas (Luz de Fundo) -->
             <div class="grid-line-v" style="left: 33.333%;"></div>
             <div class="grid-line-v" style="left: 66.666%;"></div>
@@ -615,12 +538,399 @@
             </div>
         </section>
 
+        <!-- ============================================================= -->
+        <!-- SEÇÃO MÉTODO / PROCESSO — timeline interativa por scroll        -->
+        <!-- Lógica em assets/js/metodo.js · estados visuais em style.css    -->
+        <!-- Escalável: para adicionar um passo, basta duplicar um <li>      -->
+        <!-- .metodo-step e atualizar style="--steps:N" no .metodo-timeline  -->
+        <!-- ============================================================= -->
+        <section id="metodo" class="metodo-section relative z-10 bg-[#EAEAE5]" aria-labelledby="metodo-heading">
+            <div class="metodo-track">
+                <div class="metodo-stage">
+                    <!-- Glow sutil de fundo -->
+                    <div class="absolute top-1/4 right-[10%] w-[420px] h-[420px] bg-gradient-to-br from-brand-yellow/10 to-transparent rounded-full blur-[110px] pointer-events-none" aria-hidden="true"></div>
+
+                    <div class="relative z-10 w-full max-w-[1080px] mx-auto px-6 lg:px-12">
+                        <!-- Cabeçalho -->
+                        <div class="text-center mb-12 sm:mb-16 lg:mb-20">
+                            <span class="metodo-eyebrow">Como funciona</span>
+                            <h2 id="metodo-heading" class="metodo-title">Um processo simples, seguro e personalizado</h2>
+                        </div>
+
+                        <!-- Timeline interativa -->
+                        <div class="metodo-timeline" data-metodo style="--steps: 4;">
+                            <!-- Linha de progresso -->
+                            <div class="metodo-line" aria-hidden="true">
+                                <div class="metodo-line-fill"></div>
+                            </div>
+
+                            <!-- Passos -->
+                            <ol class="metodo-steps">
+                                <li class="metodo-step" data-state="idle">
+                                    <div class="metodo-node" aria-hidden="true">
+                                        <span class="metodo-node-num">01</span>
+                                        <iconify-icon class="metodo-node-check" icon="solar:check-read-linear"></iconify-icon>
+                                    </div>
+                                    <div class="metodo-content">
+                                        <h3 class="metodo-step-title">Avaliação Médica</h3>
+                                        <p class="metodo-step-desc">Diagnóstico detalhado do seu perfil de saúde atual.</p>
+                                    </div>
+                                </li>
+
+                                <li class="metodo-step" data-state="idle">
+                                    <div class="metodo-node" aria-hidden="true">
+                                        <span class="metodo-node-num">02</span>
+                                        <iconify-icon class="metodo-node-check" icon="solar:check-read-linear"></iconify-icon>
+                                    </div>
+                                    <div class="metodo-content">
+                                        <h3 class="metodo-step-title">Definição Estratégica</h3>
+                                        <p class="metodo-step-desc">Protocolo personalizado baseado nos seus objetivos.</p>
+                                    </div>
+                                </li>
+
+                                <li class="metodo-step" data-state="idle">
+                                    <div class="metodo-node" aria-hidden="true">
+                                        <span class="metodo-node-num">03</span>
+                                        <iconify-icon class="metodo-node-check" icon="solar:check-read-linear"></iconify-icon>
+                                    </div>
+                                    <div class="metodo-content">
+                                        <h3 class="metodo-step-title">Acompanhamento Contínuo</h3>
+                                        <p class="metodo-step-desc">Comunicação direta e suporte constante com a equipe.</p>
+                                    </div>
+                                </li>
+
+                                <li class="metodo-step" data-state="idle">
+                                    <div class="metodo-node" aria-hidden="true">
+                                        <span class="metodo-node-num">04</span>
+                                        <iconify-icon class="metodo-node-check" icon="solar:check-read-linear"></iconify-icon>
+                                    </div>
+                                    <div class="metodo-content">
+                                        <h3 class="metodo-step-title">Ajustes Baseados em Dados</h3>
+                                        <p class="metodo-step-desc">Refinamento constante a partir da sua evolução real.</p>
+                                    </div>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO DE DEPOIMENTOS (TESTIMONIALS) -->
+        <section id="depoimentos" class="testimonial-section-custom reveal" aria-labelledby="depoimentos-heading">
+            
+            <!-- Glow ambiental sutil (Pin Light) no amarelo do Design System -->
+            <div class="testimonial-pin-light" aria-hidden="true"></div>
+
+            <!-- Divisores premium verticais (conforme linhas de grade do design system) -->
+            <div class="testimonial-divider" style="left: 33.333%;"></div>
+            <div class="testimonial-divider" style="left: 66.666%;"></div>
+
+            <div class="relative z-10 max-w-[1200px] mx-auto px-6">
+                <!-- Cabeçalho da Seção -->
+                <div class="text-center mb-16 md:mb-20 flex flex-col items-center">
+                    
+                    <!-- Badge Pill -->
+                    <div class="inline-flex items-center gap-2 bg-white/70 backdrop-blur-md border border-stone-300/40 rounded-full py-1.5 px-4 w-fit shadow-sm mb-6">
+                        <iconify-icon icon="solar:dialog-2-bold-duotone" class="text-xs text-brand-yellow"></iconify-icon>
+                        <span class="text-[9px] font-mono tracking-widest text-stone-700 uppercase font-bold">Depoimentos Reais</span>
+                    </div>
+                    
+                    <!-- Heading com reveal integrado e destaque em amarelo do Design System -->
+                    <h2 id="depoimentos-heading" class="text-[1.85rem] sm:text-4xl md:text-5xl font-display font-bold leading-tight tracking-tight text-stone-900 mb-4 max-w-3xl mx-auto flex flex-col items-center">
+                        <span class="text-reveal-wrapper">
+                            <span class="text-reveal-content">Resultados de quem</span>
+                        </span>
+                        <span class="text-reveal-wrapper">
+                            <span class="text-reveal-content delay-200"><span class="text-brand-yellow">transformou</span> a própria saúde</span>
+                        </span>
+                    </h2>
+                    
+                    <!-- Subhead -->
+                    <p class="text-xs sm:text-sm lg:text-base text-stone-500 font-light max-w-xl leading-relaxed mt-2">
+                        Veja como o acompanhamento integrado pode gerar mudanças reais e duradouras.
+                    </p>
+                </div>
+
+                <!-- Grid de Cards de Depoimentos (3 Colunas no desktop) -->
+                <div class="testimonial-grid-custom relative z-20">
+                    
+                    <!-- Card 1: Juliana Martins -->
+                    <div class="testimonial-card-custom reveal cursor-default">
+                        
+                        <!-- Topo com estrelas e aspas decorativas -->
+                        <div class="testimonial-top-custom">
+                            <div class="testimonial-stars-custom">
+                                <iconify-icon icon="solar:star-bold" class="testimonial-star-custom"></iconify-icon>
+                                <iconify-icon icon="solar:star-bold" class="testimonial-star-custom"></iconify-icon>
+                                <iconify-icon icon="solar:star-bold" class="testimonial-star-custom"></iconify-icon>
+                                <iconify-icon icon="solar:star-bold" class="testimonial-star-custom"></iconify-icon>
+                                <iconify-icon icon="solar:star-bold" class="testimonial-star-custom"></iconify-icon>
+                            </div>
+                            <!-- Aspas premium SVG -->
+                            <svg class="testimonial-quote-svg" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9.5 8C8.11929 8 7 9.11929 7 10.5C7 11.8807 8.11929 13 9.5 13C9.7824 13 10.0519 12.9531 10.3025 12.867C9.97233 14.1611 8.8 15.148 7.375 15.148C6.96079 15.148 6.625 15.4838 6.625 15.898C6.625 16.3122 6.96079 16.648 7.375 16.648C9.53932 16.648 11.3789 15.0205 11.7584 12.9099C11.9171 12.0287 12 11.2338 12 10.5C12 9.11929 10.8807 8 9.5 8ZM16.5 8C15.1193 8 14 9.11929 14 10.5C14 11.8807 15.1193 13 16.5 13C16.7824 13 17.0519 12.9531 17.3025 12.867C16.9723 14.1611 15.8 15.148 14.375 15.148C13.9608 15.148 13.625 15.4838 13.625 15.898C13.625 16.3122 13.9608 16.648 14.375 16.648C16.5393 16.648 18.3789 15.0205 18.7584 12.9099C18.9171 12.0287 19 11.2338 19 10.5C19 9.11929 17.8807 8 16.5 8Z"/>
+                            </svg>
+                        </div>
+
+                        <!-- Texto do Depoimento -->
+                        <p class="testimonial-text-custom">
+                            "Finalmente encontrei um acompanhamento que olha minha saúde como um todo."
+                        </p>
+
+                        <!-- Informações do Autor -->
+                        <div class="testimonial-author-custom">
+                            <div class="testimonial-avatar-custom">J</div>
+                            <div class="testimonial-info-custom">
+                                <span class="testimonial-name-custom">Juliana Martins</span>
+                                <span class="testimonial-role-custom">ADVOGADA</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Ricardo Souza -->
+                    <div class="testimonial-card-custom reveal cursor-default">
+                        
+                        <!-- Topo com estrelas e aspas decorativas -->
+                        <div class="testimonial-top-custom">
+                            <div class="testimonial-stars-custom">
+                                <iconify-icon icon="solar:star-bold" class="testimonial-star-custom"></iconify-icon>
+                                <iconify-icon icon="solar:star-bold" class="testimonial-star-custom"></iconify-icon>
+                                <iconify-icon icon="solar:star-bold" class="testimonial-star-custom"></iconify-icon>
+                                <iconify-icon icon="solar:star-bold" class="testimonial-star-custom"></iconify-icon>
+                                <iconify-icon icon="solar:star-bold" class="testimonial-star-custom"></iconify-icon>
+                            </div>
+                            <!-- Aspas premium SVG -->
+                            <svg class="testimonial-quote-svg" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9.5 8C8.11929 8 7 9.11929 7 10.5C7 11.8807 8.11929 13 9.5 13C9.7824 13 10.0519 12.9531 10.3025 12.867C9.97233 14.1611 8.8 15.148 7.375 15.148C6.96079 15.148 6.625 15.4838 6.625 15.898C6.625 16.3122 6.96079 16.648 7.375 16.648C9.53932 16.648 11.3789 15.0205 11.7584 12.9099C11.9171 12.0287 12 11.2338 12 10.5C12 9.11929 10.8807 8 9.5 8ZM16.5 8C15.1193 8 14 9.11929 14 10.5C14 11.8807 15.1193 13 16.5 13C16.7824 13 17.0519 12.9531 17.3025 12.867C16.9723 14.1611 15.8 15.148 14.375 15.148C13.9608 15.148 13.625 15.4838 13.625 15.898C13.625 16.3122 13.9608 16.648 14.375 16.648C16.5393 16.648 18.3789 15.0205 18.7584 12.9099C18.9171 12.0287 19 11.2338 19 10.5C19 9.11929 17.8807 8 16.5 8Z"/>
+                            </svg>
+                        </div>
+
+                        <!-- Texto do Depoimento -->
+                        <p class="testimonial-text-custom">
+                            "Em poucos meses já percebi melhora na energia, nos exames e na rotina. O processo faz muito sentido."
+                        </p>
+
+                        <!-- Informações do Autor -->
+                        <div class="testimonial-author-custom">
+                            <div class="testimonial-avatar-custom">R</div>
+                            <div class="testimonial-info-custom">
+                                <span class="testimonial-name-custom">Ricardo Souza</span>
+                                <span class="testimonial-role-custom">EMPRESÁRIO</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Mariana Costa -->
+                    <div class="testimonial-card-custom reveal cursor-default">
+                        
+                        <!-- Topo com estrelas e aspas decorativas -->
+                        <div class="testimonial-top-custom">
+                            <div class="testimonial-stars-custom">
+                                <iconify-icon icon="solar:star-bold" class="testimonial-star-custom"></iconify-icon>
+                                <iconify-icon icon="solar:star-bold" class="testimonial-star-custom"></iconify-icon>
+                                <iconify-icon icon="solar:star-bold" class="testimonial-star-custom"></iconify-icon>
+                                <iconify-icon icon="solar:star-bold" class="testimonial-star-custom"></iconify-icon>
+                                <iconify-icon icon="solar:star-bold" class="testimonial-star-custom"></iconify-icon>
+                            </div>
+                            <!-- Aspas premium SVG -->
+                            <svg class="testimonial-quote-svg" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9.5 8C8.11929 8 7 9.11929 7 10.5C7 11.8807 8.11929 13 9.5 13C9.7824 13 10.0519 12.9531 10.3025 12.867C9.97233 14.1611 8.8 15.148 7.375 15.148C6.96079 15.148 6.625 15.4838 6.625 15.898C6.625 16.3122 6.96079 16.648 7.375 16.648C9.53932 16.648 11.3789 15.0205 11.7584 12.9099C11.9171 12.0287 12 11.2338 12 10.5C12 9.11929 10.8807 8 9.5 8ZM16.5 8C15.1193 8 14 9.11929 14 10.5C14 11.8807 15.1193 13 16.5 13C16.7824 13 17.0519 12.9531 17.3025 12.867C16.9723 14.1611 15.8 15.148 14.375 15.148C13.9608 15.148 13.625 15.4838 13.625 15.898C13.625 16.3122 13.9608 16.648 14.375 16.648C16.5393 16.648 18.3789 15.0205 18.7584 12.9099C18.9171 12.0287 19 11.2338 19 10.5C19 9.11929 17.8807 8 16.5 8Z"/>
+                            </svg>
+                        </div>
+
+                        <!-- Texto do Depoimento -->
+                        <p class="testimonial-text-custom">
+                            "Não é só sobre dieta ou consulta. É um acompanhamento completo que realmente faz diferença no dia a dia."
+                        </p>
+
+                        <!-- Informações do Autor -->
+                        <div class="testimonial-author-custom">
+                            <div class="testimonial-avatar-custom">M</div>
+                            <div class="testimonial-info-custom">
+                                <span class="testimonial-name-custom">Mariana Costa</span>
+                                <span class="testimonial-role-custom">ESTUDANTE</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO PREVIEW DO BLOG -->
+        <section id="blog" class="relative z-10 border-b border-stone-300 bg-gradient-to-b from-[#FAF9F5] via-[#EAEAE5] to-[#FAF9F5] py-16 sm:py-20 lg:py-24 reveal" aria-labelledby="blog-heading">
+            <!-- Decorative horizontal grid line for section border -->
+            <div class="absolute top-0 left-12 right-12 h-[1px] bg-stone-300/30 pointer-events-none"></div>
+
+            <div class="relative z-10 max-w-[1200px] mx-auto px-6">
+                <!-- Cabeçalho da Seção (Header) -->
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16">
+                    <div class="max-w-2xl">
+                        <!-- Badge Pill -->
+                        <div class="inline-flex items-center gap-2 bg-white/70 backdrop-blur-md border border-stone-300/40 rounded-full py-1.5 px-4 w-fit shadow-sm mb-5">
+                            <iconify-icon icon="solar:document-text-bold-duotone" class="text-xs text-brand-yellow"></iconify-icon>
+                            <span class="text-[9px] font-mono tracking-widest text-stone-700 uppercase font-bold">Nosso Blog</span>
+                        </div>
+                        <!-- Heading com reveal integrado -->
+                        <h2 id="blog-heading" class="font-display text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-stone-900 leading-tight">
+                            Conteúdo médico para decisões<br class="hidden sm:inline"> mais inteligentes sobre saúde
+                        </h2>
+                        <!-- Subhead -->
+                        <p class="text-sm text-stone-500 font-light mt-3 leading-relaxed">
+                            Artigos produzidos por especialistas sobre prevenção, performance e saúde cardiovascular.
+                        </p>
+                    </div>
+                    <!-- CTA Button -->
+                    <div class="shrink-0">
+                        <a href="blog.html" class="inline-flex items-center justify-center px-6 py-3.5 bg-brand-yellow hover:bg-brand-yellow-dark text-stone-900 font-display text-xs uppercase tracking-widest font-bold rounded-sm shadow-md transition-all duration-300 hover:-translate-y-0.5">
+                            ACESSAR BLOG
+                            <iconify-icon icon="solar:arrow-right-linear" class="ml-2 text-sm"></iconify-icon>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Grid de Cards -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                    <!-- Card 1: Como a avaliação cardiovascular... -->
+                    <article class="post-card group reveal min-w-0 flex flex-col overflow-hidden rounded-2xl bg-white/60 backdrop-blur-md border border-white/50 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-500" data-category="cardiologia">
+                        <a href="blog.html" class="block relative aspect-[16/10] overflow-hidden bg-stone-200">
+                            <img src="assets/images/blog-1.png" alt="Como a avaliação cardiovascular pode prevenir eventos silenciosos" loading="lazy" class="w-full h-full object-cover select-none transition-transform duration-700 group-hover:scale-105">
+                            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-stone-900/85 backdrop-blur-sm text-white text-[10px] font-mono uppercase tracking-widest">Cardiologia</span>
+                        </a>
+                        <div class="flex flex-col flex-1 p-6">
+                            <div class="flex items-center gap-3 text-[11px] font-mono text-stone-400 uppercase tracking-wider mb-3">
+                                <span>12 Mar 2025</span>
+                                <span class="w-1 h-1 rounded-full bg-stone-300"></span>
+                                <span>6 min leitura</span>
+                            </div>
+                            <h3 class="font-display font-bold text-lg text-stone-900 leading-snug mb-2 line-clamp-2 group-hover:text-brand-yellow-dark transition-colors">
+                                <a href="blog.html">Como a avaliação cardiovascular pode prevenir eventos silenciosos</a>
+                            </h3>
+                            <p class="text-sm text-stone-500 leading-relaxed font-light line-clamp-3 mb-5">
+                                Entenda como exames preventivos e o acompanhamento cardiológico precoce podem detectar alterações antes do surgimento dos sintomas.
+                            </p>
+                            <a href="blog.html" class="mt-auto inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-stone-900 font-semibold group/btn">
+                                Ler artigo
+                                <iconify-icon icon="solar:arrow-right-linear" class="text-base transition-transform group-hover/btn:translate-x-1"></iconify-icon>
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Card 2: Otimização metabólica... -->
+                    <article class="post-card group reveal min-w-0 flex flex-col overflow-hidden rounded-2xl bg-white/60 backdrop-blur-md border border-white/50 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-500" data-category="cardiologia">
+                        <a href="blog.html" class="block relative aspect-[16/10] overflow-hidden bg-stone-200">
+                            <img src="assets/images/blog-2.png" alt="Otimização metabólica: o que a medicina pode fazer pela sua energia" loading="lazy" class="w-full h-full object-cover select-none transition-transform duration-700 group-hover:scale-105">
+                            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-stone-900/85 backdrop-blur-sm text-white text-[10px] font-mono uppercase tracking-widest">Cardiologia</span>
+                        </a>
+                        <div class="flex flex-col flex-1 p-6">
+                            <div class="flex items-center gap-3 text-[11px] font-mono text-stone-400 uppercase tracking-wider mb-3">
+                                <span>28 Fev 2025</span>
+                                <span class="w-1 h-1 rounded-full bg-stone-300"></span>
+                                <span>5 min leitura</span>
+                            </div>
+                            <h3 class="font-display font-bold text-lg text-stone-900 leading-snug mb-2 line-clamp-2 group-hover:text-brand-yellow-dark transition-colors">
+                                <a href="blog.html">Otimização metabólica: o que a medicina pode fazer pela sua energia</a>
+                            </h3>
+                            <p class="text-sm text-stone-500 leading-relaxed font-light line-clamp-3 mb-5">
+                                Descubra como protocolos individuais ajudam a equilibrar hormônios e nutrientes para elevar sua performance física e cognitiva.
+                            </p>
+                            <a href="blog.html" class="mt-auto inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-stone-900 font-semibold group/btn">
+                                Ler artigo
+                                <iconify-icon icon="solar:arrow-right-linear" class="text-base transition-transform group-hover/btn:translate-x-1"></iconify-icon>
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Card 3: A conexão entre metabolismo e coração... -->
+                    <article class="post-card group reveal min-w-0 flex flex-col overflow-hidden rounded-2xl bg-white/60 backdrop-blur-md border border-white/50 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-500" data-category="cardiologia">
+                        <a href="blog.html" class="block relative aspect-[16/10] overflow-hidden bg-stone-200">
+                            <img src="assets/images/blog-3.png" alt="A conexão entre metabolismo e coração na sua saúde diária." loading="lazy" class="w-full h-full object-cover select-none transition-transform duration-700 group-hover:scale-105">
+                            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-stone-900/85 backdrop-blur-sm text-white text-[10px] font-mono uppercase tracking-widest">Cardiologia</span>
+                        </a>
+                        <div class="flex flex-col flex-1 p-6">
+                            <div class="flex items-center gap-3 text-[11px] font-mono text-stone-400 uppercase tracking-wider mb-3">
+                                <span>28 Fev 2025</span>
+                                <span class="w-1 h-1 rounded-full bg-stone-300"></span>
+                                <span>5 min leitura</span>
+                            </div>
+                            <h3 class="font-display font-bold text-lg text-stone-900 leading-snug mb-2 line-clamp-2 group-hover:text-brand-yellow-dark transition-colors">
+                                <a href="blog.html">A conexão entre metabolismo e coração na sua saúde diária.</a>
+                            </h3>
+                            <p class="text-sm text-stone-500 leading-relaxed font-light line-clamp-3 mb-5">
+                                Saiba como o controle da glicose, insulina e triglicérides impacta diretamente a longevidade e a saúde do seu músculo cardíaco.
+                            </p>
+                            <a href="blog.html" class="mt-auto inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-stone-900 font-semibold group/btn">
+                                Ler artigo
+                                <iconify-icon icon="solar:arrow-right-linear" class="text-base transition-transform group-hover/btn:translate-x-1"></iconify-icon>
+                            </a>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- TRANSIÇÃO DIA → NOITE (divisor visual, estilo Sirocco) -->
+        <div class="cta-day-night-transition" aria-hidden="true">
+            <div id="transition-stars" class="transition-stars-layer"></div>
+            <!-- Linhas de laser surgindo no escuro -->
+            <div class="dark-grid-line-v" style="left: 25%; opacity: 0.4;"><div class="beam-v" style="animation-delay: 1s; animation-duration: 10s;"></div></div>
+            <div class="dark-grid-line-v" style="right: 25%; left: auto; opacity: 0.4;"><div class="beam-v" style="animation-delay: 4s; animation-duration: 8s;"></div></div>
+            <div class="transition-divider-content reveal">
+                <div class="transition-divider-line"></div>
+                <p class="transition-divider-quote">Saúde não é ausência de doença.<br>É uma vida que vale a pena viver.</p>
+                <div class="transition-divider-line"></div>
+            </div>
+        </div>
+
+        <!-- SEÇÃO CTA FINAL (CONVERSÃO) -->
+        <div id="agendamento" class="cta-reveal-container-custom">
+            <section id="cta-section" class="cta-section-custom">
+                <!-- Efeito de Estrelas Cintilantes (Twinkling Stars) -->
+                <div class="cta-stars-container pointer-events-none"></div>
+
+                <!-- Linhas de Grade de Destaque para Seção Escura -->
+                <div class="dark-grid-line-v" style="left: 20%;"><div class="beam-v" style="animation-delay: 1.5s; animation-duration: 6s;"></div></div>
+                <div class="dark-grid-line-v" style="left: 80%;"><div class="beam-v" style="animation-delay: 3.5s; animation-duration: 7s;"></div></div>
+
+                <!-- Glow sutil de fundo para profundidade -->
+                <div class="cta-glow-light"></div>
+
+                <div class="relative z-10 max-w-[800px] mx-auto px-6 text-center flex flex-col items-center gap-6 md:gap-8">
+                    <!-- Title -->
+                    <h2 id="cta-title" class="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight">
+                        Sua saúde merece estratégia,<br class="hidden sm:inline"> não improviso.
+                    </h2>
+                    
+                    <!-- Support Text -->
+                    <p id="cta-desc" class="text-sm sm:text-base md:text-lg text-stone-400 font-light max-w-xl leading-relaxed">
+                        Converse com nossa equipe e entenda qual abordagem faz sentido para o seu momento atual.
+                    </p>
+
+                    <!-- Buttons Container -->
+                    <div id="cta-buttons-container" class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto items-center justify-center mt-2">
+                        <!-- Primary CTA Button (Gold) -->
+                        <a href="#agendamento" class="px-8 py-4 bg-[#EDC54C] hover:bg-[#be9e3d] text-stone-900 font-display text-xs uppercase tracking-widest font-bold rounded-sm shadow-lg hover:-translate-y-0.5 transition-all duration-300 w-full sm:w-auto text-center">
+                            Agendar Avaliação Agora
+                        </a>
+                        <!-- Secondary CTA Button (Gold Outline) -->
+                        <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" class="px-8 py-4 border border-[#EDC54C]/30 text-[#EDC54C] hover:bg-[#EDC54C] hover:text-stone-900 font-display text-xs uppercase tracking-widest font-bold rounded-sm hover:-translate-y-0.5 transition-all duration-300 w-full sm:w-auto text-center">
+                            Falar no WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </div>
+
     </div>
 
     <!-- LOGICA JAVASCRIPT DOS EFEITOS INTERATIVOS -->
     <script src="assets/js/main.js"></script>
     <!-- Timeline interativa da seção Método (GSAP ScrollTrigger) -->
     <script src="assets/js/metodo.js"></script>
+    <!-- Transição dinâmica e cinematic da seção CTA final -->
+    <script src="assets/js/cta-transition.js"></script>
 </body>
 
 </html>

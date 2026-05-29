@@ -61,29 +61,28 @@ function updateParallax() {
     const scroll = window.scrollY;
     const viewHeight = window.innerHeight;
 
-    // Parallax da Hero
     const heroContent = document.querySelector('h1');
-    if (heroContent && window.innerWidth > 1024) {
-        heroContent.style.transform = `translateY(${scroll * 0.08}px)`;
+    if (heroContent) {
+        if (window.innerWidth > 1024) {
+            heroContent.style.transform = `translateY(${scroll * 0.08}px)`;
+        } else {
+            heroContent.style.transform = 'none';
+        }
     }
 
     // Parallax dos Diretores
     if (window.innerWidth > 1024) {
         parallaxWrappers.forEach(wrapper => {
             const rect = wrapper.getBoundingClientRect();
-            // Se o wrapper estiver no viewport
             if (rect.top < viewHeight && rect.bottom > 0) {
                 const elementCenter = rect.top + rect.height / 2;
                 const screenCenter = viewHeight / 2;
                 const diff = elementCenter - screenCenter;
-
-                // Fator de movimento sutil e suave
                 const translateY = diff * -0.07;
                 wrapper.style.transform = `translateY(${translateY}px)`;
             }
         });
     } else {
-        // Reseta no mobile
         parallaxWrappers.forEach(wrapper => {
             wrapper.style.transform = 'none';
         });

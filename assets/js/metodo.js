@@ -51,23 +51,31 @@
 
     gsap.registerPlugin(ScrollTrigger);
 
-    // Ativa o modo interativo (CSS habilita estados + stage em tela cheia).
-    section.classList.add('is-ready');
-    render(0);
-
     const stage = section.querySelector('.metodo-stage');
     // Distância de scroll proporcional ao nº de passos (~70vh por passo).
     const distance = total * 70;
 
-    ScrollTrigger.create({
-        trigger: section,
-        start: 'top top',
-        end: '+=' + distance + '%',
-        pin: stage,
-        pinSpacing: true,
-        anticipatePin: 1,
-        invalidateOnRefresh: true,
-        onUpdate: function (self) { render(self.progress); },
-        onRefresh: function (self) { render(self.progress); }
+    // Pin só ativo em desktop (≥1024px). Em mobile/tablet o GSAP define
+    // width fixo no elemento pinado, causando overflow horizontal.
+    gsap.matchMedia().add('(min-width: 1024px)', function () {
+        section.classList.add('is-ready');
+        render(0);
+
+        var trigger = ScrollTrigger.create({
+            trigger: section,
+            start: 'top top',
+            end: '+=' + distance + '%',
+            pin: stage,
+            pinSpacing: true,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+            onUpdate: function (self) { render(self.progress); },
+            onRefresh: function (self) { render(self.progress); }
+        });
+
+        return function () {
+            trigger.kill();
+            section.classList.remove('is-ready');
+        };
     });
 })();
