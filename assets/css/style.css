@@ -1,0 +1,571 @@
+        :root {
+            --cream: #EAEAE5;
+            --dark: #1C1917;
+            --navy: #1C1917;
+            --gold: #EDC54C;
+        }
+
+        /* ===== ESTILOS BASE & SEÇÕES ===== */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--cream);
+            color: var(--dark);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Linhas Globais de Grade com Feixes de Laser Animados */
+        .grid-line-v {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: rgba(28, 25, 23, 0.06);
+            pointer-events: none;
+            z-index: 1;
+        }
+        .grid-line-h {
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: rgba(28, 25, 23, 0.06);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Feixes de laser animados */
+        .beam-v {
+            position: absolute;
+            width: 1px;
+            height: 100px;
+            background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+            left: 0;
+            animation: beamV 8s infinite linear;
+        }
+        .beam-h {
+            position: absolute;
+            height: 1px;
+            width: 150px;
+            background: linear-gradient(to right, transparent, var(--gold), transparent);
+            top: 0;
+            animation: beamH 8s infinite linear;
+        }
+
+        @keyframes beamV {
+            0% { top: -100px; }
+            100% { top: 105%; }
+        }
+        @keyframes beamH {
+            0% { left: -150px; }
+            100% { left: 105%; }
+        }
+
+        /* Transição Suave de Cores */
+        /* REVEAL ON SCROLL (Cinematográfico com Easing Físico e Blur) */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            filter: blur(10px);
+            transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+                        filter 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+            filter: blur(0px);
+        }
+
+        /* TEXT MASK REVEAL */
+        .text-reveal-wrapper {
+            overflow: hidden;
+            display: block;
+        }
+        .text-reveal-content {
+            transform: translateY(110%);
+            opacity: 0;
+            transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.2s ease;
+            display: block;
+        }
+        .reveal-active .text-reveal-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* CONIC BEAM BUTTONS */
+        .btn-beam {
+            position: relative;
+            z-index: 10;
+            overflow: hidden;
+            display: inline-block;
+        }
+        .btn-beam::before {
+            content: "";
+            position: absolute;
+            inset: -2px;
+            z-index: -1;
+            background: conic-gradient(from 90deg at 50% 50%, #E2E8F0 0%, var(--gold) 50%, #E2E8F0 100%);
+            animation: spin 3s linear infinite;
+            border-radius: inherit;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .btn-beam:hover::before {
+            opacity: 1;
+        }
+        .btn-beam-content {
+            background-color: #1c1917;
+            color: #ffffff;
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            height: 100%;
+            border-radius: inherit;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* FLASHLIGHT EFFECT CARD */
+        .flashlight-card {
+            background: rgba(255, 255, 255, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        .flashlight-card::before {
+            content: "";
+            position: absolute;
+            inset: 0px;
+            background: radial-gradient(
+                600px circle at var(--mouse-x, 0) var(--mouse-y, 0),
+                rgba(255, 255, 255, 0.8),
+                transparent 40%
+            );
+            opacity: 0;
+            transition: opacity 0.5s;
+            pointer-events: none;
+            z-index: 2;
+        }
+        .flashlight-card:hover::before {
+            opacity: 1;
+        }
+
+        /* 3D TRANSFORM PERSPECTIVE */
+        .perspective-1000 {
+            perspective: 1000px;
+        }
+        .tilt-card {
+            transform-style: preserve-3d;
+            transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* FILTRO DE RUÍDO */
+        .noise {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.035;
+            pointer-events: none;
+            z-index: 9999;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* ==========================================================================
+           LUMINAE - SEÇÃO ABORDAGEM DE SAÚDE (ESTILOS CUSTOMIZADOS)
+           ========================================================================== */
+        .saude-section {
+            position: relative;
+            background-color: var(--cream);
+            color: var(--dark);
+            font-family: 'Inter', sans-serif;
+            padding: 100px 48px;
+            overflow: hidden;
+            z-index: 10;
+        }
+
+        /* Linhas verticais decorativas laterais */
+        .saude-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 48px;
+            width: 1px;
+            background: rgba(28, 25, 23, 0.05);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .saude-section::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 48px;
+            width: 1px;
+            background: rgba(28, 25, 23, 0.05);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .saude-header {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 64px;
+            align-items: start;
+            position: relative;
+            z-index: 2;
+            margin-bottom: 64px;
+        }
+
+        .saude-header-left {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .saude-header-right {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding-top: 8px;
+        }
+
+        .saude-title {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 2.85rem;
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: -0.025em;
+            color: var(--dark);
+            margin: 0;
+        }
+
+        .saude-desc {
+            font-size: 1.05rem;
+            line-height: 1.65;
+            color: #57534e;
+            font-weight: 300;
+            margin: 0;
+        }
+
+        .saude-desc-strong {
+            color: var(--dark);
+            font-weight: 505;
+        }
+
+        .saude-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .saude-card {
+            padding: 36px 28px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 24px;
+            min-height: 280px;
+            box-sizing: border-box;
+            border-radius: 16px;
+            border: 1px solid rgba(28, 25, 23, 0.08);
+            box-shadow: none;
+        }
+
+        .saude-card-top {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .saude-card-icon-wrapper {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: rgba(28, 25, 23, 0.03);
+            border: 1px solid rgba(28, 25, 23, 0.04);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #44403c;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .saude-card:hover .saude-card-icon-wrapper {
+            background: rgba(237, 197, 76, 0.15);
+            border-color: rgba(237, 197, 76, 0.3);
+            color: var(--dark);
+            transform: scale(1.05) rotate(5deg);
+        }
+
+        .saude-card-icon {
+            width: 24px;
+            height: 24px;
+            stroke: currentColor;
+            stroke-width: 1.5;
+            fill: none;
+        }
+
+        .saude-card-title {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            line-height: 1.3;
+            letter-spacing: -0.01em;
+            color: var(--dark);
+            margin: 0;
+        }
+
+        .saude-card-desc {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: #78716c;
+            margin: 0;
+            font-weight: 300;
+            position: relative;
+            z-index: 2;
+        }
+
+        .saude-card::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 2px;
+            background: linear-gradient(to right, transparent, var(--gold), transparent);
+            opacity: 0;
+            transform: scaleX(0.8);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 3;
+        }
+
+        .saude-card:hover::after {
+            opacity: 1;
+            transform: scaleX(1);
+        }
+
+        .saude-divider {
+            height: 1px;
+            background: linear-gradient(to right, rgba(28, 25, 23, 0.02), rgba(28, 25, 23, 0.08) 20%, rgba(28, 25, 23, 0.08) 80%, rgba(28, 25, 23, 0.02));
+            margin: 64px 0;
+            border: none;
+            position: relative;
+            z-index: 2;
+        }
+
+        .saude-indicators-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            position: relative;
+            z-index: 2;
+        }
+
+        .saude-indicators-row::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 1px;
+            height: 60px;
+            background: rgba(28, 25, 23, 0.08);
+        }
+
+        .saude-indicator {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .saude-indicator-value {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 3.8rem;
+            font-weight: 800;
+            line-height: 1;
+            letter-spacing: -0.03em;
+            color: var(--dark);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .saude-indicator-value span {
+            color: var(--gold);
+        }
+
+        .saude-indicator-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            color: #78716c;
+            text-transform: uppercase;
+            margin: 0;
+        }
+
+        .saude-stagger-1 { transition-delay: 60ms !important; }
+        .saude-stagger-2 { transition-delay: 180ms !important; }
+        .saude-stagger-3 { transition-delay: 300ms !important; }
+        .saude-stagger-4 { transition-delay: 420ms !important; }
+
+        @media (max-width: 1200px) {
+            .saude-section { padding: 80px 32px; }
+            .saude-section::before { left: 32px; }
+            .saude-section::after { right: 32px; }
+            .saude-title { font-size: 2.5rem; }
+            .saude-cards-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+            .saude-card { min-height: 250px; padding: 28px; }
+        }
+
+        @media (max-width: 768px) {
+            .saude-section { padding: 64px 24px; }
+            .saude-section::before, .saude-section::after { display: none; }
+            .saude-header { grid-template-columns: 1fr; gap: 32px; margin-bottom: 48px; }
+            .saude-header-right { padding-top: 0; }
+            .saude-title { font-size: 2.2rem; }
+            .saude-divider { margin: 48px 0; }
+            .saude-indicators-row::after { display: none; }
+            .saude-indicators-row { grid-template-columns: 1fr; gap: 32px; }
+            .saude-indicator-value { font-size: 3.2rem; }
+        }
+
+        @media (max-width: 480px) {
+            .saude-section { padding: 56px 24px; }
+            .saude-title { font-size: 1.85rem; }
+            .saude-cards-grid { grid-template-columns: 1fr; gap: 16px; }
+            .saude-card { min-height: auto; padding: 24px; }
+            .saude-desc { font-size: 0.95rem; }
+        }
+
+        /* ESTILOS DE HOVER PARA OS PILARES DA PROPOSTA (SEÇÃO 3) */
+        .proposta-card {
+            position: relative;
+            z-index: 1;
+        }
+        .proposta-card.reveal {
+            transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                        filter 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+                        box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                        background-color 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
+        .proposta-card:hover {
+            transform: translateY(-4px) !important;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -6px rgba(0, 0, 0, 0.08) !important;
+            background-color: rgba(255, 255, 255, 0.75) !important;
+            z-index: 10;
+        }
+        .proposta-card:nth-child(2):hover {
+            background-color: rgba(250, 249, 245, 0.98) !important;
+        }
+
+        /* EFEITO DE ESTRELAS CINTILANTES (TWINKLING STARS) */
+        #stars-container {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .star {
+            position: absolute;
+            background-color: #ffffff;
+            border-radius: 50%;
+            animation: twinkle 3s infinite ease-in-out;
+            pointer-events: none;
+        }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.15; transform: scale(0.7); }
+            50% { opacity: 0.95; transform: scale(1.2); }
+        }
+
+        /* LINHAS DE GRADE E BEAMS DA SEÇÃO ESCURA */
+        .dark-grid-line-v {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: rgba(255, 255, 255, 0.05);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* ESTILOS DA SEÇÃO DE BIOGRAFIA DOS DIRETORES (SOBRE) */
+        .doctor-bio-section {
+            background-color: #1C1917;
+            color: #ffffff;
+            position: relative;
+            z-index: 10;
+            overflow: hidden;
+        }
+        .doctor-card-frame {
+            position: relative;
+            background: rgba(28, 25, 23, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            transition: border-color 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
+                        transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                        box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .doctor-card-frame:hover {
+            border-color: rgba(237, 197, 76, 0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.7), 0 0 40px rgba(237, 197, 76, 0.05);
+        }
+        .doctor-card-frame img {
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .doctor-card-frame:hover img {
+            transform: scale(1.03);
+        }
+        .doctor-parallax-wrapper {
+            will-change: transform;
+            transition: transform 0.1s cubic-bezier(0.25, 1, 0.5, 1);
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* ESTILOS DA SEÇÃO ÁREAS DE ATUAÇÃO (PROGRAMAS) */
+        .programa-card {
+            transition: border-color 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                        box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                        background-color 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .programa-card:hover {
+            transform: translateY(-6px);
+            background-color: rgba(255, 255, 255, 0.95);
+            border-color: rgba(237, 197, 76, 0.3);
+        }
+        .programa-card::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--gold), transparent);
+            opacity: 0;
+            transform: scaleX(0.7);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 3;
+        }
+        .programa-card:hover::after {
+            opacity: 1;
+            transform: scaleX(1);
+        }
