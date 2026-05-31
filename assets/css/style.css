@@ -765,20 +765,51 @@
 
         /* ===== Responsivo: timeline VERTICAL em mobile e tablet ===== */
         @media (max-width: 1023px) {
-            .metodo-timeline { --node-size: 52px; }
+            /* Eyebrow vira um badge pill (personalidade igual ao resto do site) */
+            .metodo-eyebrow {
+                background: rgba(255, 255, 255, 0.7);
+                border: 1px solid rgba(28, 25, 23, 0.08);
+                border-radius: 999px;
+                padding: 6px 14px;
+                backdrop-filter: blur(8px);
+                -webkit-backdrop-filter: blur(8px);
+                box-shadow: 0 4px 14px -8px rgba(28, 25, 23, 0.15);
+            }
+
+            /* Timeline centralizada sob o header (corrige o desalinhamento) */
+            .metodo-timeline {
+                --node-size: 52px;
+                max-width: 480px;
+                margin-left: auto;
+                margin-right: auto;
+            }
             .metodo-steps {
                 grid-template-columns: 1fr;
-                gap: 2.25rem;
+                gap: 1.25rem;
             }
             .metodo-step {
                 flex-direction: row;
-                align-items: flex-start;
+                align-items: flex-start; /* topo do card alinhado ao topo do círculo */
                 text-align: left;
-                gap: 1.1rem;
+                gap: 1.5rem; /* compensa o anel de 6px do nó -> ~18px visuais até o card */
             }
-            .metodo-content { padding-top: 0.35rem; }
+            /* Cada passo: o conteúdo vira um card de vidro (estética do design system) */
+            .metodo-content {
+                flex: 1;
+                min-width: 0;
+                padding: 14px 18px;
+                background: rgba(255, 255, 255, 0.72);
+                border: 1px solid rgba(28, 25, 23, 0.06);
+                border-radius: 14px;
+                box-shadow: 0 12px 28px -18px rgba(28, 25, 23, 0.16);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                transition: border-color 0.4s ease, box-shadow 0.4s ease;
+            }
             .metodo-step-desc { padding: 0; }
-            /* Linha agora é vertical, alinhada ao centro dos círculos */
+            /* O nó fica no rail à esquerda, alinhado ao topo do card */
+            .metodo-node { align-self: flex-start; }
+            /* Linha vertical conectando os nós (no rail à esquerda) */
             .metodo-line {
                 top: calc(var(--node-size) / 2);
                 bottom: calc(var(--node-size) / 2);
@@ -794,10 +825,17 @@
             .metodo-section:not(.is-ready) .metodo-line-fill { height: 100%; width: 100%; }
         }
 
-        /* Tablet: limita largura do stage para não exceder viewport */
+        /* Tablet: nós um pouco maiores */
         @media (min-width: 640px) and (max-width: 1023px) {
             .metodo-stage { max-width: 100%; }
             .metodo-timeline { --node-size: 56px; }
+        }
+
+        /* Mobile estreito: iguala a altura dos cards (títulos longos quebram
+           em 2 linhas e deixariam os cards desiguais). O conteúdo segue
+           alinhado ao topo, então o título continua na altura do número. */
+        @media (max-width: 479px) {
+            .metodo-content { min-height: 132px; }
         }
 
         /* ===== Acessibilidade: respeita "reduzir movimento" ===== */
@@ -1057,6 +1095,32 @@
             }
         }
 
+        /* ===== 3 cards em 2 colunas: centraliza o 3º card (órfão) ===== */
+        /* Depoimentos: 2 colunas entre 769px e 1024px */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .testimonial-card-custom:last-child:nth-child(odd) {
+                grid-column: 1 / -1;
+                justify-self: center;
+                width: calc(50% - 12px); /* largura de 1 coluna (gap 24px) */
+            }
+        }
+        /* Blog (index): 2 colunas entre 640px e 1023px */
+        @media (min-width: 640px) and (max-width: 1023px) {
+            #blog .post-card:last-child:nth-child(odd) {
+                grid-column: 1 / -1;
+                justify-self: center;
+                width: calc(50% - 16px); /* largura de 1 coluna (gap 32px) */
+            }
+        }
+        /* Programas (index): 2 colunas entre 768px e 1023px */
+        @media (min-width: 768px) and (max-width: 1023px) {
+            #programas .programa-card:last-child:nth-child(odd) {
+                grid-column: 1 / -1;
+                justify-self: center;
+                width: calc(50% - 12px); /* largura de 1 coluna (gap 24px) */
+            }
+        }
+
         @media (max-width: 768px) {
             .testimonial-section-custom {
                 padding: 64px 24px;
@@ -1066,11 +1130,47 @@
             }
             .testimonial-grid-custom {
                 grid-template-columns: 1fr;
-                gap: 20px;
+                gap: 16px;
             }
+            /* Cards mais definidos e limpos no mobile (mantendo a estética do design system) */
             .testimonial-card-custom {
-                padding: 32px 28px;
+                padding: 24px 22px;
                 min-height: auto;
+                border-radius: 16px;
+                background: rgba(255, 255, 255, 0.92);
+                border: 1px solid rgba(28, 25, 23, 0.07);
+                box-shadow: 0 14px 30px -18px rgba(28, 25, 23, 0.18);
+            }
+            .testimonial-top-custom {
+                margin-bottom: 16px;
+            }
+            .testimonial-star-custom {
+                font-size: 0.85rem;
+            }
+            .testimonial-quote-svg {
+                width: 26px;
+                height: 26px;
+                color: rgba(237, 197, 76, 0.2); /* aspa em dourado sutil, mais intencional */
+            }
+            .testimonial-text-custom {
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+            .testimonial-author-custom {
+                margin-top: 18px;
+                padding-top: 16px;
+                gap: 12px;
+            }
+            .testimonial-avatar-custom {
+                width: 40px;
+                height: 40px;
+                font-size: 0.9rem;
+            }
+            .testimonial-name-custom {
+                font-size: 0.9rem;
+            }
+            .testimonial-role-custom {
+                font-size: 0.62rem;
             }
         }
 

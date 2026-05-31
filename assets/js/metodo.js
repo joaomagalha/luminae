@@ -78,4 +78,29 @@
             section.classList.remove('is-ready');
         };
     });
+
+    /* -------------------------------------------------------------
+       Correção de âncoras vindas de OUTRA página
+       (ex.: blog.html → index.html#programas).
+       O pin do ScrollTrigger altera a altura do documento DEPOIS do
+       carregamento, então o salto nativo do navegador para a âncora
+       cai no lugar errado (topo). Aqui re-rolamos para o alvo já com
+       o layout assentado, descontando a altura do header fixo.
+       ------------------------------------------------------------- */
+    function scrollToHashTarget() {
+        var hash = window.location.hash;
+        if (!hash || hash.length < 2) return;
+        var target = document.querySelector(hash);
+        if (!target) return;
+        ScrollTrigger.refresh();
+        requestAnimationFrame(function () {
+            var headerH = 72; // compensa o header sticky
+            var y = target.getBoundingClientRect().top + window.scrollY - headerH;
+            window.scrollTo(0, Math.max(0, y));
+        });
+    }
+    window.addEventListener('load', function () {
+        // pequeno atraso para garantir que o pin-spacer já foi criado
+        setTimeout(scrollToHashTarget, 80);
+    });
 })();
