@@ -75,9 +75,6 @@
             <div class="grid-line-v" style="left: 30%">
                 <div class="beam-v" style="animation-delay: 3s; animation-duration: 9s;"></div>
             </div>
-            <div class="grid-line-v" style="left: 60%">
-                <div class="beam-v" style="animation-delay: 1.5s; animation-duration: 8s;"></div>
-            </div>
             <div class="grid-line-v" style="left: 90%">
                 <div class="beam-v" style="animation-delay: 5s; animation-duration: 10s;"></div>
             </div>
@@ -155,8 +152,7 @@
                     </div>
 
                     <!-- Diferenciais Rápidos com Ícones Redondos -->
-                    <div
-                        class="flex gap-x-6 sm:gap-x-12 mt-6 sm:mt-10 lg:mt-12 pt-5 sm:pt-6 lg:pt-8 border-t border-stone-300/40 reveal delay-700">
+                    <div class="flex gap-x-6 sm:gap-x-12 mt-6 sm:mt-10 lg:mt-12 pt-5 sm:pt-6 lg:pt-8 reveal delay-700">
                         <div class="flex items-center gap-3">
                             <div
                                 class="w-10 h-10 shrink-0 rounded-full bg-brand-yellow/10 border border-brand-yellow/30 flex items-center justify-center text-brand-yellow text-xl shadow-sm">
@@ -827,7 +823,7 @@
 
                     <!-- Subhead -->
                     <p
-                        class="text-[1em] sm:text-sm lg:text-[1.2em] text-stone-700 font-light max-w-xl leading-relaxed mt-2">
+                        class="text-[1.1em] sm:text-sm lg:text-[1em] text-stone-700 font-light max-w-xl leading-relaxed mt-2">
                         Veja como o acompanhamento integrado pode gerar mudanças reais e duradouras.
                     </p>
                 </div>
@@ -1098,71 +1094,83 @@
             </div>
         </section>
 
-        <!-- TRANSIÇÃO DIA → NOITE (divisor visual, estilo Sirocco) -->
-        <div class="cta-day-night-transition" aria-hidden="true">
-            <div id="transition-stars" class="transition-stars-layer"></div>
-            <!-- Linhas de laser surgindo no escuro -->
-            <div class="dark-grid-line-v" style="left: 25%; opacity: 0.4;">
-                <div class="beam-v" style="animation-delay: 1s; animation-duration: 10s;"></div>
-            </div>
-            <div class="dark-grid-line-v" style="right: 25%; left: auto; opacity: 0.4;">
-                <div class="beam-v" style="animation-delay: 4s; animation-duration: 8s;"></div>
-            </div>
-            <div class="transition-divider-content reveal">
-                <div class="transition-divider-line"></div>
-                <p class="transition-divider-quote">Saúde não é ausência de doença.<br>É uma vida que vale a pena viver.
-                </p>
-                <div class="transition-divider-line"></div>
-            </div>
-        </div>
+        <!-- INTEGRAÇÃO DE TRANSIÇÃO E CTA (Fundo contínuo de Day/Night) -->
+        <div class="cta-integration-wrapper" style="background: linear-gradient(to bottom, #FAF9F5 0%, #78716C 150px, #1C1917 300px, #1C1917 100%); position: relative; z-index: 10;">
+            <style>
+                .cta-section-custom::before {
+                    display: none !important;
+                }
+                @media (min-width: 768px) {
+                    .cta-reveal-container-custom {
+                        height: 80vh !important;
+                    }
+                    .cta-section-custom {
+                        height: 80vh !important;
+                    }
+                }
+                @media (max-width: 767px) {
+                    .cta-reveal-container-custom {
+                        height: 80vh !important;
+                        height: 80dvh !important;
+                    }
+                    .cta-section-custom {
+                        min-height: 80vh !important;
+                        min-height: 80dvh !important;
+                    }
+                    .grid-line-v, .grid-line-h {
+                        opacity: 0.25 !important;
+                    }
+                }
+            </style>
 
-        <!-- SEÇÃO CTA FINAL (CONVERSÃO) -->
-        <div id="agendamento" class="cta-reveal-container-custom">
-            <section id="cta-section" class="cta-section-custom">
-                <!-- Efeito de Estrelas Cintilantes (Twinkling Stars) -->
-                <div class="cta-stars-container pointer-events-none"></div>
+            <!-- SEÇÃO CTA FINAL (CONVERSÃO) -->
+            <div id="agendamento" class="cta-reveal-container-custom" style="background-color: transparent !important;">
+                <section id="cta-section" class="cta-section-custom">
+                    <!-- Efeito de Estrelas Cintilantes (Twinkling Stars) -->
+                    <div class="cta-stars-container pointer-events-none"></div>
 
-                <!-- Linhas de Grade de Destaque para Seção Escura -->
-                <div class="dark-grid-line-v" style="left: 20%;">
-                    <div class="beam-v" style="animation-delay: 1.5s; animation-duration: 6s;"></div>
-                </div>
-                <div class="dark-grid-line-v" style="left: 80%;">
-                    <div class="beam-v" style="animation-delay: 3.5s; animation-duration: 7s;"></div>
-                </div>
-
-                <!-- Glow sutil de fundo para profundidade -->
-                <div class="cta-glow-light"></div>
-
-                <div
-                    class="relative z-10 max-w-[800px] mx-auto px-6 text-center flex flex-col items-center gap-6 md:gap-8">
-                    <!-- Title -->
-                    <h2 id="cta-title"
-                        class="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight">
-                        Sua saúde merece estratégia,<br class="hidden sm:inline"> não improviso.
-                    </h2>
-
-                    <!-- Support Text -->
-                    <p id="cta-desc"
-                        class="text-sm sm:text-base md:text-lg text-stone-100 font-light max-w-xl leading-relaxed">
-                        Converse com nossa equipe e entenda qual abordagem faz sentido para o seu momento atual.
-                    </p>
-
-                    <!-- Buttons Container -->
-                    <div id="cta-buttons-container"
-                        class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto items-center justify-center mt-2">
-                        <!-- Primary CTA Button (Gold) -->
-                        <a href="#agendamento"
-                            class="px-8 py-4 bg-[#EDC54C] hover:bg-[#be9e3d] text-stone-900 font-display text-xs uppercase tracking-widest font-bold rounded-sm shadow-lg hover:-translate-y-0.5 transition-all duration-300 w-full sm:w-auto text-center">
-                            Agendar Avaliação Agora
-                        </a>
-                        <!-- Secondary CTA Button (Gold Outline) -->
-                        <a href="https://wa.me/5500000000000" target="_blank" rel="noopener"
-                            class="px-8 py-4 border border-[#EDC54C]/30 text-[#EDC54C] hover:bg-[#EDC54C] hover:text-stone-900 font-display text-xs uppercase tracking-widest font-bold rounded-sm hover:-translate-y-0.5 transition-all duration-300 w-full sm:w-auto text-center">
-                            Falar no WhatsApp
-                        </a>
+                    <!-- Linhas de Grade de Destaque para Seção Escura -->
+                    <div class="dark-grid-line-v" style="left: 20%;">
+                        <div class="beam-v" style="animation-delay: 1.5s; animation-duration: 6s;"></div>
                     </div>
-                </div>
-            </section>
+                    <div class="dark-grid-line-v" style="left: 80%;">
+                        <div class="beam-v" style="animation-delay: 3.5s; animation-duration: 7s;"></div>
+                    </div>
+
+                    <!-- Glow sutil de fundo para profundidade -->
+                    <div class="cta-glow-light"></div>
+
+                    <div
+                        class="relative z-10 max-w-[800px] mx-auto px-6 text-center flex flex-col items-center gap-6 md:gap-8">
+                        <!-- Title -->
+                        <h2 id="cta-title"
+                            class="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight">
+                            Sua saúde merece estratégia,<br class="hidden sm:inline"> não improviso.
+                        </h2>
+
+                        <!-- Support Text -->
+                        <p id="cta-desc"
+                            class="text-sm sm:text-base md:text-lg text-stone-200 font-regular max-w-xl leading-relaxed">
+                            Converse com nossa equipe e entenda qual abordagem faz sentido para o seu momento atual.
+                        </p>
+
+                        <!-- Buttons Container -->
+                        <div id="cta-buttons-container"
+                            class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto items-center justify-center mt-2">
+                            <!-- Primary CTA Button (Gold) -->
+                            <a href="#agendamento"
+                                class="px-8 py-4 bg-[#EDC54C] hover:bg-[#be9e3d] text-stone-900 font-display text-xs uppercase tracking-widest font-bold rounded-sm shadow-lg hover:-translate-y-0.5 transition-all duration-300 w-full sm:w-auto text-center">
+                                Agendar Avaliação Agora
+                            </a>
+                            <!-- Secondary CTA Button (Gold Outline) -->
+                            <a href="https://wa.me/5500000000000" target="_blank" rel="noopener"
+                                class="px-8 py-4 border border-[#EDC54C]/30 text-[#EDC54C] hover:bg-[#EDC54C] hover:text-stone-900 font-display text-xs uppercase tracking-widest font-bold rounded-sm hover:-translate-y-0.5 transition-all duration-300 w-full sm:w-auto text-center">
+                                Falar no WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </section>
+            </div>
         </div>
 
         <!-- FOOTER CLARO/OFF-WHITE MINIMALISTA & SOPHISTICATED -->

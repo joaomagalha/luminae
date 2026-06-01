@@ -322,48 +322,85 @@
             </div>
         </section>
 
-        <!-- ============================================================= -->
-        <!-- RODAPÉ (on-brand, baseado no design system)                   -->
-        <!-- ============================================================= -->
-        <footer class="bg-stone-900 text-stone-400 py-16 sm:py-20 px-6 lg:px-12 relative overflow-hidden">
-            <!-- Texto gigante de marca no fundo -->
-            <div class="absolute bottom-0 left-0 w-full overflow-hidden pointer-events-none opacity-[0.04]">
-                <h2 class="text-[18vw] font-display font-bold leading-none text-white whitespace-nowrap">LUMINAE</h2>
-            </div>
+        <!-- FOOTER CLARO/OFF-WHITE MINIMALISTA & SOPHISTICATED -->
+        <footer class="relative z-20 bg-[#FAF9F5] border-t border-stone-300/40 pt-20 pb-4 md:pt-28 md:pb-4">
+            <div class="max-w-[1200px] mx-auto px-6">
+                <!-- Parte Superior: Colunas -->
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 pb-12 md:pb-16">
 
-            <div class="relative z-10 grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-12">
-                <div class="col-span-1 md:col-span-2">
-                    <a href="index.html" class="inline-block mb-6 select-none">
-                        <span class="font-display font-bold text-2xl text-white tracking-tight">LUMINAE</span>
-                    </a>
-                    <p class="max-w-sm font-light leading-relaxed text-stone-400 text-sm">
-                        Cardiologia e nutrição integradas para transformar a sua saúde com precisão, ciência e acompanhamento contínuo.
+                    <!-- Coluna Esquerda: Descrição e Ícones -->
+                    <div class="col-span-12 md:col-span-6 flex flex-col justify-between gap-6">
+                        <div class="space-y-4">
+                            <p class="text-sm md:text-base font-sans font-light text-stone-500 leading-relaxed max-w-sm">
+                                Medicina estratégica, preventiva e personalizada para quem exige o melhor da própria
+                                saúde.
+                            </p>
+
+                            <!-- Ícones Sociais -->
+                            <div class="flex gap-2.5">
+                                <a href="https://instagram.com/" target="_blank" rel="noopener"
+                                    class="w-7 h-7 bg-stone-200/60 hover:bg-stone-300/60 text-stone-500 hover:text-stone-900 rounded flex items-center justify-center transition-colors"
+                                    aria-label="Instagram">
+                                    <iconify-icon icon="lucide:instagram" class="text-base"></iconify-icon>
+                                </a>
+                                <a href="mailto:contato@luminae.com.br"
+                                    class="w-7 h-7 bg-stone-200/60 hover:bg-stone-300/60 text-stone-500 hover:text-stone-900 rounded flex items-center justify-center transition-colors"
+                                    aria-label="E-mail">
+                                    <iconify-icon icon="lucide:mail" class="text-base"></iconify-icon>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Coluna Central: CRM -->
+                    <div class="col-span-12 sm:col-span-6 md:col-span-3">
+                        <h4 class="text-xs font-mono uppercase tracking-[0.2em] font-semibold text-stone-900 mb-4 sm:mb-6">
+                            CRM</h4>
+                        <ul class="space-y-3 text-xs font-sans text-stone-500 font-light">
+                            <li>CRM/SP 000000 &ndash; Dra. Maristela</li>
+                            <li>CRM/SP 000000 &ndash; Dr. Max</li>
+                        </ul>
+                    </div>
+
+                    <!-- Coluna Direita: Contato -->
+                    <div class="col-span-12 sm:col-span-6 md:col-span-3">
+                        <h4 class="text-xs font-mono uppercase tracking-[0.2em] font-semibold text-stone-900 mb-4 sm:mb-6">
+                            Contato</h4>
+                        <ul class="space-y-3 text-xs font-sans text-stone-500 font-light">
+                            <li>
+                                <a href="mailto:contato@luminae.com.br"
+                                    class="hover:text-stone-900 transition-colors">contato@luminae.com.br</a>
+                            </li>
+                            <li>
+                                <a href="https://wa.me/5500000000000" target="_blank" rel="noopener"
+                                    class="hover:text-stone-900 transition-colors">WhatsApp</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <!-- Parte Intermediária: Copyright e Créditos Alinhados -->
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 pt-8 pb-12 md:pb-16 border-t border-stone-300/40">
+                    <!-- Copyright -->
+                    <p class="text-[11px] font-sans text-stone-500 font-light leading-relaxed">
+                        &copy; 2025 Luminae &ndash; Alta Performance em Sa&uacute;de. Todos os direitos reservados.
+                    </p>
+
+                    <!-- Créditos -->
+                    <p class="text-base font-sans text-[#494947] font-light leading-normal md:text-right">
+                        Desenvolvido por
+                        <a href="https://www.instagram.com/neuragain/" target="_blank" rel="noopener"
+                            class="underline hover:text-stone-900 transition-colors font-medium">neura</a>
                     </p>
                 </div>
 
-                <div>
-                    <h3 class="text-xs font-mono uppercase tracking-widest text-stone-500 mb-6">Navegação</h3>
-                    <ul class="space-y-4 text-sm">
-                        <li><a href="index.html#sobre" class="hover:text-white transition-colors">Sobre</a></li>
-                        <li><a href="index.html#metodo" class="hover:text-white transition-colors">Método</a></li>
-                        <li><a href="index.html#programas" class="hover:text-white transition-colors">Especialidades</a></li>
-                        <li><a href="blog.html" class="text-white transition-colors">Blog</a></li>
-                    </ul>
+                <!-- Parte Inferior: Logo Gray -->
+                <div class="w-full flex justify-center items-center">
+                    <img src="assets/images/logo-gray.svg" alt="Luminae Logo"
+                        class="w-full max-w-[1159px] h-auto opacity-70 hover:opacity-100 transition-opacity duration-500">
                 </div>
 
-                <div>
-                    <h3 class="text-xs font-mono uppercase tracking-widest text-stone-500 mb-6">Contato &amp; CRM</h3>
-                    <ul class="space-y-4 text-sm">
-                        <li><span class="block">CRM/SP 000000 — Dr. Max</span></li>
-                        <li><span class="block">CRM/SP 000000 — Dra. Maristela</span></li>
-                        <li><a href="index.html#agendamento" class="hover:text-white transition-colors">Agendar Avaliação</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="relative z-10 mt-14 pt-8 border-t border-stone-800 flex flex-col sm:flex-row gap-3 justify-between items-center text-xs font-mono text-stone-500">
-                <span>© 2026 Luminae. Todos os direitos reservados.</span>
-                <span class="uppercase tracking-widest">Saúde de Alta Performance</span>
             </div>
         </footer>
 
