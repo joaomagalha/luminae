@@ -12,9 +12,15 @@ Website oficial da Luminae.
 
 ```
 .
-├── index.html       # Página principal
-├── README.md
-└── .gitignore
+├── assets/             # Recursos estáticos (CSS, JS, Imagens)
+│   ├── css/            # Folha de estilo unificada
+│   ├── js/             # Scripts interativos
+│   └── images/         # Imagens da aplicação
+├── index.html          # Página inicial
+├── blog.html           # Página do blog
+├── logo.svg            # Logo oficial do site
+├── README.md           # Documentação
+└── .gitignore          # Arquivo de ignore do Git
 ```
 
 ## Como rodar localmente

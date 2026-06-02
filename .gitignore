@@ -46,5 +46,5 @@ build/
 *.tmp
 *.bak
 
-# Arquivos de referência/design (não são código de produção)
-references/
+# Ferramentas auxiliares / IA
+.claude/
