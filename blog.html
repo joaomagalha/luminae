@@ -816,6 +816,11 @@
               messageElement.className = "text-xs font-mono mt-4 transition-opacity duration-300 max-w-md text-center text-emerald-400";
               submitButton.textContent = "Inscrito!";
               emailInput.value = "";
+
+              // Redireciona para o WhatsApp após 1.5 segundos para exibir a mensagem de sucesso
+              setTimeout(() => {
+                window.location.href = "https://api.whatsapp.com/send/?phone=5565981169424&text=Ol%C3%A1%21+Gostaria+de+agendar+uma+consulta+na+Luminae.&type=phone_number&app_absent=0";
+              }, 1500);
             } else {
               // Erro retornado pela API
               messageElement.className = "text-xs font-mono mt-4 transition-opacity duration-300 max-w-md text-center text-rose-400";
