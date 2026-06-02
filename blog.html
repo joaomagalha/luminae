@@ -41,12 +41,13 @@
           <div class="flex items-center gap-2">
             <!-- Voltar ao início — só no mobile -->
             <a
-              href="index.html"
+              href="#"
+              onclick="history.back(); return false;"
               class="lg:hidden inline-flex items-center gap-1.5 px-4 py-2.5 rounded-sm border border-stone-300 text-stone-600 text-xs font-mono uppercase tracking-widest hover:border-stone-900 hover:text-stone-900 transition-colors"
-              aria-label="Voltar ao início"
+              aria-label="Voltar"
             >
               <iconify-icon icon="solar:alt-arrow-left-linear" class="text-sm"></iconify-icon>
-              Início
+              Voltar
             </a>
             <!-- Logo — à esquerda no desktop -->
             <a href="index.html" class="hidden lg:block select-none">
