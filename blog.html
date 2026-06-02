@@ -648,7 +648,7 @@
           <p class="text-sm sm:text-base text-stone-400 font-light leading-relaxed max-w-lg mb-8 reveal delay-200">
             Novos artigos sobre cardiologia, nutrição e longevidade — sem ruído, só conteúdo que importa.
           </p>
-          <form class="w-full max-w-md flex flex-col sm:flex-row gap-3 reveal delay-300" onsubmit="return false;">
+          <form id="newsletter-form" class="w-full max-w-md flex flex-col sm:flex-row gap-3 reveal delay-300">
             <label for="news-email" class="sr-only">Seu e-mail</label>
             <input
               id="news-email"
@@ -664,6 +664,7 @@
               Inscrever-se
             </button>
           </form>
+          <p id="newsletter-message" class="text-xs font-mono mt-4 opacity-0 transition-opacity duration-300 max-w-md text-center hidden"></p>
         </div>
       </section>
 
@@ -764,5 +765,79 @@
     </div>
 
     <script src="assets/js/main.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const form = document.getElementById("newsletter-form");
+        const emailInput = document.getElementById("news-email");
+        const submitButton = form ? form.querySelector("button[type='submit']") : null;
+        const messageElement = document.getElementById("newsletter-message");
+
+        if (!form || !emailInput || !submitButton || !messageElement) return;
+
+        form.addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          const email = emailInput.value.trim();
+          if (!email) return;
+
+          // Reseta a mensagem
+          messageElement.classList.add("opacity-0");
+          messageElement.classList.add("hidden");
+          messageElement.textContent = "";
+
+          // Define estado de carregamento
+          const originalButtonText = submitButton.textContent;
+          submitButton.disabled = true;
+          emailInput.disabled = true;
+          submitButton.textContent = "Enviando...";
+
+          try {
+            const response = await fetch("/api/subscribe", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ email }),
+            });
+
+            const data = await response.json();
+
+            // Configura a mensagem de retorno
+            messageElement.textContent = data.message;
+            messageElement.classList.remove("hidden");
+
+            // Pequeno delay para a animação de fade-in funcionar
+            setTimeout(() => {
+              messageElement.classList.remove("opacity-0");
+            }, 50);
+
+            if (response.ok && data.success) {
+              // Sucesso
+              messageElement.className = "text-xs font-mono mt-4 transition-opacity duration-300 max-w-md text-center text-emerald-400";
+              submitButton.textContent = "Inscrito!";
+              emailInput.value = "";
+            } else {
+              // Erro retornado pela API
+              messageElement.className = "text-xs font-mono mt-4 transition-opacity duration-300 max-w-md text-center text-rose-400";
+              submitButton.disabled = false;
+              emailInput.disabled = false;
+              submitButton.textContent = originalButtonText;
+            }
+          } catch (error) {
+            console.error("Erro na inscrição:", error);
+            messageElement.textContent = "Erro de conexão. Por favor, tente novamente mais tarde.";
+            messageElement.className = "text-xs font-mono mt-4 transition-opacity duration-300 max-w-md text-center text-rose-400";
+            messageElement.classList.remove("hidden");
+            setTimeout(() => {
+              messageElement.classList.remove("opacity-0");
+            }, 50);
+
+            submitButton.disabled = false;
+            emailInput.disabled = false;
+            submitButton.textContent = originalButtonText;
+          }
+        });
+      });
+    </script>
   </body>
 </html>
