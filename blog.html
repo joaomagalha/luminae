@@ -27,6 +27,132 @@
   </head>
 
   <body class="antialiased selection:bg-brand-yellow selection:text-stone-900 relative bg-[#EAEAE5] overflow-x-hidden">
+    <!-- LOADING SCREEN -->
+    <div id="page-loader" aria-hidden="true">
+      <div class="loader-grid-v" style="left: 20%"></div>
+      <div class="loader-grid-v" style="left: 50%"></div>
+      <div class="loader-grid-v" style="left: 80%"></div>
+      <div class="loader-grid-h" style="top: 35%"></div>
+      <div class="loader-grid-h" style="top: 65%"></div>
+      <div class="loader-glow loader-glow-top"></div>
+      <div class="loader-glow loader-glow-bottom"></div>
+      <div class="loader-content">
+        <img src="logo.svg" alt="Luminae" class="loader-logo" />
+        <div class="loader-bar">
+          <div class="loader-bar-fill"></div>
+        </div>
+        <span class="loader-label">Carregando</span>
+      </div>
+    </div>
+
+    <style>
+      #page-loader {
+        position: fixed;
+        inset: 0;
+        background: #eaeae5;
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.7s ease;
+      }
+      #page-loader.loaded {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+      .loader-grid-v {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        background: rgba(28, 25, 23, 0.06);
+        pointer-events: none;
+      }
+      .loader-grid-h {
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: rgba(28, 25, 23, 0.06);
+        pointer-events: none;
+      }
+      .loader-glow {
+        position: absolute;
+        width: 400px;
+        height: 400px;
+        border-radius: 50%;
+        pointer-events: none;
+        animation: loaderGlow 3s ease-in-out infinite;
+      }
+      .loader-glow-top {
+        top: -80px;
+        right: 10%;
+        background: radial-gradient(circle, rgba(237, 197, 76, 0.12) 0%, transparent 70%);
+      }
+      .loader-glow-bottom {
+        bottom: -80px;
+        left: 10%;
+        background: radial-gradient(circle, rgba(237, 197, 76, 0.08) 0%, transparent 70%);
+        animation-delay: 1.5s;
+      }
+      @keyframes loaderGlow {
+        0%, 100% { opacity: 0.4; transform: scale(0.95); }
+        50%       { opacity: 1;   transform: scale(1.05); }
+      }
+      .loader-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 28px;
+        animation: loaderFadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+      }
+      @keyframes loaderFadeIn {
+        from { opacity: 0; transform: translateY(12px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+      .loader-logo {
+        height: 32px;
+        width: auto;
+        display: block;
+      }
+      .loader-bar {
+        width: 120px;
+        height: 1px;
+        background: rgba(28, 25, 23, 0.12);
+        position: relative;
+        overflow: hidden;
+        border-radius: 1px;
+      }
+      .loader-bar-fill {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 48px;
+        background: linear-gradient(to right, transparent, #edc54c, transparent);
+        animation: loaderShimmer 1.4s ease-in-out infinite;
+      }
+      @keyframes loaderShimmer {
+        0%   { transform: translateX(-100px); }
+        100% { transform: translateX(220px); }
+      }
+      .loader-label {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 9px;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: rgba(28, 25, 23, 0.35);
+      }
+    </style>
+
+    <script>
+      window.addEventListener("load", () => {
+        const loader = document.getElementById("page-loader");
+        setTimeout(() => loader.classList.add("loaded"), 300);
+      });
+    </script>
+
     <div class="noise"></div>
 
     <!-- WRAPPER PRINCIPAL -->
