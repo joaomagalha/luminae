@@ -165,7 +165,6 @@
         <div class="relative flex justify-between items-center px-6 lg:px-12 py-3 sm:py-4">
           <!-- ESQUERDA: voltar (mobile) + logo (desktop) -->
           <div class="flex items-center gap-2">
-            <!-- Voltar ao início — só no mobile -->
             <a
               href="#"
               onclick="history.back(); return false;"
@@ -175,7 +174,6 @@
               <iconify-icon icon="solar:alt-arrow-left-linear" class="text-sm"></iconify-icon>
               Voltar
             </a>
-            <!-- Logo — à esquerda no desktop -->
             <a href="index.html" class="hidden lg:block select-none">
               <img src="logo.svg" alt="Luminae Logo" class="h-7 w-auto block" />
             </a>
@@ -221,7 +219,6 @@
       <section
         class="relative z-10 flex flex-col justify-center border-b border-stone-300 overflow-hidden bg-gradient-to-b from-[#EAEAE5] via-[#fafaf9] to-[#EAEAE5] py-16 sm:py-20 lg:py-28"
       >
-        <!-- Linhas de Grade com Feixes Luminosos (Aura) -->
         <div class="grid-line-v" style="left: 15%">
           <div class="beam-v" style="animation-delay: 0s; animation-duration: 8s"></div>
         </div>
@@ -235,7 +232,6 @@
           <div class="beam-h" style="animation-delay: 1.5s; animation-duration: 7s"></div>
         </div>
 
-        <!-- Efeitos de Fundo Glow -->
         <div
           class="absolute top-[5%] right-[12%] w-[480px] h-[480px] bg-gradient-to-br from-brand-yellow/10 to-transparent rounded-full blur-[100px] animate-pulse-glow"
         ></div>
@@ -244,7 +240,6 @@
         ></div>
 
         <div class="relative z-10 w-full max-w-3xl mx-auto px-6 lg:px-12 flex flex-col items-center text-center">
-          <!-- Badge / Selo -->
           <div
             class="inline-flex items-center gap-2 bg-white/70 backdrop-blur-md border border-stone-300/40 rounded-full py-1.5 px-4 w-fit shadow-sm reveal delay-100 mb-5 sm:mb-7"
           >
@@ -254,7 +249,6 @@
             </span>
           </div>
 
-          <!-- Título com text-reveal -->
           <h1 class="text-h1 font-display font-bold tracking-tight text-stone-900 leading-[1.08] mb-5 sm:mb-6">
             <span class="text-reveal-wrapper"><span class="text-reveal-content">Conhecimento que</span></span>
             <span class="text-reveal-wrapper">
@@ -263,7 +257,6 @@
             <span class="text-reveal-wrapper"><span class="text-reveal-content delay-300">a sua saúde.</span></span>
           </h1>
 
-          <!-- Descrição -->
           <p class="text-sm sm:text-base text-stone-600 leading-relaxed font-light max-w-xl reveal delay-500">
             Artigos baseados em ciência sobre cardiologia, nutrição, longevidade e performance — escritos pela equipe
             médica da Luminae para guiar decisões de saúde com precisão.
@@ -279,7 +272,6 @@
         class="relative z-10 border-b border-stone-300 bg-gradient-to-b from-[#EAEAE5] via-[#FAF9F5] to-[#EAEAE5] py-12 sm:py-16 lg:py-20 reveal"
       >
         <div class="px-6 lg:px-12">
-          <!-- Cabeçalho da seção -->
           <div class="flex items-end justify-between mb-8 sm:mb-10">
             <div>
               <span class="text-[10px] font-mono tracking-widest text-[#EDC54C] uppercase font-bold mb-2 block">
@@ -351,7 +343,6 @@
               </div>
             </article>
 
-            <!-- ===== CARD ===== -->
             <article
               class="post-card group reveal min-w-0 flex flex-col overflow-hidden rounded-2xl bg-white/60 backdrop-blur-md border border-white/50 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-500"
               data-category="cardiologia"
@@ -408,7 +399,6 @@
               </div>
             </article>
 
-            <!-- ===== CARD ===== -->
             <article
               class="post-card group reveal min-w-0 flex flex-col overflow-hidden rounded-2xl bg-white/60 backdrop-blur-md border border-white/50 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-500"
               data-category="cardiologia"
@@ -465,7 +455,6 @@
               </div>
             </article>
 
-            <!-- ===== CARD ===== -->
             <article
               class="post-card group reveal min-w-0 flex flex-col overflow-hidden rounded-2xl bg-white/60 backdrop-blur-md border border-white/50 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-500"
               data-category="saude-feminina"
@@ -522,7 +511,6 @@
               </div>
             </article>
 
-            <!-- ===== CARD ===== -->
             <article
               class="post-card group reveal min-w-0 flex flex-col overflow-hidden rounded-2xl bg-white/60 backdrop-blur-md border border-white/50 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-500"
               data-category="saude-intestinal"
@@ -579,7 +567,6 @@
               </div>
             </article>
 
-            <!-- ===== CARD ===== -->
             <article
               class="post-card group reveal min-w-0 flex flex-col overflow-hidden rounded-2xl bg-white/60 backdrop-blur-md border border-white/50 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-500"
               data-category="cardiologia"
@@ -643,7 +630,6 @@
       <!-- CTA / NEWSLETTER — captura preparada para o futuro            -->
       <!-- ============================================================= -->
       <section class="relative z-10 border-b border-stone-300 bg-[#1c1917] text-white py-16 sm:py-20 overflow-hidden">
-        <!-- Estrelas cintilantes (mesmo efeito da seção escura do index) -->
         <div id="stars-container"></div>
         <div class="dark-grid-line-v" style="left: 20%">
           <div class="beam-v" style="animation-delay: 1s; animation-duration: 6s"></div>
@@ -684,16 +670,13 @@
       <!-- FOOTER CLARO/OFF-WHITE MINIMALISTA & SOPHISTICATED -->
       <footer class="relative z-20 bg-[#FAF9F5] border-t border-stone-300/40 pt-20 pb-4 md:pt-28 md:pb-4">
         <div class="max-w-[1200px] mx-auto px-6">
-          <!-- Parte Superior: Colunas -->
           <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 pb-12 md:pb-16">
-            <!-- Coluna Esquerda: Descrição e Ícones -->
             <div class="col-span-12 md:col-span-6 flex flex-col justify-between gap-6">
               <div class="space-y-4">
                 <p class="text-sm md:text-base font-sans font-light text-stone-500 leading-relaxed max-w-sm">
                   Medicina estratégica, preventiva e personalizada para quem exige o melhor da própria saúde.
                 </p>
 
-                <!-- Ícones Sociais -->
                 <div class="flex gap-2.5">
                   <a
                     href="https://www.instagram.com/luminaesaude?igsh=MWZvcnN0cXlub2ExMg=="
@@ -715,7 +698,6 @@
               </div>
             </div>
 
-            <!-- Coluna Central: CRM -->
             <div class="col-span-12 sm:col-span-6 md:col-span-3">
               <h4 class="text-xs font-mono uppercase tracking-[0.2em] font-semibold text-stone-900 mb-4 sm:mb-6">
                 CRM
@@ -726,7 +708,6 @@
               </ul>
             </div>
 
-            <!-- Coluna Direita: Contato -->
             <div class="col-span-12 sm:col-span-6 md:col-span-3">
               <h4 class="text-xs font-mono uppercase tracking-[0.2em] font-semibold text-stone-900 mb-4 sm:mb-6">
                 Contato
@@ -751,16 +732,13 @@
             </div>
           </div>
 
-          <!-- Parte Intermediária: Copyright e Créditos Alinhados -->
           <div
             class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 pt-8 pb-12 md:pb-16 border-t border-stone-300/40"
           >
-            <!-- Copyright -->
             <p class="text-[11px] font-sans text-stone-500 font-light leading-relaxed">
               &copy; 2025 Luminae &ndash; Alta Performance em Sa&uacute;de. Todos os direitos reservados.
             </p>
 
-            <!-- Créditos -->
             <p class="text-base font-sans text-[#494947] font-light leading-normal md:text-right">
               Desenvolvido por
               <a
@@ -774,7 +752,6 @@
             </p>
           </div>
 
-          <!-- Parte Inferior: Logo Gray -->
           <div class="w-full flex justify-center items-center">
             <img
               src="assets/images/logo-gray.svg"
@@ -786,7 +763,6 @@
       </footer>
     </div>
 
-    <!-- LÓGICA JAVASCRIPT DOS EFEITOS INTERATIVOS (compartilhada com o index) -->
     <script src="assets/js/main.js"></script>
   </body>
 </html>

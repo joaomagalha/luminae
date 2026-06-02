@@ -1,7 +1,6 @@
 (function() {
     'use strict';
 
-    // 1. Dynamic Stars Injection
     const ctaStarsContainer = document.querySelector('.cta-stars-container');
     if (ctaStarsContainer) {
         const count = 30;
@@ -18,7 +17,6 @@
         }
     }
 
-    // 2. Stars na seção de transição dia → noite
     const transitionStars = document.getElementById('transition-stars');
     if (transitionStars) {
         for (var ts = 0; ts < 35; ts++) {
@@ -36,7 +34,6 @@
         }
     }
 
-    // 3. GSAP ScrollTrigger Transition Setup
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const hasGSAP = window.gsap && window.ScrollTrigger;
 
@@ -50,14 +47,10 @@
     const ctaContainer = document.getElementById('agendamento');
     if (!ctaSection || !ctaContainer) return;
 
-    // GSAP MatchMedia for clean responsive animation
     const mm = gsap.matchMedia();
 
-    // Desktop: Sticky curtain reveal + parallax de profundidade no scroll
-    // Parallax: camadas de fundo viajam ~3× mais que o conteúdo,
-    // criando ilusão de profundidade na entrada (inspirado no Sirocco reserve).
+    // Desktop: sticky curtain reveal with depth parallax
     mm.add('(min-width: 768px)', () => {
-        // Estados iniciais — deslocamentos compactos para animação suave
         gsap.set(ctaSection, { backgroundColor: "rgba(28, 25, 23, 0)" });
         gsap.set(".cta-glow-light", { opacity: 0, scale: 0.75, y: 55 });
         gsap.set(".cta-stars-container", { opacity: 0, y: 32 });

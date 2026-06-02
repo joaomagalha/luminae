@@ -45,3 +45,6 @@ build/
 # Arquivos temporários
 *.tmp
 *.bak
+
+# Arquivos de referência/design (não são código de produção)
+references/

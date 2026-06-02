@@ -1,17 +1,6 @@
-/* =============================================================
-   SEÇÃO MÉTODO — Timeline interativa dirigida por scroll
-   -------------------------------------------------------------
-   Responsabilidade desta camada: SOMENTE mapear o scroll para um
-   progresso (0 → 1) e um estado por passo (idle | active | done).
-   Toda a aparência/transição vive no CSS (assets/css/style.css),
-   reagindo a `--progress` e ao atributo `data-state`.
-
-   Pinning: feito pelo GSAP ScrollTrigger (pin do .metodo-stage). É
-   robusto dentro de containers centralizados e independe de `overflow`
-   de elementos ancestrais (ao contrário de position: sticky).
-
-   Escalável: funciona com qualquer número de passos (lê do DOM).
-   ============================================================= */
+/* Método section: maps scroll progress to step states (idle/active/done).
+   Visual styles live in style.css; scroll logic here.
+   Pin via GSAP ScrollTrigger — more robust than sticky inside overflow containers. */
 (function () {
     'use strict';
 
@@ -25,12 +14,10 @@
 
     const total = steps.length;
 
-    // Mapeia um progresso 0→1 para o preenchimento da linha e o estado de cada passo.
     function render(progress) {
         const p = Math.max(0, Math.min(1, progress));
         timeline.style.setProperty('--progress', p.toFixed(4));
 
-        // Índice do passo "alcançado" pela linha de progresso.
         const reached = Math.min(total - 1, Math.floor(p * (total - 1) + 1e-4));
         const complete = p > 0.995;
 

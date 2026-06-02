@@ -43,7 +43,6 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Linhas Globais de Grade com Feixes de Laser Animados */
         .grid-line-v {
             position: absolute;
             top: 0;
@@ -64,7 +63,6 @@
             z-index: 1;
         }
 
-        /* Feixes de laser animados */
         .beam-v {
             position: absolute;
             width: 1px;
@@ -103,8 +101,7 @@
             }
         }
 
-        /* Transição Suave de Cores */
-        /* REVEAL ON SCROLL (Cinematográfico com Easing Físico e Blur) */
+        /* Scroll reveal */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -224,9 +221,7 @@
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
         }
 
-        /* ==========================================================================
-           LUMINAE - SEÇÃO ABORDAGEM DE SAÚDE (ESTILOS CUSTOMIZADOS)
-           ========================================================================== */
+        /* === Saúde section ===*/
         .saude-section {
             position: relative;
             background-color: var(--cream);
@@ -237,7 +232,6 @@
             z-index: 10;
         }
 
-        /* Linhas verticais decorativas laterais */
         .saude-section::before {
             content: '';
             position: absolute;
@@ -568,7 +562,6 @@
             }
         }
 
-        /* ESTILOS DE HOVER PARA OS PILARES DA PROPOSTA (SEÇÃO 3) */
         .proposta-card {
             position: relative;
             z-index: 1;
@@ -624,7 +617,6 @@
             }
         }
 
-        /* LINHAS DE GRADE E BEAMS DA SEÇÃO ESCURA */
         .dark-grid-line-v {
             position: absolute;
             top: 0;
@@ -635,7 +627,6 @@
             z-index: 2;
         }
 
-        /* ESTILOS DA SEÇÃO DE BIOGRAFIA DOS DIRETORES (SOBRE) */
         .doctor-bio-section {
             background-color: #1C1917;
             color: #ffffff;
@@ -676,7 +667,6 @@
             justify-content: center;
         }
 
-        /* ESTILOS DA SEÇÃO ÁREAS DE ATUAÇÃO (PROGRAMAS) */
         .programa-card {
             transition: border-color 0.5s cubic-bezier(0.16, 1, 0.3, 1),
                 transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
@@ -711,11 +701,7 @@
             transform: scaleX(1);
         }
 
-        /* ============================================================= */
-        /* SEÇÃO MÉTODO — Timeline interativa (scroll progressivo)        */
-        /* Lógica do scroll: assets/js/metodo.js (define --progress e     */
-        /* data-state). Aqui ficam apenas a aparência e as transições.    */
-        /* ============================================================= */
+        /* Método section — visual states only; scroll logic in assets/js/metodo.js */
         .metodo-section {
             position: relative;
             overflow-x: hidden;
@@ -939,7 +925,6 @@
         /* ===== Responsivo: timeline VERTICAL em mobile e tablet ===== */
         @media (max-width: 1023px) {
 
-            /* Eyebrow vira um badge pill (personalidade igual ao resto do site) */
             .metodo-eyebrow {
                 background: rgba(255, 255, 255, 0.7);
                 border: 1px solid rgba(28, 25, 23, 0.08);
@@ -972,7 +957,6 @@
                 /* compensa o anel de 6px do nó -> ~18px visuais até o card */
             }
 
-            /* Cada passo: o conteúdo vira um card de vidro (estética do design system) */
             .metodo-content {
                 flex: 1;
                 min-width: 0;
@@ -990,7 +974,6 @@
                 padding: 0;
             }
 
-            /* O nó fica no rail à esquerda, alinhado ao topo do card */
             .metodo-node {
                 align-self: flex-start;
             }
@@ -1047,9 +1030,7 @@
             }
         }
 
-        /* ==========================================================================
-           LUMINAE - SEÇÃO DE DEPOIMENTOS CUSTOMIZADA (PREMIUM & MOTION)
-           ========================================================================== */
+        /* === Depoimentos section === */
         .testimonial-section-custom {
             position: relative;
             background: linear-gradient(to bottom, #FAF9F5, #EAEAE5 50%, #FAF9F5);
@@ -1058,7 +1039,6 @@
             z-index: 10;
         }
 
-        /* Decorative horizontal grid line for section border */
         .testimonial-section-custom::before {
             content: '';
             position: absolute;
@@ -1071,7 +1051,6 @@
             z-index: 1;
         }
 
-        /* Ambient sutil pin light in the yellow color for background depth */
         .testimonial-pin-light {
             position: absolute;
             top: 50%;
@@ -1121,7 +1100,6 @@
             box-shadow: 0 25px 50px -20px rgba(28, 25, 23, 0.08), 0 0 30px rgba(237, 197, 76, 0.03);
         }
 
-        /* Interactive bottom gold indicator line (inspired by areas of actuation) */
         .testimonial-card-custom::after {
             content: '';
             position: absolute;
@@ -1243,7 +1221,7 @@
             text-transform: uppercase;
         }
 
-        /* ===== premium motion: reveal sequence settings ===== */
+        /* Reveal animation sequence */
         @media (min-width: 768px) {
 
             /* Desktop sequence: left to right */
@@ -1418,9 +1396,7 @@
             }
         }
 
-        /* ==========================================================================
-           LUMINAE - SEÇÃO DE CTA FINAL CUSTOMIZADA (PREMIUM & MOTION)
-           ========================================================================== */
+        /* === CTA section === */
         @media (min-width: 768px) {
             .cta-reveal-container-custom {
                 position: relative;
@@ -1496,7 +1472,6 @@
             pointer-events: none;
         }
 
-        /* Ambient subtle vertical border border-t for CTA wrapper */
         .cta-section-custom::before {
             content: '';
             position: absolute;
