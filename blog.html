@@ -1,16 +1,21 @@
-<!DOCTYPE html>
+<!doctype html>
 <html class="scroll-smooth" lang="pt-BR">
-
-<head>
+  <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Luminae — Blog | Conhecimento em Saúde de Alta Performance</title>
-    <meta name="description" content="Artigos sobre cardiologia, nutrição, longevidade e performance. Conhecimento baseado em ciência para transformar a sua saúde — direto da equipe Luminae.">
+    <meta
+      name="description"
+      content="Artigos sobre cardiologia, nutrição, longevidade e performance. Conhecimento baseado em ciência para transformar a sua saúde — direto da equipe Luminae."
+    />
 
     <!-- Fontes (Google Fonts CDN) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- CSS Externo e Frameworks (Tailwind CDN, Iconify) -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -18,371 +23,642 @@
 
     <script src="assets/js/tailwind-config.js"></script>
 
-    <link rel="stylesheet" href="assets/css/style.css">
-</head>
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
 
-<body class="antialiased selection:bg-brand-yellow selection:text-stone-900 relative bg-[#EAEAE5] overflow-x-hidden">
-
+  <body class="antialiased selection:bg-brand-yellow selection:text-stone-900 relative bg-[#EAEAE5] overflow-x-hidden">
     <div class="noise"></div>
 
     <!-- WRAPPER PRINCIPAL -->
     <div class="max-w-[1440px] mx-auto border-x border-stone-300 relative bg-[#EAEAE5] shadow-2xl">
+      <!-- NAVBAR GLASSMORPHISM (idêntica ao index) -->
+      <header
+        class="relative z-50 border-b border-stone-300/30 bg-[#EAEAE5]/80 backdrop-blur-md sticky top-0 transition-all duration-500"
+        id="navbar"
+      >
+        <div class="relative flex justify-between items-center px-6 lg:px-12 py-3 sm:py-4">
+          <!-- ESQUERDA: voltar (mobile) + logo (desktop) -->
+          <div class="flex items-center gap-2">
+            <!-- Voltar ao início — só no mobile -->
+            <a
+              href="index.html"
+              class="lg:hidden inline-flex items-center gap-1 px-2.5 py-1.5 rounded-sm border border-stone-300 text-stone-600 text-[10px] font-mono uppercase tracking-widest hover:border-stone-900 hover:text-stone-900 transition-colors"
+              aria-label="Voltar ao início"
+            >
+              <iconify-icon icon="solar:alt-arrow-left-linear"></iconify-icon>
+              Início
+            </a>
+            <!-- Logo — à esquerda no desktop -->
+            <a href="index.html" class="hidden lg:block select-none">
+              <img src="logo.svg" alt="Luminae Logo" class="h-7 w-auto block" />
+            </a>
+          </div>
 
-        <!-- NAVBAR GLASSMORPHISM (idêntica ao index) -->
-        <header class="relative z-50 border-b border-stone-300/30 bg-[#EAEAE5]/80 backdrop-blur-md sticky top-0 transition-all duration-500" id="navbar">
-            <div class="relative flex justify-between items-center px-6 lg:px-12 py-3 sm:py-4">
-                <!-- ESQUERDA: voltar (mobile) + logo (desktop) -->
-                <div class="flex items-center gap-2">
-                    <!-- Voltar ao início — só no mobile -->
-                    <a href="index.html" class="lg:hidden inline-flex items-center gap-1 px-2.5 py-1.5 rounded-sm border border-stone-300 text-stone-600 text-[10px] font-mono uppercase tracking-widest hover:border-stone-900 hover:text-stone-900 transition-colors" aria-label="Voltar ao início">
-                        <iconify-icon icon="solar:alt-arrow-left-linear"></iconify-icon>
-                        Início
-                    </a>
-                    <!-- Logo — à esquerda no desktop -->
-                    <a href="index.html" class="hidden lg:block select-none">
-                        <img src="logo.svg" alt="Luminae Logo" class="h-7 w-auto block">
-                    </a>
-                </div>
+          <!-- CENTRO: logo absolutamente centralizada (só mobile) -->
+          <a
+            href="index.html"
+            class="lg:hidden absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 select-none"
+            aria-label="Luminae — início"
+          >
+            <img src="logo.svg" alt="Luminae Logo" class="h-5 w-auto block" />
+          </a>
 
-                <!-- CENTRO: logo absolutamente centralizada (só mobile) -->
-                <a href="index.html" class="lg:hidden absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 select-none" aria-label="Luminae — início">
-                    <img src="logo.svg" alt="Luminae Logo" class="h-5 w-auto block">
-                </a>
+          <!-- NAV — só no desktop -->
+          <nav class="hidden lg:flex items-center gap-8 text-xs font-mono uppercase tracking-widest text-stone-500">
+            <a href="index.html" class="hover:text-brand-yellow transition-colors">Início</a>
+            <a href="index.html#sobre" class="hover:text-brand-yellow transition-colors">Sobre</a>
+            <a href="index.html#metodo" class="hover:text-brand-yellow transition-colors">Método</a>
+            <a href="index.html#programas" class="hover:text-brand-yellow transition-colors">Especialidades</a>
+            <a href="blog.html" class="text-brand-yellow-dark transition-colors" aria-current="page">Blog</a>
+          </nav>
 
-                <!-- NAV — só no desktop -->
-                <nav class="hidden lg:flex items-center gap-8 text-xs font-mono uppercase tracking-widest text-stone-500">
-                    <a href="index.html" class="hover:text-brand-yellow transition-colors">Início</a>
-                    <a href="index.html#sobre" class="hover:text-brand-yellow transition-colors">Sobre</a>
-                    <a href="index.html#metodo" class="hover:text-brand-yellow transition-colors">Método</a>
-                    <a href="index.html#programas" class="hover:text-brand-yellow transition-colors">Especialidades</a>
-                    <a href="blog.html" class="text-brand-yellow-dark transition-colors" aria-current="page">Blog</a>
-                </nav>
+          <!-- DIREITA: CTA -->
+          <div class="flex items-center gap-3 sm:gap-4">
+            <button class="btn-beam px-[1px] py-[1px] rounded-sm group">
+              <a
+                href="index.html#agendamento"
+                class="btn-beam-content px-3 py-1.5 text-[10px] sm:px-5 sm:py-2 sm:text-xs rounded-sm font-mono uppercase tracking-widest transition-colors hover:text-brand-yellow"
+              >
+                Agendar
+                <span class="hidden sm:inline">&nbsp;Avaliação</span>
+              </a>
+            </button>
+          </div>
+        </div>
+      </header>
 
-                <!-- DIREITA: CTA -->
-                <div class="flex items-center gap-3 sm:gap-4">
-                    <button class="btn-beam px-[1px] py-[1px] rounded-sm group">
-                        <a href="index.html#agendamento" class="btn-beam-content px-3 py-1.5 text-[10px] sm:px-5 sm:py-2 sm:text-xs rounded-sm font-mono uppercase tracking-widest transition-colors hover:text-brand-yellow">
-                            Agendar<span class="hidden sm:inline">&nbsp;Avaliação</span>
-                        </a>
-                    </button>
-                </div>
+      <!-- ============================================================= -->
+      <!-- HERO DO BLOG — minimalista, elegante e clean                  -->
+      <!-- ============================================================= -->
+      <section
+        class="relative z-10 flex flex-col justify-center border-b border-stone-300 overflow-hidden bg-gradient-to-b from-[#EAEAE5] via-[#fafaf9] to-[#EAEAE5] py-16 sm:py-20 lg:py-28"
+      >
+        <!-- Linhas de Grade com Feixes Luminosos (Aura) -->
+        <div class="grid-line-v" style="left: 15%">
+          <div class="beam-v" style="animation-delay: 0s; animation-duration: 8s"></div>
+        </div>
+        <div class="grid-line-v" style="left: 50%">
+          <div class="beam-v" style="animation-delay: 2.5s; animation-duration: 9s"></div>
+        </div>
+        <div class="grid-line-v" style="left: 85%">
+          <div class="beam-v" style="animation-delay: 5s; animation-duration: 10s"></div>
+        </div>
+        <div class="grid-line-h" style="top: 30%">
+          <div class="beam-h" style="animation-delay: 1.5s; animation-duration: 7s"></div>
+        </div>
+
+        <!-- Efeitos de Fundo Glow -->
+        <div
+          class="absolute top-[5%] right-[12%] w-[480px] h-[480px] bg-gradient-to-br from-brand-yellow/10 to-transparent rounded-full blur-[100px] animate-pulse-glow"
+        ></div>
+        <div
+          class="absolute bottom-[0%] left-[5%] w-[420px] h-[420px] bg-gradient-to-tr from-stone-200/30 to-brand-yellow/5 rounded-full blur-[120px] opacity-75"
+        ></div>
+
+        <div class="relative z-10 w-full max-w-3xl mx-auto px-6 lg:px-12 flex flex-col items-center text-center">
+          <!-- Badge / Selo -->
+          <div
+            class="inline-flex items-center gap-2 bg-white/70 backdrop-blur-md border border-stone-300/40 rounded-full py-1.5 px-4 w-fit shadow-sm reveal delay-100 mb-5 sm:mb-7"
+          >
+            <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow"></span>
+            <span class="text-[10px] sm:text-xs font-mono font-bold uppercase tracking-widest text-stone-700">
+              Blog Luminae · Saúde &amp; Performance
+            </span>
+          </div>
+
+          <!-- Título com text-reveal -->
+          <h1 class="text-h1 font-display font-bold tracking-tight text-stone-900 leading-[1.08] mb-5 sm:mb-6">
+            <span class="text-reveal-wrapper"><span class="text-reveal-content">Conhecimento que</span></span>
+            <span class="text-reveal-wrapper">
+              <span class="text-reveal-content delay-200 text-brand-yellow font-light italic">transforma</span>
+            </span>
+            <span class="text-reveal-wrapper"><span class="text-reveal-content delay-300">a sua saúde.</span></span>
+          </h1>
+
+          <!-- Descrição -->
+          <p class="text-sm sm:text-base text-stone-600 leading-relaxed font-light max-w-xl reveal delay-500">
+            Artigos baseados em ciência sobre cardiologia, nutrição, longevidade e performance — escritos pela equipe
+            médica da Luminae para guiar decisões de saúde com precisão.
+          </p>
+        </div>
+      </section>
+
+      <!-- ============================================================= -->
+      <!-- GRID DE POSTS — cards reutilizáveis e escaláveis              -->
+      <!-- ============================================================= -->
+      <section
+        id="artigos"
+        class="relative z-10 border-b border-stone-300 bg-gradient-to-b from-[#EAEAE5] via-[#FAF9F5] to-[#EAEAE5] py-12 sm:py-16 lg:py-20 reveal"
+      >
+        <div class="px-6 lg:px-12">
+          <!-- Cabeçalho da seção -->
+          <div class="flex items-end justify-between mb-8 sm:mb-10">
+            <div>
+              <span class="text-[10px] font-mono tracking-widest text-[#EDC54C] uppercase font-bold mb-2 block">
+                Artigos Recentes
+              </span>
+              <h2 class="text-h2 font-display font-bold tracking-tight text-stone-900">Últimas publicações</h2>
             </div>
-        </header>
+            <span class="hidden sm:block text-xs font-mono text-stone-400 uppercase tracking-widest">06 artigos</span>
+          </div>
 
-        <!-- ============================================================= -->
-        <!-- HERO DO BLOG — minimalista, elegante e clean                  -->
-        <!-- ============================================================= -->
-        <section class="relative z-10 flex flex-col justify-center border-b border-stone-300 overflow-hidden bg-gradient-to-b from-[#EAEAE5] via-[#fafaf9] to-[#EAEAE5] py-16 sm:py-20 lg:py-28">
-
-            <!-- Linhas de Grade com Feixes Luminosos (Aura) -->
-            <div class="grid-line-v" style="left: 15%"><div class="beam-v" style="animation-delay: 0s; animation-duration: 8s;"></div></div>
-            <div class="grid-line-v" style="left: 50%"><div class="beam-v" style="animation-delay: 2.5s; animation-duration: 9s;"></div></div>
-            <div class="grid-line-v" style="left: 85%"><div class="beam-v" style="animation-delay: 5s; animation-duration: 10s;"></div></div>
-            <div class="grid-line-h" style="top: 30%"><div class="beam-h" style="animation-delay: 1.5s; animation-duration: 7s;"></div></div>
-
-            <!-- Efeitos de Fundo Glow -->
-            <div class="absolute top-[5%] right-[12%] w-[480px] h-[480px] bg-gradient-to-br from-brand-yellow/10 to-transparent rounded-full blur-[100px] animate-pulse-glow"></div>
-            <div class="absolute bottom-[0%] left-[5%] w-[420px] h-[420px] bg-gradient-to-tr from-stone-200/30 to-brand-yellow/5 rounded-full blur-[120px] opacity-75"></div>
-
-            <div class="relative z-10 w-full max-w-3xl mx-auto px-6 lg:px-12 flex flex-col items-center text-center">
-
-                <!-- Badge / Selo -->
-                <div class="inline-flex items-center gap-2 bg-white/70 backdrop-blur-md border border-stone-300/40 rounded-full py-1.5 px-4 w-fit shadow-sm reveal delay-100 mb-5 sm:mb-7">
-                    <span class="w-1.5 h-1.5 rounded-full bg-brand-yellow"></span>
-                    <span class="text-[10px] sm:text-xs font-mono font-bold uppercase tracking-widest text-stone-700">Blog Luminae · Saúde &amp; Performance</span>
-                </div>
-
-                <!-- Título com text-reveal -->
-                <h1 class="text-h1 font-display font-bold tracking-tight text-stone-900 leading-[1.08] mb-5 sm:mb-6">
-                    <span class="text-reveal-wrapper"><span class="text-reveal-content">Conhecimento que</span></span>
-                    <span class="text-reveal-wrapper"><span class="text-reveal-content delay-200 text-brand-yellow font-light italic">transforma</span></span>
-                    <span class="text-reveal-wrapper"><span class="text-reveal-content delay-300">a sua saúde.</span></span>
-                </h1>
-
-                <!-- Descrição -->
-                <p class="text-sm sm:text-base text-stone-600 leading-relaxed font-light max-w-xl reveal delay-500">
-                    Artigos baseados em ciência sobre cardiologia, nutrição, longevidade e performance — escritos pela equipe médica da Luminae para guiar decisões de saúde com precisão.
-                </p>
-            </div>
-        </section>
-
-        <!-- ============================================================= -->
-        <!-- GRID DE POSTS — cards reutilizáveis e escaláveis              -->
-        <!-- ============================================================= -->
-        <section id="artigos" class="relative z-10 border-b border-stone-300 bg-gradient-to-b from-[#EAEAE5] via-[#FAF9F5] to-[#EAEAE5] py-12 sm:py-16 lg:py-20 reveal">
-            <div class="px-6 lg:px-12">
-
-                <!-- Cabeçalho da seção -->
-                <div class="flex items-end justify-between mb-8 sm:mb-10">
-                    <div>
-                        <span class="text-[10px] font-mono tracking-widest text-[#EDC54C] uppercase font-bold mb-2 block">Artigos Recentes</span>
-                        <h2 class="text-h2 font-display font-bold tracking-tight text-stone-900">Últimas publicações</h2>
-                    </div>
-                    <span class="hidden sm:block text-xs font-mono text-stone-400 uppercase tracking-widest">06 artigos</span>
-                </div>
-
-                <!-- GRID
+          <!-- GRID
                      mobile: 1 coluna · tablet: 2 · desktop: 3 · widescreen mantém 3 dentro do wrapper 1440.
                      Para adicionar um post, basta duplicar um bloco <article class="post-card ..."> abaixo. -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-
-                    <!-- ===== CARD TEMPLATE (reutilizável) ===== -->
-                    <article class="post-card group reveal min-w-0 flex flex-col overflow-hidden rounded-2xl bg-white/60 backdrop-blur-md border border-white/50 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-500" data-category="cardiologia">
-                        <a href="https://www.noticiamax.com.br/opiniao/corpos-fortes-coracoes-vulneraveis/195151" target="_blank" rel="noopener" class="block relative aspect-[16/10] overflow-hidden bg-stone-200">
-                            <img src="assets/images/corposFortes.webp" alt="Corpos fortes. Corações vulneráveis?" loading="lazy" class="w-full h-full object-cover select-none transition-transform duration-700 group-hover:scale-105">
-                            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-stone-900/85 backdrop-blur-sm text-white text-[10px] font-mono uppercase tracking-widest">Cardiologia</span>
-                        </a>
-                        <div class="flex flex-col flex-1 p-6">
-                            <div class="flex items-center gap-3 text-[11px] font-mono text-stone-400 uppercase tracking-wider mb-3">
-                                <span>25 Mai 2026</span>
-                            </div>
-                            <h3 class="font-display font-bold text-lg text-stone-900 leading-snug mb-2 line-clamp-2 group-hover:text-brand-yellow-dark transition-colors">
-                                <a href="https://www.noticiamax.com.br/opiniao/corpos-fortes-coracoes-vulneraveis/195151" target="_blank" rel="noopener">Corpos fortes. Corações vulneráveis?</a>
-                            </h3>
-                            <p class="text-sm text-stone-500 leading-relaxed font-light line-clamp-3 mb-5">
-                                O que a morte precoce de atletas do fisiculturismo pode nos ensinar sobre saúde, performance e os limites reais do corpo humano.
-                            </p>
-                            <a href="https://www.noticiamax.com.br/opiniao/corpos-fortes-coracoes-vulneraveis/195151" target="_blank" rel="noopener" class="mt-auto inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-stone-900 font-semibold group/btn">
-                                Ler artigo
-                                <iconify-icon icon="solar:arrow-right-linear" class="text-base transition-transform group-hover/btn:translate-x-1"></iconify-icon>
-                            </a>
-                        </div>
-                    </article>
-
-                    <!-- ===== CARD ===== -->
-                    <article class="post-card group reveal min-w-0 flex flex-col overflow-hidden rounded-2xl bg-white/60 backdrop-blur-md border border-white/50 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-500" data-category="cardiologia">
-                        <a href="https://www.noticiamax.com.br/opiniao/o-infarto-pode-comecar-no-intestino/194785" target="_blank" rel="noopener" class="block relative aspect-[16/10] overflow-hidden bg-stone-200">
-                            <img src="assets/images/infartoIntestino.webp" alt="O infarto pode começar no intestino?" loading="lazy" class="w-full h-full object-cover select-none transition-transform duration-700 group-hover:scale-105">
-                            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-stone-900/85 backdrop-blur-sm text-white text-[10px] font-mono uppercase tracking-widest">Cardiologia</span>
-                        </a>
-                        <div class="flex flex-col flex-1 p-6">
-                            <div class="flex items-center gap-3 text-[11px] font-mono text-stone-400 uppercase tracking-wider mb-3">
-                                <span>19 Mai 2026</span>
-                            </div>
-                            <h3 class="font-display font-bold text-lg text-stone-900 leading-snug mb-2 line-clamp-2 group-hover:text-brand-yellow-dark transition-colors">
-                                <a href="https://www.noticiamax.com.br/opiniao/o-infarto-pode-comecar-no-intestino/194785" target="_blank" rel="noopener">O infarto pode começar no intestino?</a>
-                            </h3>
-                            <p class="text-sm text-stone-500 leading-relaxed font-light line-clamp-3 mb-5">
-                                Durante muitos anos, acreditamos que o infarto começava nas artérias. A ciência revela que o intestino pode influenciar diretamente.
-                            </p>
-                            <a href="https://www.noticiamax.com.br/opiniao/o-infarto-pode-comecar-no-intestino/194785" target="_blank" rel="noopener" class="mt-auto inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-stone-900 font-semibold group/btn">
-                                Ler artigo
-                                <iconify-icon icon="solar:arrow-right-linear" class="text-base transition-transform group-hover/btn:translate-x-1"></iconify-icon>
-                            </a>
-                        </div>
-                    </article>
-
-                    <!-- ===== CARD ===== -->
-                    <article class="post-card group reveal min-w-0 flex flex-col overflow-hidden rounded-2xl bg-white/60 backdrop-blur-md border border-white/50 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-500" data-category="cardiologia">
-                        <a href="https://www.noticiamax.com.br/opiniao/gordura-no-figado-nao-e-so-do-figado/194119" target="_blank" rel="noopener" class="block relative aspect-[16/10] overflow-hidden bg-stone-200">
-                            <img src="assets/images/gorduraFigado.webp" alt="Gordura no fígado não é só do fígado" loading="lazy" class="w-full h-full object-cover select-none transition-transform duration-700 group-hover:scale-105">
-                            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-stone-900/85 backdrop-blur-sm text-white text-[10px] font-mono uppercase tracking-widest">Cardiologia</span>
-                        </a>
-                        <div class="flex flex-col flex-1 p-6">
-                            <div class="flex items-center gap-3 text-[11px] font-mono text-stone-400 uppercase tracking-wider mb-3">
-                                <span>21 Abr 2026</span>
-                            </div>
-                            <h3 class="font-display font-bold text-lg text-stone-900 leading-snug mb-2 line-clamp-2 group-hover:text-brand-yellow-dark transition-colors">
-                                <a href="https://www.noticiamax.com.br/opiniao/gordura-no-figado-nao-e-so-do-figado/194119" target="_blank" rel="noopener">Gordura no fígado não é "só do fígado"</a>
-                            </h3>
-                            <p class="text-sm text-stone-500 leading-relaxed font-light line-clamp-3 mb-5">
-                                Você provavelmente já ouviu falar em fígado gorduroso. Mas a medicina moderna revela que o problema vai muito além do fígado.
-                            </p>
-                            <a href="https://www.noticiamax.com.br/opiniao/gordura-no-figado-nao-e-so-do-figado/194119" target="_blank" rel="noopener" class="mt-auto inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-stone-900 font-semibold group/btn">
-                                Ler artigo
-                                <iconify-icon icon="solar:arrow-right-linear" class="text-base transition-transform group-hover/btn:translate-x-1"></iconify-icon>
-                            </a>
-                        </div>
-                    </article>
-
-                    <!-- ===== CARD ===== -->
-                    <article class="post-card group reveal min-w-0 flex flex-col overflow-hidden rounded-2xl bg-white/60 backdrop-blur-md border border-white/50 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-500" data-category="saude-feminina">
-                        <a href="https://www.noticiamax.com.br/opiniao/depois-dos-40-nao-e-sobre-emagrecer/190585" target="_blank" rel="noopener" class="block relative aspect-[16/10] overflow-hidden bg-stone-200">
-                            <img src="assets/images/mulherTreinando.webp" alt="Depois dos 40, não é sobre emagrecer" loading="lazy" class="w-full h-full object-cover select-none transition-transform duration-700 group-hover:scale-105">
-                            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-stone-900/85 backdrop-blur-sm text-white text-[10px] font-mono uppercase tracking-widest">Saúde Feminina</span>
-                        </a>
-                        <div class="flex flex-col flex-1 p-6">
-                            <div class="flex items-center gap-3 text-[11px] font-mono text-stone-400 uppercase tracking-wider mb-3">
-                                <span>02 Mar 2026</span>
-                            </div>
-                            <h3 class="font-display font-bold text-lg text-stone-900 leading-snug mb-2 line-clamp-2 group-hover:text-brand-yellow-dark transition-colors">
-                                <a href="https://www.noticiamax.com.br/opiniao/depois-dos-40-nao-e-sobre-emagrecer/190585" target="_blank" rel="noopener">Depois dos 40, não é sobre emagrecer</a>
-                            </h3>
-                            <p class="text-sm text-stone-500 leading-relaxed font-light line-clamp-3 mb-5">
-                                Músculo não é estética. É proteção metabólica, equilíbrio hormonal, saúde óssea e independência funcional. O que muda depois dos 40.
-                            </p>
-                            <a href="https://www.noticiamax.com.br/opiniao/depois-dos-40-nao-e-sobre-emagrecer/190585" target="_blank" rel="noopener" class="mt-auto inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-stone-900 font-semibold group/btn">
-                                Ler artigo
-                                <iconify-icon icon="solar:arrow-right-linear" class="text-base transition-transform group-hover/btn:translate-x-1"></iconify-icon>
-                            </a>
-                        </div>
-                    </article>
-
-                    <!-- ===== CARD ===== -->
-                    <article class="post-card group reveal min-w-0 flex flex-col overflow-hidden rounded-2xl bg-white/60 backdrop-blur-md border border-white/50 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-500" data-category="saude-intestinal">
-                        <a href="https://www.noticiamax.com.br/opiniao/a-chave-para-uma-noite-de-sono-perfeita-pode-estar-no-seu-intestino/192927" target="_blank" rel="noopener" class="block relative aspect-[16/10] overflow-hidden bg-stone-200">
-                            <img src="assets/images/mulherDormindo.webp" alt="A chave para uma noite de sono perfeita pode estar no seu intestino" loading="lazy" class="w-full h-full object-cover select-none transition-transform duration-700 group-hover:scale-105">
-                            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-stone-900/85 backdrop-blur-sm text-white text-[10px] font-mono uppercase tracking-widest">Saúde Intestinal</span>
-                        </a>
-                        <div class="flex flex-col flex-1 p-6">
-                            <div class="flex items-center gap-3 text-[11px] font-mono text-stone-400 uppercase tracking-wider mb-3">
-                                <span>28 Mar 2026</span>
-                            </div>
-                            <h3 class="font-display font-bold text-lg text-stone-900 leading-snug mb-2 line-clamp-2 group-hover:text-brand-yellow-dark transition-colors">
-                                <a href="https://www.noticiamax.com.br/opiniao/a-chave-para-uma-noite-de-sono-perfeita-pode-estar-no-seu-intestino/192927" target="_blank" rel="noopener">A chave para uma noite de sono perfeita pode estar no seu intestino</a>
-                            </h3>
-                            <p class="text-sm text-stone-500 leading-relaxed font-light line-clamp-3 mb-5">
-                                Milhões sofrem com insônia sem saber que a raiz do problema pode estar no sistema digestório. A ciência revela essa conexão poderosa.
-                            </p>
-                            <a href="https://www.noticiamax.com.br/opiniao/a-chave-para-uma-noite-de-sono-perfeita-pode-estar-no-seu-intestino/192927" target="_blank" rel="noopener" class="mt-auto inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-stone-900 font-semibold group/btn">
-                                Ler artigo
-                                <iconify-icon icon="solar:arrow-right-linear" class="text-base transition-transform group-hover/btn:translate-x-1"></iconify-icon>
-                            </a>
-                        </div>
-                    </article>
-
-                    <!-- ===== CARD ===== -->
-                    <article class="post-card group reveal min-w-0 flex flex-col overflow-hidden rounded-2xl bg-white/60 backdrop-blur-md border border-white/50 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-500" data-category="cardiologia">
-                        <a href="https://www.noticiamax.com.br/opiniao/treino-e-desgaste-do-coracao/191729" target="_blank" rel="noopener" class="block relative aspect-[16/10] overflow-hidden bg-stone-200">
-                            <img src="assets/images/treinoDesgaste.webp" alt="Treino e desgaste do coração" loading="lazy" class="w-full h-full object-cover select-none transition-transform duration-700 group-hover:scale-105">
-                            <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-stone-900/85 backdrop-blur-sm text-white text-[10px] font-mono uppercase tracking-widest">Cardiologia</span>
-                        </a>
-                        <div class="flex flex-col flex-1 p-6">
-                            <div class="flex items-center gap-3 text-[11px] font-mono text-stone-400 uppercase tracking-wider mb-3">
-                                <span>14 Mar 2026</span>
-                            </div>
-                            <h3 class="font-display font-bold text-lg text-stone-900 leading-snug mb-2 line-clamp-2 group-hover:text-brand-yellow-dark transition-colors">
-                                <a href="https://www.noticiamax.com.br/opiniao/treino-e-desgaste-do-coracao/191729" target="_blank" rel="noopener">Treino e desgaste do coração</a>
-                            </h3>
-                            <p class="text-sm text-stone-500 leading-relaxed font-light line-clamp-3 mb-5">
-                                Treinar mais não significa treinar melhor. Em muitos casos, o excesso de esforço sem acompanhamento pode comprometer o coração.
-                            </p>
-                            <a href="https://www.noticiamax.com.br/opiniao/treino-e-desgaste-do-coracao/191729" target="_blank" rel="noopener" class="mt-auto inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-stone-900 font-semibold group/btn">
-                                Ler artigo
-                                <iconify-icon icon="solar:arrow-right-linear" class="text-base transition-transform group-hover/btn:translate-x-1"></iconify-icon>
-                            </a>
-                        </div>
-                    </article>
-
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            <!-- ===== CARD TEMPLATE (reutilizável) ===== -->
+            <article
+              class="post-card group reveal min-w-0 flex flex-col overflow-hidden rounded-2xl bg-white/60 backdrop-blur-md border border-white/50 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-500"
+              data-category="cardiologia"
+            >
+              <a
+                href="https://www.noticiamax.com.br/opiniao/corpos-fortes-coracoes-vulneraveis/195151"
+                target="_blank"
+                rel="noopener"
+                class="block relative aspect-[16/10] overflow-hidden bg-stone-200"
+              >
+                <img
+                  src="assets/images/corposFortes.webp"
+                  alt="Corpos fortes. Corações vulneráveis?"
+                  loading="lazy"
+                  class="w-full h-full object-cover select-none transition-transform duration-700 group-hover:scale-105"
+                />
+                <span
+                  class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-stone-900/85 backdrop-blur-sm text-white text-[10px] font-mono uppercase tracking-widest"
+                >
+                  Cardiologia
+                </span>
+              </a>
+              <div class="flex flex-col flex-1 p-6">
+                <div class="flex items-center gap-3 text-[11px] font-mono text-stone-400 uppercase tracking-wider mb-3">
+                  <span>25 Mai 2026</span>
                 </div>
-
-            </div>
-        </section>
-
-        <!-- ============================================================= -->
-        <!-- CTA / NEWSLETTER — captura preparada para o futuro            -->
-        <!-- ============================================================= -->
-        <section class="relative z-10 border-b border-stone-300 bg-[#1c1917] text-white py-16 sm:py-20 overflow-hidden">
-            <!-- Estrelas cintilantes (mesmo efeito da seção escura do index) -->
-            <div id="stars-container"></div>
-            <div class="dark-grid-line-v" style="left: 20%"><div class="beam-v" style="animation-delay: 1s; animation-duration: 6s;"></div></div>
-            <div class="dark-grid-line-v" style="left: 80%"><div class="beam-v" style="animation-delay: 3.5s; animation-duration: 7s;"></div></div>
-
-            <div class="relative z-10 max-w-2xl mx-auto px-6 lg:px-12 text-center flex flex-col items-center">
-                <span class="text-[10px] font-mono tracking-widest text-[#EDC54C] uppercase font-bold mb-4 block reveal">Newsletter Luminae</span>
-                <h2 class="text-h2 font-display font-bold tracking-tight text-white leading-tight mb-4 reveal delay-100">
-                    Receba ciência em saúde direto no seu e-mail.
-                </h2>
-                <p class="text-sm sm:text-base text-stone-400 font-light leading-relaxed max-w-lg mb-8 reveal delay-200">
-                    Novos artigos sobre cardiologia, nutrição e longevidade — sem ruído, só conteúdo que importa.
+                <h3
+                  class="font-display font-bold text-lg text-stone-900 leading-snug mb-2 line-clamp-2 group-hover:text-brand-yellow-dark transition-colors"
+                >
+                  <a
+                    href="https://www.noticiamax.com.br/opiniao/corpos-fortes-coracoes-vulneraveis/195151"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    Corpos fortes. Corações vulneráveis?
+                  </a>
+                </h3>
+                <p class="text-sm text-stone-500 leading-relaxed font-light line-clamp-3 mb-5">
+                  O que a morte precoce de atletas do fisiculturismo pode nos ensinar sobre saúde, performance e os
+                  limites reais do corpo humano.
                 </p>
-                <form class="w-full max-w-md flex flex-col sm:flex-row gap-3 reveal delay-300" onsubmit="return false;">
-                    <label for="news-email" class="sr-only">Seu e-mail</label>
-                    <input id="news-email" type="email" required placeholder="seu@email.com"
-                        class="flex-1 min-w-0 bg-white/5 border border-white/15 text-white placeholder:text-stone-500 py-3 px-4 rounded-sm outline-none focus:border-brand-yellow/60 focus:ring-2 focus:ring-brand-yellow/20 transition-all font-sans text-sm">
-                    <button type="submit" class="shrink-0 px-6 py-3 bg-brand-yellow text-stone-900 font-display text-xs uppercase tracking-widest font-semibold rounded-sm shadow-md hover:bg-brand-yellow-muted1 hover:-translate-y-0.5 transition-all">
-                        Inscrever-se
-                    </button>
-                </form>
+                <a
+                  href="https://www.noticiamax.com.br/opiniao/corpos-fortes-coracoes-vulneraveis/195151"
+                  target="_blank"
+                  rel="noopener"
+                  class="mt-auto inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-stone-900 font-semibold group/btn"
+                >
+                  Ler artigo
+                  <iconify-icon
+                    icon="solar:arrow-right-linear"
+                    class="text-base transition-transform group-hover/btn:translate-x-1"
+                  ></iconify-icon>
+                </a>
+              </div>
+            </article>
+
+            <!-- ===== CARD ===== -->
+            <article
+              class="post-card group reveal min-w-0 flex flex-col overflow-hidden rounded-2xl bg-white/60 backdrop-blur-md border border-white/50 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-500"
+              data-category="cardiologia"
+            >
+              <a
+                href="https://www.noticiamax.com.br/opiniao/o-infarto-pode-comecar-no-intestino/194785"
+                target="_blank"
+                rel="noopener"
+                class="block relative aspect-[16/10] overflow-hidden bg-stone-200"
+              >
+                <img
+                  src="assets/images/infartoIntestino.webp"
+                  alt="O infarto pode começar no intestino?"
+                  loading="lazy"
+                  class="w-full h-full object-cover select-none transition-transform duration-700 group-hover:scale-105"
+                />
+                <span
+                  class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-stone-900/85 backdrop-blur-sm text-white text-[10px] font-mono uppercase tracking-widest"
+                >
+                  Cardiologia
+                </span>
+              </a>
+              <div class="flex flex-col flex-1 p-6">
+                <div class="flex items-center gap-3 text-[11px] font-mono text-stone-400 uppercase tracking-wider mb-3">
+                  <span>19 Mai 2026</span>
+                </div>
+                <h3
+                  class="font-display font-bold text-lg text-stone-900 leading-snug mb-2 line-clamp-2 group-hover:text-brand-yellow-dark transition-colors"
+                >
+                  <a
+                    href="https://www.noticiamax.com.br/opiniao/o-infarto-pode-comecar-no-intestino/194785"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    O infarto pode começar no intestino?
+                  </a>
+                </h3>
+                <p class="text-sm text-stone-500 leading-relaxed font-light line-clamp-3 mb-5">
+                  Durante muitos anos, acreditamos que o infarto começava nas artérias. A ciência revela que o intestino
+                  pode influenciar diretamente.
+                </p>
+                <a
+                  href="https://www.noticiamax.com.br/opiniao/o-infarto-pode-comecar-no-intestino/194785"
+                  target="_blank"
+                  rel="noopener"
+                  class="mt-auto inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-stone-900 font-semibold group/btn"
+                >
+                  Ler artigo
+                  <iconify-icon
+                    icon="solar:arrow-right-linear"
+                    class="text-base transition-transform group-hover/btn:translate-x-1"
+                  ></iconify-icon>
+                </a>
+              </div>
+            </article>
+
+            <!-- ===== CARD ===== -->
+            <article
+              class="post-card group reveal min-w-0 flex flex-col overflow-hidden rounded-2xl bg-white/60 backdrop-blur-md border border-white/50 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-500"
+              data-category="cardiologia"
+            >
+              <a
+                href="https://www.noticiamax.com.br/opiniao/gordura-no-figado-nao-e-so-do-figado/194119"
+                target="_blank"
+                rel="noopener"
+                class="block relative aspect-[16/10] overflow-hidden bg-stone-200"
+              >
+                <img
+                  src="assets/images/gorduraFigado.webp"
+                  alt="Gordura no fígado não é só do fígado"
+                  loading="lazy"
+                  class="w-full h-full object-cover select-none transition-transform duration-700 group-hover:scale-105"
+                />
+                <span
+                  class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-stone-900/85 backdrop-blur-sm text-white text-[10px] font-mono uppercase tracking-widest"
+                >
+                  Cardiologia
+                </span>
+              </a>
+              <div class="flex flex-col flex-1 p-6">
+                <div class="flex items-center gap-3 text-[11px] font-mono text-stone-400 uppercase tracking-wider mb-3">
+                  <span>21 Abr 2026</span>
+                </div>
+                <h3
+                  class="font-display font-bold text-lg text-stone-900 leading-snug mb-2 line-clamp-2 group-hover:text-brand-yellow-dark transition-colors"
+                >
+                  <a
+                    href="https://www.noticiamax.com.br/opiniao/gordura-no-figado-nao-e-so-do-figado/194119"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    Gordura no fígado não é "só do fígado"
+                  </a>
+                </h3>
+                <p class="text-sm text-stone-500 leading-relaxed font-light line-clamp-3 mb-5">
+                  Você provavelmente já ouviu falar em fígado gorduroso. Mas a medicina moderna revela que o problema
+                  vai muito além do fígado.
+                </p>
+                <a
+                  href="https://www.noticiamax.com.br/opiniao/gordura-no-figado-nao-e-so-do-figado/194119"
+                  target="_blank"
+                  rel="noopener"
+                  class="mt-auto inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-stone-900 font-semibold group/btn"
+                >
+                  Ler artigo
+                  <iconify-icon
+                    icon="solar:arrow-right-linear"
+                    class="text-base transition-transform group-hover/btn:translate-x-1"
+                  ></iconify-icon>
+                </a>
+              </div>
+            </article>
+
+            <!-- ===== CARD ===== -->
+            <article
+              class="post-card group reveal min-w-0 flex flex-col overflow-hidden rounded-2xl bg-white/60 backdrop-blur-md border border-white/50 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-500"
+              data-category="saude-feminina"
+            >
+              <a
+                href="https://www.noticiamax.com.br/opiniao/depois-dos-40-nao-e-sobre-emagrecer/190585"
+                target="_blank"
+                rel="noopener"
+                class="block relative aspect-[16/10] overflow-hidden bg-stone-200"
+              >
+                <img
+                  src="assets/images/mulherTreinando.webp"
+                  alt="Depois dos 40, não é sobre emagrecer"
+                  loading="lazy"
+                  class="w-full h-full object-cover select-none transition-transform duration-700 group-hover:scale-105"
+                />
+                <span
+                  class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-stone-900/85 backdrop-blur-sm text-white text-[10px] font-mono uppercase tracking-widest"
+                >
+                  Saúde Feminina
+                </span>
+              </a>
+              <div class="flex flex-col flex-1 p-6">
+                <div class="flex items-center gap-3 text-[11px] font-mono text-stone-400 uppercase tracking-wider mb-3">
+                  <span>02 Mar 2026</span>
+                </div>
+                <h3
+                  class="font-display font-bold text-lg text-stone-900 leading-snug mb-2 line-clamp-2 group-hover:text-brand-yellow-dark transition-colors"
+                >
+                  <a
+                    href="https://www.noticiamax.com.br/opiniao/depois-dos-40-nao-e-sobre-emagrecer/190585"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    Depois dos 40, não é sobre emagrecer
+                  </a>
+                </h3>
+                <p class="text-sm text-stone-500 leading-relaxed font-light line-clamp-3 mb-5">
+                  Músculo não é estética. É proteção metabólica, equilíbrio hormonal, saúde óssea e independência
+                  funcional. O que muda depois dos 40.
+                </p>
+                <a
+                  href="https://www.noticiamax.com.br/opiniao/depois-dos-40-nao-e-sobre-emagrecer/190585"
+                  target="_blank"
+                  rel="noopener"
+                  class="mt-auto inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-stone-900 font-semibold group/btn"
+                >
+                  Ler artigo
+                  <iconify-icon
+                    icon="solar:arrow-right-linear"
+                    class="text-base transition-transform group-hover/btn:translate-x-1"
+                  ></iconify-icon>
+                </a>
+              </div>
+            </article>
+
+            <!-- ===== CARD ===== -->
+            <article
+              class="post-card group reveal min-w-0 flex flex-col overflow-hidden rounded-2xl bg-white/60 backdrop-blur-md border border-white/50 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-500"
+              data-category="saude-intestinal"
+            >
+              <a
+                href="https://www.noticiamax.com.br/opiniao/a-chave-para-uma-noite-de-sono-perfeita-pode-estar-no-seu-intestino/192927"
+                target="_blank"
+                rel="noopener"
+                class="block relative aspect-[16/10] overflow-hidden bg-stone-200"
+              >
+                <img
+                  src="assets/images/mulherDormindo.webp"
+                  alt="A chave para uma noite de sono perfeita pode estar no seu intestino"
+                  loading="lazy"
+                  class="w-full h-full object-cover select-none transition-transform duration-700 group-hover:scale-105"
+                />
+                <span
+                  class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-stone-900/85 backdrop-blur-sm text-white text-[10px] font-mono uppercase tracking-widest"
+                >
+                  Saúde Intestinal
+                </span>
+              </a>
+              <div class="flex flex-col flex-1 p-6">
+                <div class="flex items-center gap-3 text-[11px] font-mono text-stone-400 uppercase tracking-wider mb-3">
+                  <span>28 Mar 2026</span>
+                </div>
+                <h3
+                  class="font-display font-bold text-lg text-stone-900 leading-snug mb-2 line-clamp-2 group-hover:text-brand-yellow-dark transition-colors"
+                >
+                  <a
+                    href="https://www.noticiamax.com.br/opiniao/a-chave-para-uma-noite-de-sono-perfeita-pode-estar-no-seu-intestino/192927"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    A chave para uma noite de sono perfeita pode estar no seu intestino
+                  </a>
+                </h3>
+                <p class="text-sm text-stone-500 leading-relaxed font-light line-clamp-3 mb-5">
+                  Milhões sofrem com insônia sem saber que a raiz do problema pode estar no sistema digestório. A
+                  ciência revela essa conexão poderosa.
+                </p>
+                <a
+                  href="https://www.noticiamax.com.br/opiniao/a-chave-para-uma-noite-de-sono-perfeita-pode-estar-no-seu-intestino/192927"
+                  target="_blank"
+                  rel="noopener"
+                  class="mt-auto inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-stone-900 font-semibold group/btn"
+                >
+                  Ler artigo
+                  <iconify-icon
+                    icon="solar:arrow-right-linear"
+                    class="text-base transition-transform group-hover/btn:translate-x-1"
+                  ></iconify-icon>
+                </a>
+              </div>
+            </article>
+
+            <!-- ===== CARD ===== -->
+            <article
+              class="post-card group reveal min-w-0 flex flex-col overflow-hidden rounded-2xl bg-white/60 backdrop-blur-md border border-white/50 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-500"
+              data-category="cardiologia"
+            >
+              <a
+                href="https://www.noticiamax.com.br/opiniao/treino-e-desgaste-do-coracao/191729"
+                target="_blank"
+                rel="noopener"
+                class="block relative aspect-[16/10] overflow-hidden bg-stone-200"
+              >
+                <img
+                  src="assets/images/treinoDesgaste.webp"
+                  alt="Treino e desgaste do coração"
+                  loading="lazy"
+                  class="w-full h-full object-cover select-none transition-transform duration-700 group-hover:scale-105"
+                />
+                <span
+                  class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-stone-900/85 backdrop-blur-sm text-white text-[10px] font-mono uppercase tracking-widest"
+                >
+                  Cardiologia
+                </span>
+              </a>
+              <div class="flex flex-col flex-1 p-6">
+                <div class="flex items-center gap-3 text-[11px] font-mono text-stone-400 uppercase tracking-wider mb-3">
+                  <span>14 Mar 2026</span>
+                </div>
+                <h3
+                  class="font-display font-bold text-lg text-stone-900 leading-snug mb-2 line-clamp-2 group-hover:text-brand-yellow-dark transition-colors"
+                >
+                  <a
+                    href="https://www.noticiamax.com.br/opiniao/treino-e-desgaste-do-coracao/191729"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    Treino e desgaste do coração
+                  </a>
+                </h3>
+                <p class="text-sm text-stone-500 leading-relaxed font-light line-clamp-3 mb-5">
+                  Treinar mais não significa treinar melhor. Em muitos casos, o excesso de esforço sem acompanhamento
+                  pode comprometer o coração.
+                </p>
+                <a
+                  href="https://www.noticiamax.com.br/opiniao/treino-e-desgaste-do-coracao/191729"
+                  target="_blank"
+                  rel="noopener"
+                  class="mt-auto inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-stone-900 font-semibold group/btn"
+                >
+                  Ler artigo
+                  <iconify-icon
+                    icon="solar:arrow-right-linear"
+                    class="text-base transition-transform group-hover/btn:translate-x-1"
+                  ></iconify-icon>
+                </a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================= -->
+      <!-- CTA / NEWSLETTER — captura preparada para o futuro            -->
+      <!-- ============================================================= -->
+      <section class="relative z-10 border-b border-stone-300 bg-[#1c1917] text-white py-16 sm:py-20 overflow-hidden">
+        <!-- Estrelas cintilantes (mesmo efeito da seção escura do index) -->
+        <div id="stars-container"></div>
+        <div class="dark-grid-line-v" style="left: 20%">
+          <div class="beam-v" style="animation-delay: 1s; animation-duration: 6s"></div>
+        </div>
+        <div class="dark-grid-line-v" style="left: 80%">
+          <div class="beam-v" style="animation-delay: 3.5s; animation-duration: 7s"></div>
+        </div>
+
+        <div class="relative z-10 max-w-2xl mx-auto px-6 lg:px-12 text-center flex flex-col items-center">
+          <span class="text-[10px] font-mono tracking-widest text-[#EDC54C] uppercase font-bold mb-4 block reveal">
+            Newsletter Luminae
+          </span>
+          <h2 class="text-h2 font-display font-bold tracking-tight text-white leading-tight mb-4 reveal delay-100">
+            Receba ciência em saúde direto no seu e-mail.
+          </h2>
+          <p class="text-sm sm:text-base text-stone-400 font-light leading-relaxed max-w-lg mb-8 reveal delay-200">
+            Novos artigos sobre cardiologia, nutrição e longevidade — sem ruído, só conteúdo que importa.
+          </p>
+          <form class="w-full max-w-md flex flex-col sm:flex-row gap-3 reveal delay-300" onsubmit="return false;">
+            <label for="news-email" class="sr-only">Seu e-mail</label>
+            <input
+              id="news-email"
+              type="email"
+              required
+              placeholder="seu@email.com"
+              class="flex-1 min-w-0 bg-white/5 border border-white/15 text-white placeholder:text-stone-500 py-3 px-4 rounded-sm outline-none focus:border-brand-yellow/60 focus:ring-2 focus:ring-brand-yellow/20 transition-all font-sans text-sm"
+            />
+            <button
+              type="submit"
+              class="shrink-0 px-6 py-3 bg-brand-yellow text-stone-900 font-display text-xs uppercase tracking-widest font-semibold rounded-sm shadow-md hover:bg-brand-yellow-muted1 hover:-translate-y-0.5 transition-all"
+            >
+              Inscrever-se
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <!-- FOOTER CLARO/OFF-WHITE MINIMALISTA & SOPHISTICATED -->
+      <footer class="relative z-20 bg-[#FAF9F5] border-t border-stone-300/40 pt-20 pb-4 md:pt-28 md:pb-4">
+        <div class="max-w-[1200px] mx-auto px-6">
+          <!-- Parte Superior: Colunas -->
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 pb-12 md:pb-16">
+            <!-- Coluna Esquerda: Descrição e Ícones -->
+            <div class="col-span-12 md:col-span-6 flex flex-col justify-between gap-6">
+              <div class="space-y-4">
+                <p class="text-sm md:text-base font-sans font-light text-stone-500 leading-relaxed max-w-sm">
+                  Medicina estratégica, preventiva e personalizada para quem exige o melhor da própria saúde.
+                </p>
+
+                <!-- Ícones Sociais -->
+                <div class="flex gap-2.5">
+                  <a
+                    href="https://www.instagram.com/luminaesaude?igsh=MWZvcnN0cXlub2ExMg=="
+                    target="_blank"
+                    rel="noopener"
+                    class="w-7 h-7 bg-stone-200/60 hover:bg-stone-300/60 text-stone-500 hover:text-stone-900 rounded flex items-center justify-center transition-colors"
+                    aria-label="Instagram"
+                  >
+                    <iconify-icon icon="lucide:instagram" class="text-base"></iconify-icon>
+                  </a>
+                  <a
+                    href="mailto:grupoluminaesaude@gmail.com"
+                    class="w-7 h-7 bg-stone-200/60 hover:bg-stone-300/60 text-stone-500 hover:text-stone-900 rounded flex items-center justify-center transition-colors"
+                    aria-label="E-mail"
+                  >
+                    <iconify-icon icon="lucide:mail" class="text-base"></iconify-icon>
+                  </a>
+                </div>
+              </div>
             </div>
-        </section>
 
-        <!-- FOOTER CLARO/OFF-WHITE MINIMALISTA & SOPHISTICATED -->
-        <footer class="relative z-20 bg-[#FAF9F5] border-t border-stone-300/40 pt-20 pb-4 md:pt-28 md:pb-4">
-            <div class="max-w-[1200px] mx-auto px-6">
-                <!-- Parte Superior: Colunas -->
-                <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 pb-12 md:pb-16">
-
-                    <!-- Coluna Esquerda: Descrição e Ícones -->
-                    <div class="col-span-12 md:col-span-6 flex flex-col justify-between gap-6">
-                        <div class="space-y-4">
-                            <p class="text-sm md:text-base font-sans font-light text-stone-500 leading-relaxed max-w-sm">
-                                Medicina estratégica, preventiva e personalizada para quem exige o melhor da própria
-                                saúde.
-                            </p>
-
-                            <!-- Ícones Sociais -->
-                            <div class="flex gap-2.5">
-                                <a href="https://www.instagram.com/luminaesaude?igsh=MWZvcnN0cXlub2ExMg==" target="_blank" rel="noopener"
-                                    class="w-7 h-7 bg-stone-200/60 hover:bg-stone-300/60 text-stone-500 hover:text-stone-900 rounded flex items-center justify-center transition-colors"
-                                    aria-label="Instagram">
-                                    <iconify-icon icon="lucide:instagram" class="text-base"></iconify-icon>
-                                </a>
-                                <a href="mailto:grupoluminaesaude@gmail.com"
-                                    class="w-7 h-7 bg-stone-200/60 hover:bg-stone-300/60 text-stone-500 hover:text-stone-900 rounded flex items-center justify-center transition-colors"
-                                    aria-label="E-mail">
-                                    <iconify-icon icon="lucide:mail" class="text-base"></iconify-icon>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Coluna Central: CRM -->
-                    <div class="col-span-12 sm:col-span-6 md:col-span-3">
-                        <h4 class="text-xs font-mono uppercase tracking-[0.2em] font-semibold text-stone-900 mb-4 sm:mb-6">
-                            CRM</h4>
-                        <ul class="space-y-3 text-xs font-sans text-stone-500 font-light">
-                            <li>CRM/SP 000000 &ndash; Dra. Maristela</li>
-                            <li>CRM/MT 6194 | RQE 2308 &ndash; Dr. Max</li>
-                        </ul>
-                    </div>
-
-                    <!-- Coluna Direita: Contato -->
-                    <div class="col-span-12 sm:col-span-6 md:col-span-3">
-                        <h4 class="text-xs font-mono uppercase tracking-[0.2em] font-semibold text-stone-900 mb-4 sm:mb-6">
-                            Contato</h4>
-                        <ul class="space-y-3 text-xs font-sans text-stone-500 font-light">
-                            <li>
-                                <a href="mailto:grupoluminaesaude@gmail.com"
-                                    class="hover:text-stone-900 transition-colors">grupoluminaesaude@gmail.com</a>
-                            </li>
-                            <li>
-                                <a href="https://wa.me/5565981169424" target="_blank" rel="noopener"
-                                    class="hover:text-stone-900 transition-colors">+55 65 98116-9424</a>
-                            </li>
-                        </ul>
-                    </div>
-
-                </div>
-
-                <!-- Parte Intermediária: Copyright e Créditos Alinhados -->
-                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 pt-8 pb-12 md:pb-16 border-t border-stone-300/40">
-                    <!-- Copyright -->
-                    <p class="text-[11px] font-sans text-stone-500 font-light leading-relaxed">
-                        &copy; 2025 Luminae &ndash; Alta Performance em Sa&uacute;de. Todos os direitos reservados.
-                    </p>
-
-                    <!-- Créditos -->
-                    <p class="text-base font-sans text-[#494947] font-light leading-normal md:text-right">
-                        Desenvolvido por
-                        <a href="https://www.instagram.com/neuragain/" target="_blank" rel="noopener"
-                            class="underline hover:text-stone-900 transition-colors font-medium">neura</a>
-                    </p>
-                </div>
-
-                <!-- Parte Inferior: Logo Gray -->
-                <div class="w-full flex justify-center items-center">
-                    <img src="assets/images/logo-gray.svg" alt="Luminae Logo"
-                        class="w-full max-w-[1159px] h-auto opacity-70 hover:opacity-100 transition-opacity duration-500">
-                </div>
-
+            <!-- Coluna Central: CRM -->
+            <div class="col-span-12 sm:col-span-6 md:col-span-3">
+              <h4 class="text-xs font-mono uppercase tracking-[0.2em] font-semibold text-stone-900 mb-4 sm:mb-6">
+                CRM
+              </h4>
+              <ul class="space-y-3 text-xs font-sans text-stone-500 font-light">
+                <li>CRM/SP 000000 &ndash; Dra. Maristela</li>
+                <li>CRM/MT 6194 | RQE 2308 &ndash; Dr. Max</li>
+              </ul>
             </div>
-        </footer>
 
+            <!-- Coluna Direita: Contato -->
+            <div class="col-span-12 sm:col-span-6 md:col-span-3">
+              <h4 class="text-xs font-mono uppercase tracking-[0.2em] font-semibold text-stone-900 mb-4 sm:mb-6">
+                Contato
+              </h4>
+              <ul class="space-y-3 text-xs font-sans text-stone-500 font-light">
+                <li>
+                  <a href="mailto:grupoluminaesaude@gmail.com" class="hover:text-stone-900 transition-colors">
+                    grupoluminaesaude@gmail.com
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://wa.me/5565981169424"
+                    target="_blank"
+                    rel="noopener"
+                    class="hover:text-stone-900 transition-colors"
+                  >
+                    +55 65 98116-9424
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Parte Intermediária: Copyright e Créditos Alinhados -->
+          <div
+            class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 pt-8 pb-12 md:pb-16 border-t border-stone-300/40"
+          >
+            <!-- Copyright -->
+            <p class="text-[11px] font-sans text-stone-500 font-light leading-relaxed">
+              &copy; 2025 Luminae &ndash; Alta Performance em Sa&uacute;de. Todos os direitos reservados.
+            </p>
+
+            <!-- Créditos -->
+            <p class="text-base font-sans text-[#494947] font-light leading-normal md:text-right">
+              Desenvolvido por
+              <a
+                href="https://www.instagram.com/neuragain/"
+                target="_blank"
+                rel="noopener"
+                class="underline hover:text-stone-900 transition-colors font-medium"
+              >
+                neura
+              </a>
+            </p>
+          </div>
+
+          <!-- Parte Inferior: Logo Gray -->
+          <div class="w-full flex justify-center items-center">
+            <img
+              src="assets/images/logo-gray.svg"
+              alt="Luminae Logo"
+              class="w-full max-w-[1159px] h-auto opacity-70 hover:opacity-100 transition-opacity duration-500"
+            />
+          </div>
+        </div>
+      </footer>
     </div>
 
     <!-- LÓGICA JAVASCRIPT DOS EFEITOS INTERATIVOS (compartilhada com o index) -->
     <script src="assets/js/main.js"></script>
-</body>
-
+  </body>
 </html>
