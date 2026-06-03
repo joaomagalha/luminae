@@ -121,6 +121,8 @@
         .text-reveal-wrapper {
             overflow: hidden;
             display: block;
+            padding-bottom: 0.18em;
+            margin-bottom: -0.18em;
         }
 
         .text-reveal-content {
