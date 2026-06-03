@@ -105,7 +105,7 @@
         .reveal {
             opacity: 0;
             transform: translateY(30px);
-            filter: blur(10px);
+            filter: blur(4px);
             transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
                 transform 1.2s cubic-bezier(0.16, 1, 0.3, 1),
                 filter 1.2s cubic-bezier(0.16, 1, 0.3, 1);
@@ -899,7 +899,7 @@
         .metodo-section.is-ready .metodo-step[data-state="idle"] .metodo-content {
             opacity: 0.28;
             transform: translateY(14px);
-            filter: blur(3px);
+            filter: blur(1.5px);
         }
 
         .metodo-section.is-ready .metodo-step[data-state="active"] .metodo-content,
@@ -1554,3 +1554,177 @@
                 transform: none;
             }
         }
+
+/* ========================================== */
+/* SEÇÃO EXAMES (NOVA SEÇÃO)                  */
+/* ========================================== */
+.exames-section {
+    position: relative;
+    /* overflow: visible é crítico para o position: sticky funcionar no filho */
+    overflow: visible !important; 
+}
+
+/* Coluna Esquerda */
+.exames-left-col {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+}
+
+@media (min-width: 1024px) {
+    .exames-left-col {
+        height: 100%;
+        padding-bottom: 40px;
+    }
+}
+
+/* Lista de Itens */
+.exames-item {
+    position: relative;
+    border-top: 1px solid rgba(28, 25, 23, 0.08);
+    padding: 40px 0;
+    /* Transições suaves de opacidade e cor da borda */
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Último item recebe borda inferior para fechar a timeline sutilmente */
+.exames-item:last-child {
+    border-bottom: 1px solid rgba(28, 25, 23, 0.08);
+}
+
+/* Conteúdo interno do item (Flexbox editorial) */
+.exames-item-content {
+    display: flex;
+    gap: 32px;
+    align-items: flex-start;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+}
+
+/* Numeração sequencial */
+.exames-item-number {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #a8a29e; /* stone-400 */
+    margin-top: 4px; /* alinha com o topo do título */
+    flex-shrink: 0;
+    transition: color 0.6s ease, font-weight 0.6s ease;
+}
+
+/* Título */
+.exames-item-title {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: var(--fs-h3);
+    font-weight: 700;
+    color: #78716c; /* stone-500 (cor opaca por padrão) */
+    margin: 0 0 12px 0;
+    line-height: 1.3;
+    transition: color 0.6s ease;
+}
+
+/* Descrição */
+.exames-item-desc {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: #87817b; /* stone-450 sutil */
+    margin: 0;
+    font-weight: 300;
+    transition: color 0.6s ease;
+}
+
+/* --- Controle de Estados via Scroll / Hover (Apenas se revelados) --- */
+
+/* Caso ainda não revelado pelo global revealObserver, fica invisível */
+.exames-item.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+/* Após o global revealObserver ativar a seção */
+.exames-item.reveal.active {
+    opacity: 0.45; /* estado inativo sutil */
+    transform: translateY(0);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Estado de Destaque (Focado no Scroll ou no Hover do mouse) */
+.exames-item.reveal.active.exames-item-active,
+.exames-item.reveal.active:hover {
+    opacity: 1;
+    border-top-color: rgba(28, 25, 23, 0.25);
+}
+
+.exames-item.reveal.active.exames-item-active:last-child,
+.exames-item.reveal.active:hover:last-child {
+    border-bottom-color: rgba(28, 25, 23, 0.25);
+}
+
+/* Efeito de deslocamento lateral sutil da timeline ao focar/hover */
+.exames-item.reveal.active.exames-item-active .exames-item-content,
+.exames-item.reveal.active:hover .exames-item-content {
+    transform: translateX(8px);
+}
+
+/* Cores ativadas no Destaque */
+.exames-item.reveal.active.exames-item-active .exames-item-number,
+.exames-item.reveal.active:hover .exames-item-number {
+    color: var(--gold);
+    font-weight: 700;
+}
+
+.exames-item.reveal.active.exames-item-active .exames-item-title,
+.exames-item.reveal.active:hover .exames-item-title {
+    color: var(--dark);
+}
+
+.exames-item.reveal.active.exames-item-active .exames-item-desc,
+.exames-item.reveal.active:hover .exames-item-desc {
+    color: #44403c; /* stone-700 */
+}
+
+/* Responsividade Mobile */
+@media (max-width: 1023px) {
+    .exames-item-content {
+        gap: 20px;
+    }
+    
+    .exames-item {
+        padding: 32px 0;
+    }
+    
+    /* Remove deslocamento lateral no mobile para evitar saltos visuais */
+    .exames-item.reveal.active.exames-item-active .exames-item-content,
+    .exames-item.reveal.active:hover .exames-item-content {
+        transform: none;
+    }
+    
+    /* No mobile, todos os exames revelados mantêm opacidade legível e natural (0.85 a 1.0) */
+    .exames-item.reveal.active {
+        opacity: 0.9;
+    }
+    
+    .exames-item.reveal.active .exames-item-title {
+        color: var(--dark);
+    }
+    
+    .exames-item.reveal.active .exames-item-desc {
+        color: #44403c;
+    }
+}
+
+/* prefers-reduced-motion: desativa deslocamentos e reduz tempo de transição */
+@media (prefers-reduced-motion: reduce) {
+    .exames-item, 
+    .exames-item.reveal.active, 
+    .exames-item-content {
+        transition: none !important;
+        transform: none !important;
+        opacity: 1 !important;
+    }
+}
