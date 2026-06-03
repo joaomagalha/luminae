@@ -181,6 +181,45 @@
       text-transform: uppercase;
       color: rgba(28, 25, 23, 0.35);
     }
+
+    .whatsapp-float {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      width: 56px;
+      height: 56px;
+      z-index: 9998;
+      display: block;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+      opacity: 0.92;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.18));
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      opacity: 1;
+    }
+
+    .whatsapp-float img {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      .whatsapp-float {
+        width: 44px;
+        height: 44px;
+        bottom: 18px;
+        right: 18px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .text-h1 {
+        font-size: 1.85rem;
+      }
+    }
   </style>
 
   <script>
@@ -278,9 +317,11 @@
             class="text-h1 font-display font-bold tracking-tight text-stone-900 leading-[1.1] mb-4 sm:mb-6 lg:mb-8 text-balance">
             <span class="text-reveal-wrapper"><span class="text-reveal-content">Saúde metabólica,</span></span>
             <span class="text-reveal-wrapper">
-              <span class="text-reveal-content delay-200 text-brand-yellow font-light italic">nutrição e longevidade</span>
+              <span class="text-reveal-content delay-200 text-brand-yellow font-light italic">nutrição e
+                longevidade</span>
             </span>
-            <span class="text-reveal-wrapper"><span class="text-reveal-content delay-300">em uma só abordagem.</span></span>
+            <span class="text-reveal-wrapper"><span class="text-reveal-content delay-300">em uma só
+                abordagem.</span></span>
           </h1>
 
           <p
@@ -362,9 +403,9 @@
                   class="absolute bottom-4 left-4 right-4 bg-stone-900/90 backdrop-blur-md border border-white/10 p-4 rounded-lg text-white shadow-lg z-10">
                   <div class="flex justify-between items-center">
                     <div>
-                      <h3 class="font-display font-bold text-sm tracking-tight">Dr. Max & Maristela Luft</h3>
+                      <h3 class="font-display font-bold text-sm tracking-tight">Maristela Luft & Dr. Max </h3>
                       <span class="text-[9px] font-mono uppercase text-brand-yellow/85 tracking-wider">
-                        Cardiometabolismo & Medicina Preventiva
+                        Nutrição & Cardiometabolismo
                       </span>
                     </div>
                     <div
@@ -1289,6 +1330,11 @@
       </div>
     </footer>
   </div>
+
+  <a href="https://wa.me/5565981169424?text=Ol%C3%A1%21%20Gostaria%20de%20agendar%20uma%20consulta%20na%20Luminae."
+    target="_blank" rel="noopener" aria-label="Falar no WhatsApp" class="whatsapp-float">
+    <img src="assets/images/whatsapp_220236.svg" alt="WhatsApp" />
+  </a>
 
   <!-- LOGICA JAVASCRIPT DOS EFEITOS INTERATIVOS -->
   <script src="assets/js/main.js"></script>
